@@ -1,5 +1,5 @@
 ﻿import logging
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CallbackQueryHandler, CommandHandler
 import datetime
 import pytz
 
@@ -45,11 +45,13 @@ def main():
     application.add_handler(CommandHandler("flash_new", flashcard_handlers.flash_new))
     application.add_handler(CommandHandler("flash_review", flashcard_handlers.flash_review))
     application.add_handler(CommandHandler("flash_stats", flashcard_handlers.flash_stats))
+    application.add_handler(CommandHandler("flash_goal", flashcard_handlers.flash_goal))
     application.add_handler(CommandHandler("show", flashcard_handlers.show))
     application.add_handler(CommandHandler("again", flashcard_handlers.again))
     application.add_handler(CommandHandler("hard", flashcard_handlers.hard))
     application.add_handler(CommandHandler("good", flashcard_handlers.good))
     application.add_handler(CommandHandler("easy", flashcard_handlers.easy))
+    application.add_handler(CallbackQueryHandler(flashcard_handlers.handle_flashcard_callback, pattern="^flash:"))
 
     # Scheduler
     job_queue = application.job_queue
@@ -74,5 +76,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 

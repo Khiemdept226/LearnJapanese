@@ -32,6 +32,11 @@ def _looks_japanese(value):
     return bool(re.search(r"[ぁ-んァ-ン一-龯々ー]", value))
 
 
+def _is_standalone_furigana(value):
+    compact = value.strip()
+    return bool(re.fullmatch(r"[ぁ-んァ-ンー]{1,12}", compact))
+
+
 def _looks_vietnamese(value):
     return not _looks_japanese(value) and bool(re.search(r"[A-Za-zÀ-ỹĐđ0-9]", value))
 
@@ -49,6 +54,8 @@ def _split_example(lines):
         if not line:
             continue
         if _looks_japanese(line) and not seen_vi:
+            if _is_standalone_furigana(line):
+                continue
             jp.append(line)
         elif _looks_vietnamese(line):
             seen_vi = True
@@ -144,6 +151,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 

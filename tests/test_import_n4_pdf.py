@@ -47,8 +47,11 @@ def test_parse_cards_from_pdf_text_sample():
     assert cards[1]["reading"] == "けいけん"
     assert cards[1]["meaning"] == "Kinh nghiệm"
     assert "先生は面白" in cards[1]["example_jp"]
+    assert "おもしろ" not in cards[1]["example_jp"]
+    assert "しんせつ" not in cards[1]["example_jp"]
     assert "nhiều kinh nghiệm" in cards[1]["example_vi"]
     assert cards[2]["word"] == "店員"
     assert cards[2]["meaning"] == "Nhân viên quán"
     assert cards[3]["word"] == "食堂"
     assert cards[3]["example_jp"] == "この大学には食堂がない。"
+

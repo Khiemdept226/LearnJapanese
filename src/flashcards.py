@@ -7,6 +7,49 @@ from config import DATABASE_PATH
 
 
 VALID_GRADES = {"again", "hard", "good", "easy"}
+DEFAULT_SETTINGS = {
+    "preset": "jlpt_sprint",
+    "level": "N4",
+    "daily_new_limit": 15,
+    "daily_review_limit": 60,
+    "again_delay_minutes": 10,
+    "stop_new_cards_before_exam_days": 7,
+    "exam_date": "2026-07-05",
+}
+GOAL_PRESETS = {
+    "light": {
+        "preset": "light",
+        "daily_new_limit": 3,
+        "daily_review_limit": 10,
+        "again_delay_minutes": 10,
+        "stop_new_cards_before_exam_days": None,
+        "exam_date": None,
+    },
+    "steady": {
+        "preset": "steady",
+        "daily_new_limit": 5,
+        "daily_review_limit": 20,
+        "again_delay_minutes": 10,
+        "stop_new_cards_before_exam_days": None,
+        "exam_date": None,
+    },
+    "heavy": {
+        "preset": "heavy",
+        "daily_new_limit": 10,
+        "daily_review_limit": 40,
+        "again_delay_minutes": 10,
+        "stop_new_cards_before_exam_days": None,
+        "exam_date": None,
+    },
+    "jlpt_sprint": {
+        "preset": "jlpt_sprint",
+        "daily_new_limit": 15,
+        "daily_review_limit": 60,
+        "again_delay_minutes": 10,
+        "stop_new_cards_before_exam_days": 7,
+        "exam_date": "2026-07-05",
+    },
+}
 
 
 def utc_now():
@@ -73,6 +116,20 @@ def init_flashcard_db():
             current_direction TEXT NOT NULL DEFAULT 'jp_to_vi',
             shown_at TEXT,
             answer_shown_at TEXT,
+            updated_at TEXT NOT NULL
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS user_flashcard_settings (
+            telegram_user_id INTEGER PRIMARY KEY,
+            preset TEXT NOT NULL,
+            level TEXT NOT NULL DEFAULT 'N4',
+            daily_new_limit INTEGER NOT NULL,
+            daily_review_limit INTEGER NOT NULL,
+            again_delay_minutes INTEGER NOT NULL,
+            stop_new_cards_before_exam_days INTEGER,
+            exam_date TEXT,
+            created_at TEXT NOT NULL,
             updated_at TEXT NOT NULL
         )
     """)
@@ -185,7 +242,7 @@ def save_review_state(telegram_user_id, flashcard_id, review):
     conn.close()
 
 
-def apply_review_grade(review, grade, now=None):
+def apply_review_grade(review, grade, now=None, again_delay_minutes=10):
     if grade not in VALID_GRADES:
         raise ValueError(f"Invalid flashcard grade: {grade}")
     now = now or utc_now()
@@ -194,9 +251,11 @@ def apply_review_grade(review, grade, now=None):
     repetitions = int(review.get("repetitions") or 0)
     lapses = int(review.get("lapses") or 0)
 
+    due_delta = None
     if grade == "again":
         state = "relearning"
-        interval = 1
+        interval = 0
+        due_delta = dt.timedelta(minutes=again_delay_minutes)
         ease = max(1.3, round(ease - 0.2, 2))
         repetitions = 0
         lapses += 1
@@ -225,7 +284,7 @@ def apply_review_grade(review, grade, now=None):
             interval = max(4, round(interval * ease * 1.5, 2))
         ease = round(ease + 0.15, 2)
 
-    due_at = now + dt.timedelta(days=interval)
+    due_at = now + (due_delta or dt.timedelta(days=interval))
     return {
         "state": state,
         "due_at": due_at.isoformat(),
@@ -319,6 +378,63 @@ def get_flashcard_stats(telegram_user_id, level="N4", now=None):
     }
 
 
+
+def get_user_settings(telegram_user_id):
+    init_flashcard_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user_flashcard_settings WHERE telegram_user_id = ?", (telegram_user_id,))
+    row = cursor.fetchone()
+    conn.close()
+    if not row:
+        return dict(DEFAULT_SETTINGS)
+    settings = dict(DEFAULT_SETTINGS)
+    settings.update(dict(row))
+    return settings
+
+
+def set_user_goal_preset(telegram_user_id, preset, now=None):
+    if preset not in GOAL_PRESETS:
+        raise ValueError(f"Invalid flashcard goal preset: {preset}")
+    init_flashcard_db()
+    now = now or utc_now()
+    timestamp = now.isoformat()
+    selected = dict(DEFAULT_SETTINGS)
+    selected.update(GOAL_PRESETS[preset])
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO user_flashcard_settings (
+            telegram_user_id, preset, level, daily_new_limit, daily_review_limit,
+            again_delay_minutes, stop_new_cards_before_exam_days, exam_date, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(telegram_user_id) DO UPDATE SET
+            preset = excluded.preset,
+            level = excluded.level,
+            daily_new_limit = excluded.daily_new_limit,
+            daily_review_limit = excluded.daily_review_limit,
+            again_delay_minutes = excluded.again_delay_minutes,
+            stop_new_cards_before_exam_days = excluded.stop_new_cards_before_exam_days,
+            exam_date = excluded.exam_date,
+            updated_at = excluded.updated_at
+    """, (
+        telegram_user_id, selected["preset"], selected["level"], selected["daily_new_limit"],
+        selected["daily_review_limit"], selected["again_delay_minutes"],
+        selected["stop_new_cards_before_exam_days"], selected["exam_date"], timestamp, timestamp,
+    ))
+    conn.commit()
+    conn.close()
+    return selected
+
+
+def should_allow_new_cards(settings, today=None):
+    if not settings.get("exam_date") or settings.get("stop_new_cards_before_exam_days") is None:
+        return True
+    today = today or utc_now().date()
+    exam_date = dt.date.fromisoformat(settings["exam_date"])
+    days_left = (exam_date - today).days
+    return days_left > int(settings["stop_new_cards_before_exam_days"])
+
 def set_current_session(telegram_user_id, flashcard_id, answer_shown=False, now=None):
     init_flashcard_db()
     now = now or utc_now()
@@ -385,9 +501,13 @@ def grade_current_card(telegram_user_id, grade, now=None):
         return None, "answer_not_shown"
     card_id = session["current_flashcard_id"]
     review = ensure_user_review(telegram_user_id, card_id, now)
-    updated = apply_review_grade(review, grade, now)
+    settings = get_user_settings(telegram_user_id)
+    updated = apply_review_grade(review, grade, now, settings["again_delay_minutes"])
     save_review_state(telegram_user_id, card_id, updated)
     clear_current_session(telegram_user_id)
     return updated, None
+
+
+
 
 

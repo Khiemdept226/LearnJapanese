@@ -37,7 +37,8 @@ def test_apply_again_moves_card_to_relearning_and_counts_lapse():
     updated = flashcards.apply_review_grade(review, "again", _now())
 
     assert updated["state"] == "relearning"
-    assert updated["interval_days"] == 1
+    assert updated["interval_days"] == 0
+    assert updated["due_at"] == "2026-06-10T12:10:00+00:00"
     assert updated["ease_factor"] == 2.3
     assert updated["repetitions"] == 0
     assert updated["lapses"] == 2
@@ -104,3 +105,49 @@ def test_get_stats_counts_new_due_learning_and_review(tmp_path, monkeypatch):
         "review": 1,
         "lapses": 0,
     }
+
+
+def test_apply_again_schedules_after_ten_minutes():
+    review = {
+        "state": "review",
+        "interval_days": 10,
+        "ease_factor": 2.5,
+        "repetitions": 4,
+        "lapses": 1,
+    }
+
+    updated = flashcards.apply_review_grade(review, "again", _now(), again_delay_minutes=10)
+
+    assert updated["state"] == "relearning"
+    assert updated["interval_days"] == 0
+    assert updated["due_at"] == "2026-06-10T12:10:00+00:00"
+    assert updated["lapses"] == 2
+
+
+def test_goal_preset_jlpt_sprint_is_saved_per_user(tmp_path, monkeypatch):
+    db_path = tmp_path / "flash.sqlite3"
+    monkeypatch.setattr(flashcards, "DATABASE_PATH", str(db_path))
+    flashcards.init_flashcard_db()
+
+    settings = flashcards.set_user_goal_preset(123, "jlpt_sprint", now=_now())
+    loaded = flashcards.get_user_settings(123)
+
+    assert settings["preset"] == "jlpt_sprint"
+    assert loaded["daily_new_limit"] == 15
+    assert loaded["daily_review_limit"] == 60
+    assert loaded["again_delay_minutes"] == 10
+    assert loaded["stop_new_cards_before_exam_days"] == 7
+
+
+
+def test_default_settings_use_jlpt_sprint_for_current_exam_push(tmp_path, monkeypatch):
+    db_path = tmp_path / "flash.sqlite3"
+    monkeypatch.setattr(flashcards, "DATABASE_PATH", str(db_path))
+    flashcards.init_flashcard_db()
+
+    settings = flashcards.get_user_settings(999)
+
+    assert settings["preset"] == "jlpt_sprint"
+    assert settings["daily_new_limit"] == 15
+    assert settings["daily_review_limit"] == 60
+    assert settings["exam_date"] == "2026-07-05"
