@@ -1,7 +1,7 @@
 import sqlite3
 import datetime
 import os
-from .config import DATABASE_PATH
+from config import DATABASE_PATH
 
 def get_connection():
     # Ensure directory exists
