@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Credentials & Environment Variables
+.env
+credentials/*.json
+!credentials/.gitkeep
+
+# Database
+data/*.sqlite3
+data/*.db
+!data/.gitkeep
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
