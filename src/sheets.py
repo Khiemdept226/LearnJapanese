@@ -1,48 +1,53 @@
-# Mock version of sheets.py for testing without Google API
-# import gspread
-# from google.oauth2.service_account import Credentials
-# import os
-# from .config import GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_FILE
+import gspread
+from google.oauth2.service_account import Credentials
+import os
+from config import GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_FILE
+
+SCOPES = [
+    'https://www.googleapis.com/auth/spreadsheets.readonly'
+]
 
 def get_client():
-    # Mocking client, not needed for mock data
-    return True
+    if not os.path.exists(GOOGLE_SERVICE_ACCOUNT_FILE):
+        print(f"Warning: Service account file {GOOGLE_SERVICE_ACCOUNT_FILE} not found. Sheet fetch will fail.")
+        return None
+        
+    credentials = Credentials.from_service_account_file(
+        GOOGLE_SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    client = gspread.authorize(credentials)
+    return client
 
 def fetch_ready_lessons():
     """
-    Returns mock lessons for testing.
+    Fetches all lessons from the sheet.
+    Returns a list of dictionaries.
     """
-    mock_lessons = [
-        {
-            'lesson_id': 'N5-001',
-            'level': 'N5',
-            'title': 'Chào hỏi buổi sáng',
-            'dialogue_jp': 'A: おはようございます。\nB: おはようございます。今日は寒いですね。\nA: そうですね。',
-            'dialogue_vi': 'A: Chào buổi sáng.\nB: Chào buổi sáng. Hôm nay lạnh nhỉ.\nA: Đúng vậy nhỉ.',
-            'vocab': 'おはよう = chào buổi sáng\n今日 (きょう) = hôm nay\n寒い (さむい) = lạnh',
-            'grammar': 'は: trợ từ chủ đề\nですね: nhỉ, nhé (tìm kiếm sự đồng tình)',
-            'quiz': 'Hôm nay thời tiết thế nào?',
-            'quiz_answer': 'Thời tiết lạnh (寒いですね)',
-            'shadowing': '今日は寒いですね。',
-            'status': 'ready',
-            'order': 1
-        },
-        {
-            'lesson_id': 'N5-002',
-            'level': 'N5',
-            'title': 'Hỏi tên',
-            'dialogue_jp': 'A: お名前は何ですか。\nB: 私は山田です。\nA: よろしくお願いします。',
-            'dialogue_vi': 'A: Tên của bạn là gì?\nB: Tôi là Yamada.\nA: Rất mong được giúp đỡ.',
-            'vocab': '名前 (なまえ) = Tên\n何 (なん) = Cái gì\n私 (わたし) = Tôi',
-            'grammar': '何ですか: Là cái gì?\nよろしくお願いします: Rất mong được giúp đỡ.',
-            'quiz': 'Người B tên là gì?',
-            'quiz_answer': 'Yamada (山田)',
-            'shadowing': 'お名前は何ですか。',
-            'status': 'ready',
-            'order': 2
-        }
-    ]
-    return mock_lessons
+    client = get_client()
+    if not client:
+        return []
+        
+    try:
+        sheet = client.open_by_key(GOOGLE_SHEET_ID).sheet1 # 'lessons' sheet should be the first one
+        records = sheet.get_all_records()
+        
+        # Filter ready lessons and convert order to int
+        ready_lessons = []
+        for row in records:
+            if str(row.get('status', '')).strip().lower() == 'ready':
+                # Convert order to int for reliable comparison
+                try:
+                    row['order'] = int(row.get('order', 0))
+                    ready_lessons.append(row)
+                except ValueError:
+                    pass
+        
+        # Sort by order
+        ready_lessons.sort(key=lambda x: x['order'])
+        return ready_lessons
+        
+    except Exception as e:
+        print(f"Error fetching sheet: {e}")
+        return []
 
 def get_lesson_by_order(order):
     lessons = fetch_ready_lessons()
