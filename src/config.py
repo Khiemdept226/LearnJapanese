@@ -1,4 +1,4 @@
-import os
+﻿import os
 from dotenv import load_dotenv
 
 # Load .env file
@@ -27,3 +27,11 @@ def validate_config():
         
     if missing:
         raise ValueError(f"Missing or invalid required environment variables: {', '.join(missing)}")
+
+# Flashcards
+FLASHCARD_ENABLED = os.getenv("FLASHCARD_ENABLED", "true").strip().lower() in ("1", "true", "yes", "on")
+FLASHCARD_DAILY_TIME = os.getenv("FLASHCARD_DAILY_TIME", "20:30")
+FLASHCARD_DAILY_NEW_LIMIT = int(os.getenv("FLASHCARD_DAILY_NEW_LIMIT", "5"))
+FLASHCARD_DAILY_REVIEW_LIMIT = int(os.getenv("FLASHCARD_DAILY_REVIEW_LIMIT", "20"))
+FLASHCARD_LEVEL = os.getenv("FLASHCARD_LEVEL", "N4")
+FLASHCARD_TIMEZONE = os.getenv("FLASHCARD_TIMEZONE", TIMEZONE)

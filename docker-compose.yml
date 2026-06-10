@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   bot:
     build: .
@@ -10,5 +8,10 @@ services:
     volumes:
       - ./data:/app/data
       - ./credentials:/app/credentials
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./tools:/app/tools
+      - ./docs:/app/docs
     environment:
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app/src:/app

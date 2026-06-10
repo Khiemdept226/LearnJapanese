@@ -1,12 +1,14 @@
-import logging
+﻿import logging
 from telegram.ext import Application, CommandHandler
 import datetime
 import pytz
 
-from config import TELEGRAM_BOT_TOKEN, validate_config, TIMEZONE, DAILY_SEND_TIME
+from config import TELEGRAM_BOT_TOKEN, validate_config, TIMEZONE, DAILY_SEND_TIME, FLASHCARD_ENABLED, FLASHCARD_TIMEZONE, FLASHCARD_DAILY_TIME
 from db import init_db
 import handlers
 import scheduler
+import flashcard_handlers
+import flashcard_scheduler
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -38,6 +40,16 @@ def main():
     application.add_handler(CommandHandler("shadowing", handlers.shadowing))
     application.add_handler(CommandHandler("next", handlers.next_lesson))
     application.add_handler(CommandHandler("review", handlers.review))
+    application.add_handler(CommandHandler("flash_start", flashcard_handlers.flash_start))
+    application.add_handler(CommandHandler("flash", flashcard_handlers.flash))
+    application.add_handler(CommandHandler("flash_new", flashcard_handlers.flash_new))
+    application.add_handler(CommandHandler("flash_review", flashcard_handlers.flash_review))
+    application.add_handler(CommandHandler("flash_stats", flashcard_handlers.flash_stats))
+    application.add_handler(CommandHandler("show", flashcard_handlers.show))
+    application.add_handler(CommandHandler("again", flashcard_handlers.again))
+    application.add_handler(CommandHandler("hard", flashcard_handlers.hard))
+    application.add_handler(CommandHandler("good", flashcard_handlers.good))
+    application.add_handler(CommandHandler("easy", flashcard_handlers.easy))
 
     # Scheduler
     job_queue = application.job_queue
@@ -46,9 +58,21 @@ def main():
     time_to_run = datetime.time(hour=hour, minute=minute, tzinfo=tz)
     
     job_queue.run_daily(scheduler.send_daily_lesson, time=time_to_run, name="daily_lesson_job")
+
+    if FLASHCARD_ENABLED:
+        flash_tz = pytz.timezone(FLASHCARD_TIMEZONE)
+        flash_hour, flash_minute = map(int, FLASHCARD_DAILY_TIME.split(':'))
+        flash_time_to_run = datetime.time(hour=flash_hour, minute=flash_minute, tzinfo=flash_tz)
+        job_queue.run_daily(
+            flashcard_scheduler.send_daily_flashcards,
+            time=flash_time_to_run,
+            name="daily_flashcard_job"
+        )
     
     logger.info("Bot started successfully. Waiting for messages...")
     application.run_polling()
 
 if __name__ == '__main__':
     main()
+
+

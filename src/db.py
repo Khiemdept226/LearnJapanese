@@ -1,4 +1,4 @@
-import sqlite3
+﻿import sqlite3
 import datetime
 import os
 from config import DATABASE_PATH
@@ -46,6 +46,9 @@ def init_db():
     
     conn.commit()
     conn.close()
+
+    import flashcards
+    flashcards.init_flashcard_db()
 
 def get_user(telegram_user_id):
     conn = get_connection()
@@ -116,3 +119,5 @@ def get_latest_sent_lesson(telegram_user_id):
     row = cursor.fetchone()
     conn.close()
     return row['lesson_id'] if row else None
+
+
