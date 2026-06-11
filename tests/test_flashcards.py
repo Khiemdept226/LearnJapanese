@@ -213,3 +213,15 @@ def test_reset_user_flashcard_progress_clears_only_selected_user(tmp_path, monke
     assert flashcards.get_current_session(456)["current_flashcard_id"] == card_id
     assert flashcards.get_user_settings(123)["preset"] == "jlpt_sprint"
     assert flashcards.get_user_settings(456)["preset"] == "heavy"
+
+
+def test_set_current_session_does_not_create_review_row_for_new_card(tmp_path, monkeypatch):
+    db_path = tmp_path / "flash.sqlite3"
+    monkeypatch.setattr(flashcards, "DATABASE_PATH", str(db_path))
+    flashcards.init_flashcard_db()
+    card_id = flashcards.upsert_flashcard("N4", "unit", 1, "石", "いし", "đá", None, None)
+
+    flashcards.set_current_session(123, card_id, answer_shown=False, now=_now())
+
+    assert flashcards.get_flashcard_stats(123, "N4", _now())["new"] == 1
+    assert flashcards.pick_new_card(123, "N4")["id"] == card_id

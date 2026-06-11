@@ -11,10 +11,14 @@ from config import FLASHCARD_TIMEZONE
 def front_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("Hiện đáp án", callback_data="flash:show")],
-        [
-            InlineKeyboardButton("Học tiếp", callback_data="flash:next"),
-            InlineKeyboardButton("Thống kê", callback_data="flash:stats"),
-        ],
+        [InlineKeyboardButton("Thống kê", callback_data="flash:stats")],
+    ])
+
+
+def continue_keyboard():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("Thẻ tiếp theo", callback_data="flash:next")],
+        [InlineKeyboardButton("Thống kê", callback_data="flash:stats")],
     ])
 
 
@@ -52,7 +56,7 @@ def reset_keyboard():
 def stats_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("Danh sách hôm nay", callback_data="flash:today:list")],
-        [InlineKeyboardButton("Học tiếp", callback_data="flash:next")],
+        [InlineKeyboardButton("Thẻ tiếp theo", callback_data="flash:next")],
     ])
 
 
@@ -77,11 +81,12 @@ def format_help():
         "/start - bắt đầu bot\n"
         "/today - bài hôm nay\n"
         "/flash_start - bật flashcard\n"
-        "/flash - học thẻ tiếp theo\n"
-        "/flash_new - học từ mới\n"
-        "/flash_review - ôn thẻ đến hạn\n"
+        "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy từ mới\n"
+        "/flash_new - chỉ lấy từ mới chưa học\n"
+        "/flash_review - chỉ ôn thẻ đã đến hạn\n"
         "/flash_stats - xem tiến độ\n"
         "/flash_goal - chọn mục tiêu học\n"
+        "/flash_reset - học lại flashcard từ đầu\n"
         "/show - hiện đáp án\n"
         "/again /hard /good /easy - chấm thẻ\n\n"
         "Flow học flashcard\n"
@@ -225,7 +230,6 @@ async def _send_card_to_message(message, telegram_user_id, card):
     if not card:
         await message.reply_text("Chưa có thẻ flashcard phù hợp. Hãy import dữ liệu Sheet trước.")
         return
-    flashcards.ensure_user_review(telegram_user_id, card["id"])
     flashcards.set_current_session(telegram_user_id, card["id"], answer_shown=False)
     await message.reply_text(format_card_front(card), reply_markup=front_keyboard())
 
@@ -234,7 +238,6 @@ async def _edit_card_for_query(query, telegram_user_id, card):
     if not card:
         await query.edit_message_text("Chưa có thẻ phù hợp lúc này.")
         return
-    flashcards.ensure_user_review(telegram_user_id, card["id"])
     flashcards.set_current_session(telegram_user_id, card["id"], answer_shown=False)
     await query.edit_message_text(format_card_front(card), reply_markup=front_keyboard())
 
@@ -258,7 +261,7 @@ async def flash_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     settings = flashcards.get_user_settings(user_id)
     card = flashcards.pick_due_card(user_id, settings["level"])
     if not card:
-        await update.message.reply_text("Hiện không có thẻ đến hạn. Dùng /flash_new để học từ mới.")
+        await update.message.reply_text("Hiện chưa có thẻ nào đến hạn.\nDùng /flash để học tiếp hoặc /flash_new để học từ mới.")
         return
     await _send_card_to_message(update.message, user_id, card)
 
@@ -290,7 +293,7 @@ async def _grade_message(update, grade):
     if error:
         await update.message.reply_text(grade_error_message(error))
         return
-    await update.message.reply_text(format_next_review(updated), reply_markup=front_keyboard())
+    await update.message.reply_text(format_next_review(updated), reply_markup=continue_keyboard())
 
 
 async def again(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -341,7 +344,7 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         if error:
             await query.edit_message_text(grade_error_message(error))
             return
-        await query.edit_message_text(format_next_review(updated), reply_markup=front_keyboard())
+        await query.edit_message_text(format_next_review(updated), reply_markup=continue_keyboard())
         return
 
     if data == "flash:reset:cancel":
@@ -381,5 +384,10 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         return
     if data == "flash:stats":
         await _edit_stats(query, user_id)
+
+
+
+
+
 
 

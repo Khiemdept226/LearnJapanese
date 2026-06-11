@@ -49,8 +49,11 @@ def test_format_stats_message_includes_today_count():
 def test_format_help_lists_flashcard_flow():
     text = handlers.format_help()
 
-    assert "/flash - học thẻ tiếp theo" in text
+    assert "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy từ mới" in text
+    assert "/flash_new - chỉ lấy từ mới chưa học" in text
+    assert "/flash_review - chỉ ôn thẻ đã đến hạn" in text
     assert "/flash_stats - xem tiến độ" in text
+    assert "/flash_reset - học lại flashcard từ đầu" in text
     assert "Bấm Hiện đáp án" in text
     assert "Quên / Khó / Nhớ / Dễ" in text
 
@@ -123,3 +126,5 @@ def test_format_reset_confirm_message():
 
     assert "xoá tiến độ flashcard" in text
     assert "Không xoá dữ liệu thẻ" in text
+
+

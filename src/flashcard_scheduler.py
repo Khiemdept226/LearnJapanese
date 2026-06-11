@@ -45,7 +45,6 @@ async def send_daily_flashcards(context: ContextTypes.DEFAULT_TYPE):
             ):
                 card = flashcards.pick_new_card(telegram_user_id, settings["level"])
             if card:
-                flashcards.ensure_user_review(telegram_user_id, card["id"])
                 flashcards.set_current_session(telegram_user_id, card["id"], answer_shown=False)
                 await context.bot.send_message(
                     chat_id=chat_id,
@@ -54,3 +53,4 @@ async def send_daily_flashcards(context: ContextTypes.DEFAULT_TYPE):
                 )
         except Exception as exc:
             logger.error("Failed to send flashcard reminder to %s: %s", telegram_user_id, exc)
+
