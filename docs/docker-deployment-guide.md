@@ -100,32 +100,58 @@ docker compose build --progress=plain
 
 ## 6. Import flashcard N4
 
-Chay dry-run truoc:
+Nguon khuyen dung la Google Sheet worksheet `flashcards` trong spreadsheet da cau hinh bang `GOOGLE_SHEET_ID`.
+
+Header bat buoc cua worksheet:
+
+```text
+card_id
+level
+source
+source_position
+word
+reading
+meaning
+example_jp
+example_vi
+tags
+status
+```
+
+Chay dry-run tu Sheet truoc:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source sheet --dry-run
+```
+
+Ket qua mong doi:
+
+```text
+Source: sheet
+Fetched: 276
+Ready: 276
+Imported: 0
+Skipped: 0
+Warnings: <so warning tuy du lieu sheet>
+```
+
+Import that tu Sheet vao SQLite:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source sheet
+```
+
+PDF van la fallback:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source pdf --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --source pdf
+```
+
+Lenh PDF cu van hoat dong:
 
 ```powershell
 docker compose run --rm bot python tools/import_n4_pdf.py --dry-run
-```
-
-Ket qua mong doi:
-
-```text
-Parsed: 219
-Imported: 0
-First card: 石 いし Đá
-```
-
-Import that vao SQLite:
-
-```powershell
-docker compose run --rm bot python tools/import_n4_pdf.py
-```
-
-Ket qua mong doi:
-
-```text
-Parsed: 219
-Imported: 219
-First card: 石 いし Đá
 ```
 
 Neu gap `sqlite3.OperationalError: disk I/O error`, dung bot truoc va xoa journal tam:
@@ -133,9 +159,8 @@ Neu gap `sqlite3.OperationalError: disk I/O error`, dung bot truoc va xoa journa
 ```powershell
 docker compose down
 Remove-Item .\data\learningjp.sqlite3-journal -Force -ErrorAction SilentlyContinue
-docker compose run --rm bot python tools/import_n4_pdf.py
+docker compose run --rm bot python tools/import_flashcards.py --source sheet
 ```
-
 ## 7. Chay tests
 
 ```powershell
@@ -304,3 +329,5 @@ docker compose run --rm bot python -c "import sqlite3; c=sqlite3.connect('/app/d
 ```
 
 Ket qua nen la `219` hoac lon hon neu sau nay import them bo moi.
+
+
