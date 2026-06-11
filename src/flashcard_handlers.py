@@ -110,8 +110,10 @@ def format_card_answer(card):
     lines = [
         f"言葉: {card['word']}",
         f"読み方: {reading}",
-        f"意味: {card['meaning']}",
     ]
+    if card.get("hanviet"):
+        lines.append(f"Hán Việt: {card['hanviet']}")
+    lines.append(f"意味: {card['meaning']}")
     if card.get("example_jp"):
         lines.append(f"例文: {card['example_jp']}")
     if card.get("example_vi"):
@@ -126,8 +128,10 @@ def format_card_detail(card):
     lines = [
         f"言葉: {card['word']}",
         f"読み方: {reading}",
-        f"意味: {card['meaning']}",
     ]
+    if card.get("hanviet"):
+        lines.append(f"Hán Việt: {card['hanviet']}")
+    lines.append(f"意味: {card['meaning']}")
     if card.get("example_jp"):
         lines.append(f"例文: {card['example_jp']}")
     if card.get("example_vi"):

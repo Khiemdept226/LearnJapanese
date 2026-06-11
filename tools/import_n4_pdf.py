@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 import re
 from pathlib import Path
 
@@ -81,6 +81,7 @@ def _build_card(entry, level, source):
         "word": word,
         "reading": reading,
         "meaning": _clean_text(meaning),
+        "hanviet": "",
         "example_jp": example_jp,
         "example_vi": example_vi,
     }

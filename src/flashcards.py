@@ -1,4 +1,4 @@
-﻿import datetime as dt
+import datetime as dt
 import os
 import sqlite3
 from typing import Optional
@@ -86,6 +86,7 @@ def init_flashcard_db():
             word TEXT NOT NULL,
             reading TEXT,
             meaning TEXT NOT NULL,
+            hanviet TEXT,
             example_jp TEXT,
             example_vi TEXT,
             created_at TEXT NOT NULL,
@@ -93,6 +94,11 @@ def init_flashcard_db():
             UNIQUE(level, source, word, reading)
         )
     """)
+    # Migration: Add hanviet column if it doesn't exist
+    try:
+        cursor.execute("ALTER TABLE flashcards ADD COLUMN hanviet TEXT")
+    except sqlite3.OperationalError:
+        pass
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS user_flashcard_reviews (
             telegram_user_id INTEGER NOT NULL,
@@ -137,22 +143,23 @@ def init_flashcard_db():
     conn.close()
 
 
-def upsert_flashcard(level, source, source_position, word, reading, meaning, example_jp=None, example_vi=None):
+def upsert_flashcard(level, source, source_position, word, reading, meaning, hanviet=None, example_jp=None, example_vi=None):
     init_flashcard_db()
     now = utc_now().isoformat()
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         INSERT INTO flashcards (
-            level, source, source_position, word, reading, meaning, example_jp, example_vi, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            level, source, source_position, word, reading, meaning, hanviet, example_jp, example_vi, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(level, source, word, reading) DO UPDATE SET
             source_position = excluded.source_position,
             meaning = excluded.meaning,
+            hanviet = excluded.hanviet,
             example_jp = excluded.example_jp,
             example_vi = excluded.example_vi,
             updated_at = excluded.updated_at
-    """, (level, source, source_position, word, reading, meaning, example_jp, example_vi, now, now))
+    """, (level, source, source_position, word, reading, meaning, hanviet, example_jp, example_vi, now, now))
     cursor.execute("""
         SELECT id FROM flashcards
         WHERE level = ? AND source = ? AND word = ? AND (reading IS ? OR reading = ?)
@@ -173,17 +180,18 @@ def upsert_flashcards(cards):
         for card in cards:
             cursor.execute("""
                 INSERT INTO flashcards (
-                    level, source, source_position, word, reading, meaning, example_jp, example_vi, created_at, updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    level, source, source_position, word, reading, meaning, hanviet, example_jp, example_vi, created_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(level, source, word, reading) DO UPDATE SET
                     source_position = excluded.source_position,
                     meaning = excluded.meaning,
+                    hanviet = excluded.hanviet,
                     example_jp = excluded.example_jp,
                     example_vi = excluded.example_vi,
                     updated_at = excluded.updated_at
             """, (
                 card["level"], card["source"], card.get("source_position"), card["word"], card.get("reading"),
-                card["meaning"], card.get("example_jp"), card.get("example_vi"), now, now,
+                card["meaning"], card.get("hanviet"), card.get("example_jp"), card.get("example_vi"), now, now,
             ))
         conn.commit()
     except Exception:

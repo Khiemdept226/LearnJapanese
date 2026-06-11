@@ -1,4 +1,4 @@
-﻿import argparse
+import argparse
 
 import flashcards
 from config import FLASHCARD_IMPORT_SOURCE
@@ -12,6 +12,7 @@ IMPORT_FIELDS = (
     "word",
     "reading",
     "meaning",
+    "hanviet",
     "example_jp",
     "example_vi",
 )

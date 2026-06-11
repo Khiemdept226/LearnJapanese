@@ -1,4 +1,4 @@
-﻿from dataclasses import dataclass
+from dataclasses import dataclass
 
 
 OPTIONAL_WARNING_FIELDS = ("reading", "example_jp", "example_vi", "tags")
@@ -29,6 +29,7 @@ def _normalize_raw_row(row, default_level, default_source):
         "word": _clean(row.get("word")),
         "reading": _clean(row.get("reading")),
         "meaning": _clean(row.get("meaning")),
+        "hanviet": _clean(row.get("hanviet")),
         "example_jp": _clean(row.get("example_jp")),
         "example_vi": _clean(row.get("example_vi")),
         "tags": _clean(row.get("tags")),
