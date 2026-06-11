@@ -151,7 +151,7 @@ def upsert_flashcard(level, source, source_position, word, reading, meaning, han
     cursor.execute("""
         INSERT INTO flashcards (
             level, source, source_position, word, reading, meaning, hanviet, example_jp, example_vi, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(level, source, word, reading) DO UPDATE SET
             source_position = excluded.source_position,
             meaning = excluded.meaning,
@@ -181,7 +181,7 @@ def upsert_flashcards(cards):
             cursor.execute("""
                 INSERT INTO flashcards (
                     level, source, source_position, word, reading, meaning, hanviet, example_jp, example_vi, created_at, updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(level, source, word, reading) DO UPDATE SET
                     source_position = excluded.source_position,
                     meaning = excluded.meaning,
