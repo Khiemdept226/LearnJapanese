@@ -10,6 +10,7 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 # Google Sheets
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE", "credentials/google-service-account.json")
+GOOGLE_SERVICE_ACCOUNT_JSON = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip()
 
 # Schedule & Timezone
 TIMEZONE = os.getenv("TIMEZONE", "Asia/Bangkok")
@@ -41,4 +42,5 @@ FLASHCARD_PDF_LEVEL = os.getenv("FLASHCARD_PDF_LEVEL", "N4")
 FLASHCARD_PDF_SOURCE = os.getenv("FLASHCARD_PDF_SOURCE", "n4_pdf")
 FLASHCARD_SHEET_NAME = os.getenv("FLASHCARD_SHEET_NAME", "flashcards")
 FLASHCARD_SHEET_LEVEL = os.getenv("FLASHCARD_SHEET_LEVEL", "N4")
+
 

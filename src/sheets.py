@@ -1,21 +1,34 @@
+﻿import json
+import os
+
 import gspread
 from google.oauth2.service_account import Credentials
-import os
-from config import GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_FILE
+
+from config import GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_FILE, GOOGLE_SERVICE_ACCOUNT_JSON
 
 SCOPES = [
     'https://www.googleapis.com/auth/spreadsheets.readonly'
 ]
 
-def get_client():
+
+def _load_credentials():
+    if GOOGLE_SERVICE_ACCOUNT_JSON:
+        info = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
+        return Credentials.from_service_account_info(info, scopes=SCOPES)
+
     if not os.path.exists(GOOGLE_SERVICE_ACCOUNT_FILE):
         print(f"Warning: Service account file {GOOGLE_SERVICE_ACCOUNT_FILE} not found. Sheet fetch will fail.")
         return None
-        
-    credentials = Credentials.from_service_account_file(
-        GOOGLE_SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    client = gspread.authorize(credentials)
-    return client
+
+    return Credentials.from_service_account_file(GOOGLE_SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+
+
+def get_client():
+    credentials = _load_credentials()
+    if not credentials:
+        return None
+    return gspread.authorize(credentials)
+
 
 def fetch_ready_lessons():
     """
@@ -49,6 +62,7 @@ def fetch_ready_lessons():
         print(f"Error fetching sheet: {e}")
         return []
 
+
 def get_lesson_by_order(order):
     lessons = fetch_ready_lessons()
     for lesson in lessons:
@@ -56,12 +70,14 @@ def get_lesson_by_order(order):
             return lesson
     return None
     
+
 def get_lesson_by_id(lesson_id):
     lessons = fetch_ready_lessons()
     for lesson in lessons:
         if str(lesson['lesson_id']) == str(lesson_id):
             return lesson
     return None
+
 
 def get_first_ready_order():
     lessons = fetch_ready_lessons()
