@@ -1,4 +1,4 @@
-﻿import flashcard_handlers as handlers
+import flashcard_handlers as handlers
 
 CARD = {
     "id": 7,
@@ -22,6 +22,7 @@ def test_format_front_prompts_show_before_grading_without_reading():
 def test_format_answer_contains_reading_meaning_examples_and_grades():
     text = handlers.format_card_answer(CARD)
 
+    assert "言葉: 石" in text
     assert "読み方: いし" in text
     assert "意味: Đá" in text
     assert "例文:" in text

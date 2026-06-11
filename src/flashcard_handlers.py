@@ -1,4 +1,4 @@
-﻿import datetime as dt
+import datetime as dt
 
 import pytz
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -108,6 +108,7 @@ def format_card_front(card):
 def format_card_answer(card):
     reading = card.get("reading") or "-"
     lines = [
+        f"言葉: {card['word']}",
         f"読み方: {reading}",
         f"意味: {card['meaning']}",
     ]
