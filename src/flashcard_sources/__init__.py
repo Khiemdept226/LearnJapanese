@@ -1,0 +1,1 @@
+﻿"""Flashcard source adapters."""
