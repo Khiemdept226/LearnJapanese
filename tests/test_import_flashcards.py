@@ -56,7 +56,12 @@ def test_run_import_pdf_writes_rows(monkeypatch):
     monkeypatch.setattr(importer.pdf_source, "load_flashcards", lambda: _result([card]))
 
     written = {}
-    monkeypatch.setattr(importer.flashcards, "upsert_flashcards", lambda rows: written.setdefault("rows", rows) or len(rows))
+
+    def fake_upsert(rows):
+        written["rows"] = rows
+        return len(rows)
+
+    monkeypatch.setattr(importer.flashcards, "upsert_flashcards", fake_upsert)
 
     summary, warnings = importer.run_import(source="pdf", dry_run=False)
 
@@ -82,3 +87,4 @@ def test_run_import_rejects_unknown_source():
         assert str(exc) == "Unsupported flashcard import source: bad"
     else:
         raise AssertionError("ValueError was not raised")
+
