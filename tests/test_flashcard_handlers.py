@@ -106,3 +106,20 @@ def test_goal_keyboard_includes_jlpt_sprint():
     buttons = [button for row in markup.inline_keyboard for button in row]
 
     assert any(button.text == "Nước rút JLPT" and button.callback_data == "flash:goal:jlpt_sprint" for button in buttons)
+
+
+def test_reset_keyboard_requires_confirmation():
+    markup = handlers.reset_keyboard()
+    buttons = [button for row in markup.inline_keyboard for button in row]
+
+    assert [(button.text, button.callback_data) for button in buttons] == [
+        ("Huỷ", "flash:reset:cancel"),
+        ("Reset tiến độ", "flash:reset:confirm"),
+    ]
+
+
+def test_format_reset_confirm_message():
+    text = handlers.format_reset_confirm()
+
+    assert "xoá tiến độ flashcard" in text
+    assert "Không xoá dữ liệu thẻ" in text

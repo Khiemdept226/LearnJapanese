@@ -448,6 +448,22 @@ def set_user_goal_preset(telegram_user_id, preset, now=None):
     return selected
 
 
+
+def reset_user_flashcard_progress(telegram_user_id):
+    init_flashcard_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    deleted = {}
+    cursor.execute("DELETE FROM user_flashcard_reviews WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["reviews"] = cursor.rowcount
+    cursor.execute("DELETE FROM user_flashcard_sessions WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["sessions"] = cursor.rowcount
+    cursor.execute("DELETE FROM user_flashcard_settings WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["settings"] = cursor.rowcount
+    conn.commit()
+    conn.close()
+    return deleted
+
 def should_allow_new_cards(settings, today=None):
     if not settings.get("exam_date") or settings.get("stop_new_cards_before_exam_days") is None:
         return True
@@ -527,6 +543,7 @@ def grade_current_card(telegram_user_id, grade, now=None):
     save_review_state(telegram_user_id, card_id, updated)
     clear_current_session(telegram_user_id)
     return updated, None
+
 
 
 

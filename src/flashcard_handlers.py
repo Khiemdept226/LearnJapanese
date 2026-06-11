@@ -40,6 +40,15 @@ def goal_keyboard():
     ])
 
 
+def reset_keyboard():
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("Huỷ", callback_data="flash:reset:cancel"),
+            InlineKeyboardButton("Reset tiến độ", callback_data="flash:reset:confirm"),
+        ]
+    ])
+
+
 def stats_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("Danh sách hôm nay", callback_data="flash:today:list")],
@@ -53,6 +62,13 @@ def today_cards_keyboard(cards):
         rows.append([InlineKeyboardButton(card["word"], callback_data=f"flash:card:{card['id']}")])
     rows.append([InlineKeyboardButton("Quay lại thống kê", callback_data="flash:stats")])
     return InlineKeyboardMarkup(rows)
+
+
+def format_reset_confirm():
+    return (
+        "Bạn chắc muốn xoá tiến độ flashcard và học lại từ đầu?\n\n"
+        "Không xoá dữ liệu thẻ đã import. Chỉ reset tiến độ của riêng bạn."
+    )
 
 
 def format_help():
@@ -187,6 +203,10 @@ def _today_cards(telegram_user_id, level):
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(format_help())
+
+
+async def flash_reset(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(format_reset_confirm(), reply_markup=reset_keyboard())
 
 
 async def flash_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -324,6 +344,15 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         await query.edit_message_text(format_next_review(updated), reply_markup=front_keyboard())
         return
 
+    if data == "flash:reset:cancel":
+        await query.edit_message_text("Đã huỷ reset tiến độ.")
+        return
+
+    if data == "flash:reset:confirm":
+        flashcards.reset_user_flashcard_progress(user_id)
+        await query.edit_message_text("Đã reset tiến độ flashcard. Dùng /flash để học lại từ đầu.")
+        return
+
     if data.startswith("flash:goal:"):
         preset = data.split(":")[-1]
         settings = flashcards.set_user_goal_preset(user_id, preset)
@@ -352,4 +381,5 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         return
     if data == "flash:stats":
         await _edit_stats(query, user_id)
+
 

@@ -47,6 +47,7 @@ def main():
     application.add_handler(CommandHandler("flash_review", flashcard_handlers.flash_review))
     application.add_handler(CommandHandler("flash_stats", flashcard_handlers.flash_stats))
     application.add_handler(CommandHandler("flash_goal", flashcard_handlers.flash_goal))
+    application.add_handler(CommandHandler("flash_reset", flashcard_handlers.flash_reset))
     application.add_handler(CommandHandler("show", flashcard_handlers.show))
     application.add_handler(CommandHandler("again", flashcard_handlers.again))
     application.add_handler(CommandHandler("hard", flashcard_handlers.hard))
@@ -77,6 +78,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
