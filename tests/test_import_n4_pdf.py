@@ -55,3 +55,9 @@ def test_parse_cards_from_pdf_text_sample():
     assert cards[3]["word"] == "食堂"
     assert cards[3]["example_jp"] == "この大学には食堂がない。"
 
+
+
+def test_legacy_import_cards_uses_existing_dry_run_behavior():
+    result = importer.import_cards([{"word": "石"}], dry_run=True)
+
+    assert result == {"parsed": 1, "imported": 0}
