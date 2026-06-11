@@ -151,3 +151,42 @@ def test_default_settings_use_jlpt_sprint_for_current_exam_push(tmp_path, monkey
     assert settings["daily_new_limit"] == 15
     assert settings["daily_review_limit"] == 60
     assert settings["exam_date"] == "2026-07-05"
+
+
+def test_get_reviewed_cards_between_returns_cards_for_window(tmp_path, monkeypatch):
+    db_path = tmp_path / "flash.sqlite3"
+    monkeypatch.setattr(flashcards, "DATABASE_PATH", str(db_path))
+    flashcards.init_flashcard_db()
+    inside_id = flashcards.upsert_flashcard("N4", "unit", 1, "石", "いし", "đá", "例文", "dịch")
+    outside_id = flashcards.upsert_flashcard("N4", "unit", 2, "経験", "けいけん", "kinh nghiệm", None, None)
+    flashcards.ensure_user_review(123, inside_id, _now())
+    flashcards.save_review_state(123, inside_id, {
+        "state": "review",
+        "due_at": "2026-06-11T12:00:00+00:00",
+        "interval_days": 1,
+        "ease_factor": 2.5,
+        "repetitions": 1,
+        "lapses": 0,
+        "last_reviewed_at": "2026-06-10T05:00:00+00:00",
+    })
+    flashcards.ensure_user_review(123, outside_id, _now())
+    flashcards.save_review_state(123, outside_id, {
+        "state": "review",
+        "due_at": "2026-06-11T12:00:00+00:00",
+        "interval_days": 1,
+        "ease_factor": 2.5,
+        "repetitions": 1,
+        "lapses": 0,
+        "last_reviewed_at": "2026-06-09T23:59:59+00:00",
+    })
+
+    cards = flashcards.get_reviewed_cards_between(
+        123,
+        "N4",
+        "2026-06-10T00:00:00+00:00",
+        "2026-06-11T00:00:00+00:00",
+    )
+
+    assert [card["id"] for card in cards] == [inside_id]
+    assert cards[0]["word"] == "石"
+    assert cards[0]["last_reviewed_at"] == "2026-06-10T05:00:00+00:00"

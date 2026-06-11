@@ -31,6 +31,7 @@ def main():
 
     # Handlers
     application.add_handler(CommandHandler("start", handlers.start))
+    application.add_handler(CommandHandler("help", flashcard_handlers.help_command))
     application.add_handler(CommandHandler("today", handlers.today))
     application.add_handler(CommandHandler("dich", handlers.dich))
     application.add_handler(CommandHandler("tuvung", handlers.tuvung))
@@ -76,6 +77,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 

@@ -379,6 +379,27 @@ def get_flashcard_stats(telegram_user_id, level="N4", now=None):
 
 
 
+
+def get_reviewed_cards_between(telegram_user_id, level, start_at, end_at, limit=20):
+    init_flashcard_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT f.*, r.state, r.due_at, r.lapses, r.last_reviewed_at
+        FROM user_flashcard_reviews r
+        JOIN flashcards f ON f.id = r.flashcard_id
+        WHERE r.telegram_user_id = ?
+          AND f.level = ?
+          AND r.last_reviewed_at IS NOT NULL
+          AND r.last_reviewed_at >= ?
+          AND r.last_reviewed_at < ?
+        ORDER BY r.last_reviewed_at DESC, f.source_position ASC
+        LIMIT ?
+    """, (telegram_user_id, level, start_at, end_at, limit))
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(row) for row in rows]
+
 def get_user_settings(telegram_user_id):
     init_flashcard_db()
     conn = get_connection()
@@ -506,6 +527,7 @@ def grade_current_card(telegram_user_id, grade, now=None):
     save_review_state(telegram_user_id, card_id, updated)
     clear_current_session(telegram_user_id)
     return updated, None
+
 
 
 
