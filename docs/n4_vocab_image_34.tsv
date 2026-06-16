@@ -1,0 +1,64 @@
+item_id	level	deck_id	source_position	word	reading	meaning	hanviet	example_jp	example_vi	tags	status
+N4-VOCAB-0441	N4	n4_vocab_image_34	441	火事	かじ	hỏa hoạn	HỎA SỰ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0442	N4	n4_vocab_image_34	442	家事	かじ	việc nhà	GIA SỰ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0443	N4	n4_vocab_image_34	443	形	かたち	hình dạng	HÌNH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0444	N4	n4_vocab_image_34	444	課長	かちょう	trưởng nhóm	KHÓA TRƯỞNG			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0445	N4	n4_vocab_image_34	445	格好	かっこう	tư thế, hình thức, phong thái	CÁCH HẢO			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0446	N4	n4_vocab_image_34	446	家内	かない	gia đình; vợ (mình)	GIA NỘI			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0447	N4	n4_vocab_image_34	447	金持ち	(お) かねもち	người giàu, đại gia	KIM TRÌ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0448	N4	n4_vocab_image_34	448	彼女	かのじょ	cô ấy; bạn gái	BỈ NỮ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0449	N4	n4_vocab_image_34	449	壁	かべ	bức tường	BÍCH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0450	N4	n4_vocab_image_34	450	髪	かみ	mái tóc	PHÁT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0451	N4	n4_vocab_image_34	451	体	からだ	cơ thể	THỂ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0452	N4	n4_vocab_image_34	452	彼	かれ	anh ấy; bạn trai	BỈ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0453	N4	n4_vocab_image_34	453	彼ら	かれら	bọn họ	BỈ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0454	N4	n4_vocab_image_34	454	関係	かんけい	mối quan hệ	QUAN HỆ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0455	N4	n4_vocab_image_34	455	看護師	かんごし	y tá	KHÁN HỘ SƯ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0456	N4	n4_vocab_image_34	456	機会	きかい	cơ hội	CƠ HỘI			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0457	N4	n4_vocab_image_34	457	汽車	きしゃ	tàu hỏa, xe lửa	KHÍ XA			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0458	N4	n4_vocab_image_34	458	技術	ぎじゅつ	kỹ thuật, công nghệ, kỹ năng tay nghề	KỸ THUẬT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0459	N4	n4_vocab_image_34	459	季節	きせつ	mùa, thời vụ	QUÝ TIẾT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0460	N4	n4_vocab_image_34	460	規則	きそく	quy tắc, kỷ luật	QUY TẮC			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0461	N4	n4_vocab_image_34	461	切手	きって	con tem	THIẾT THỦ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0462	N4	n4_vocab_image_34	462	絹	きぬ	lụa, vải lụa	QUYÊN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0463	N4	n4_vocab_image_34	463	気分	きぶん	tâm trạng	KHÍ PHÂN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0464	N4	n4_vocab_image_34	464	君	きみ	em, bạn	QUÂN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0465	N4	n4_vocab_image_34	465	気持ち	きもち	cảm giác, cảm xúc	KHÍ TRÌ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0466	N4	n4_vocab_image_34	466	着物	きもの	kimono (trang phục truyền thống của Nhật)	TRƯỚC VẬT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0467	N4	n4_vocab_image_34	467	客	きゃく	khách hàng	KHÁCH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0468	N4	n4_vocab_image_34	468	急行	きゅうこう	tàu tốc hành	CẤP HÀNH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0469	N4	n4_vocab_image_34	469	教育	きょういく	giáo dục	GIÁO DỤC			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0470	N4	n4_vocab_image_34	470	教会	きょうかい	nhà thờ	GIÁO HỘI			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0471	N4	n4_vocab_image_34	471	興味	きょうみ	hứng thú	HỨNG VỊ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0472	N4	n4_vocab_image_34	472	禁煙	きんえん	cấm hút thuốc	CẤM YÊN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0473	N4	n4_vocab_image_34	473	近所	きんじょ	khu vực lân cận, hàng xóm	CẬN SỞ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0474	N4	n4_vocab_image_34	474	具合	ぐあい	tình trạng (cơ thể, máy móc...)	CỤ HỢP			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0475	N4	n4_vocab_image_34	475	空気	くうき	không khí, bầu không khí	KHÔNG KHÍ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0476	N4	n4_vocab_image_34	476	空港	くうこう	sân bay, cảng hàng không	KHÔNG CẢNG			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0477	N4	n4_vocab_image_34	477	草	くさ	cỏ, cây cỏ	THẢO			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0478	N4	n4_vocab_image_34	478	薬	くすり	thuốc	DƯỢC			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0479	N4	n4_vocab_image_34	479	首	くび	cổ	THỦ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0480	N4	n4_vocab_image_34	480	雲	くも	đám mây	VÂN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0481	N4	n4_vocab_image_34	481	毛	け	sợi lông, tóc	MAO			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0482	N4	n4_vocab_image_34	482	計画	けいかく	kế hoạch	KẾ HOẠCH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0483	N4	n4_vocab_image_34	483	経験	けいけん	kinh nghiệm	KINH NGHIỆM			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0484	N4	n4_vocab_image_34	484	経済	けいざい	kinh tế	KINH TẾ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0485	N4	n4_vocab_image_34	485	警察	けいさつ	cảnh sát	CẢNH SÁT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0486	N4	n4_vocab_image_34	486	景色	けしき	phong cảnh	CẢNH SẮC			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0487	N4	n4_vocab_image_34	487	結果	けっか	kết quả	KẾT QUẢ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0488	N4	n4_vocab_image_34	488	結構	けっこう	tương đối, khá là; đủ, được	KẾT CẤU			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0489	N4	n4_vocab_image_34	489	原因	げんいん	nguyên nhân	NGUYÊN NHÂN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0490	N4	n4_vocab_image_34	490	けんか	けんか	cãi nhau				Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0491	N4	n4_vocab_image_34	491	見学	けんがく	tham quan với mục đích học tập	KIẾN HỌC			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0492	N4	n4_vocab_image_34	492	玄関	げんかん	sảnh vào nhà	HUYỀN QUAN			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0493	N4	n4_vocab_image_34	493	研究室	けんきゅうしつ	phòng nghiên cứu	NGHIÊN CỨU THẤT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0494	N4	n4_vocab_image_34	494	見物	けんぶつ	tham quan	KIẾN VẬT			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0495	N4	n4_vocab_image_34	495	子	こ	đứa trẻ; người con	TỬ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0496	N4	n4_vocab_image_34	496	郊外	こうがい	ngoại thành, ngoại ô	GIAO NGOẠI			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0497	N4	n4_vocab_image_34	497	講義	こうぎ	bài giảng	GIẢNG NGHĨA			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0498	N4	n4_vocab_image_34	498	工業	こうぎょう	công nghiệp	CÔNG NGHIỆP			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0499	N4	n4_vocab_image_34	499	高校	こうこう	trường trung học phổ thông cấp 3	CAO HIỆU			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0500	N4	n4_vocab_image_34	500	高校生	こうこうせい	học sinh cấp 3	CAO HIỆU SINH			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0501	N4	n4_vocab_image_34	501	工事	こうじ	thi công, công trình	CÔNG SỰ			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0502	N4	n4_vocab_image_34	502	工場	こうじょう	nhà máy, xưởng	CÔNG TRƯỜNG			Danh từ;source_image:34.jpg	manual_reviewed
+N4-VOCAB-0503	N4	n4_vocab_image_34	503	校長	こうちょう	hiệu trưởng	HIỆU TRƯỞNG			Danh từ;source_image:34.jpg	manual_reviewed

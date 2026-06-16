@@ -1,0 +1,61 @@
+item_id	level	deck_id	source_position	word	reading	meaning	hanviet	example_jp	example_vi	tags	status
+N4-VOCAB-0805	N4	n4_vocab_image_40	805	合う	あう	hợp với~	HỢP			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0806	N4	n4_vocab_image_40	806	空く	あく	rỗng; trống; rảnh rỗi	KHÔNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0807	N4	n4_vocab_image_40	807	謝る	あやまる	xin lỗi	TẠ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0808	N4	n4_vocab_image_40	808	歩く	あるく	đi bộ	BỘ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0809	N4	n4_vocab_image_40	809	急ぐ	いそぐ	vội vàng, gấp gáp	CẤP			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0810	N4	n4_vocab_image_40	810	致す	いたす	làm, thực hiện (khiêm nhường ngữ)	TRÍ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0811	N4	n4_vocab_image_40	811	頂く	いただく	nhận (khiêm nhường ngữ)	ĐỈNH			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0812	N4	n4_vocab_image_40	812	祈る	いのる	cầu nguyện, mong ước	KÌ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0813	N4	n4_vocab_image_40	813	伺う	うかがう	hỏi; đến thăm (khiêm nhường ngữ)	TÝ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0814	N4	n4_vocab_image_40	814	動く	うごく	di chuyển; hoạt động (máy móc)	ĐỘNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0815	N4	n4_vocab_image_40	815	打つ	うつ	đánh, đập	ĐẢ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0816	N4	n4_vocab_image_40	816	写す	うつす	sao chép; chụp (ảnh)	TẢ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0817	N4	n4_vocab_image_40	817	映る	うつる	được chiếu, phát phản chiếu	ÁNH			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0818	N4	n4_vocab_image_40	818	移る	うつる	chuyển, di chuyển; lây nhiễm	DI			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0819	N4	n4_vocab_image_40	819	産む	うむ	sinh, sinh đẻ	SẢN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0820	N4	n4_vocab_image_40	820	選ぶ	えらぶ	chọn lựa	TUYỂN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0821	N4	n4_vocab_image_40	821	送る	おくる	gửi	TỐNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0822	N4	n4_vocab_image_40	822	行う	おこなう	tiến hành, thực hiện	HÀNH			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0823	N4	n4_vocab_image_40	823	踊る	おどる	nhảy múa	DŨNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0824	N4	n4_vocab_image_40	824	思い出す	おもいだす	nhớ ra	TƯ XUẤT			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0825	N4	n4_vocab_image_40	825	思う	おもう	nghĩ	TƯ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0826	N4	n4_vocab_image_40	826	泳ぐ	およぐ	bơi	VỊNH			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0827	N4	n4_vocab_image_40	827	かかる	かかる	tốn (thời gian, tiền bạc)				Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0828	N4	n4_vocab_image_40	828	飾る	かざる	trang trí	SỨC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0829	N4	n4_vocab_image_40	829	貸す	かす	cho vay, cho mượn	THẢI			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0830	N4	n4_vocab_image_40	830	勝つ	かつ	thắng, giành chiến thắng	THẮNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0831	N4	n4_vocab_image_40	831	構う	かまう	bận tâm, để ý	CẤU			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0832	N4	n4_vocab_image_40	832	かむ	かむ	cắn, nhai				Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0833	N4	n4_vocab_image_40	833	通う	かよう	đi lại (địa điểm thường xuyên đến như trường học, công sở...)	THÔNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0834	N4	n4_vocab_image_40	834	乾く	かわく	khô	CÀN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0835	N4	n4_vocab_image_40	835	頑張る	がんばる	cố gắng	NGOAN TRƯƠNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0836	N4	n4_vocab_image_40	836	繰り返す	くりかえす	lặp lại	THAO PHẢN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0837	N4	n4_vocab_image_40	837	混む	こむ	đông đúc	HỖN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0838	N4	n4_vocab_image_40	838	探す	さがす	tìm kiếm	THÁM			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0839	N4	n4_vocab_image_40	839	騒ぐ	さわぐ	làm ồn, gây ồn ào	TAO			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0840	N4	n4_vocab_image_40	840	触る	さわる	sờ, chạm	XÚC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0841	N4	n4_vocab_image_40	841	しかる	しかる	mắng				Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0842	N4	n4_vocab_image_40	842	死ぬ	しぬ	chết	TỬ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0843	N4	n4_vocab_image_40	843	すく	すく	vắng (người); đói (bụng)				Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0844	N4	n4_vocab_image_40	844	進む	すすむ	tiến triển, tiến lên	TIẾN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0845	N4	n4_vocab_image_40	845	滑る	すべる	trượt, trượt chân	HOẠT			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0846	N4	n4_vocab_image_40	846	済む	すむ	xong, hoàn thành	TẾ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0847	N4	n4_vocab_image_40	847	足す	たす	thêm vào, cộng vào	TÚC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0848	N4	n4_vocab_image_40	848	楽しむ	たのしむ	tận hưởng	LẠC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0849	N4	n4_vocab_image_40	849	頼む	たのむ	nhờ, nhờ vả	LẠI			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0850	N4	n4_vocab_image_40	850	騙す	だます	lừa, lừa đảo	BIÊN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0851	N4	n4_vocab_image_40	851	包む	つつむ	gói, bọc	BAO			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0852	N4	n4_vocab_image_40	852	釣る	つる	câu (cá)	ĐIẾU			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0853	N4	n4_vocab_image_40	853	手伝う	てつだう	giúp đỡ, hỗ trợ	THỦ TRUYỀN			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0854	N4	n4_vocab_image_40	854	通る	とおる	đi qua, băng qua	THÔNG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0855	N4	n4_vocab_image_40	855	届く	とどく	gửi; tới nơi	GIỚI			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0856	N4	n4_vocab_image_40	856	泊まる	とまる	ở (trọ, khách sạn)	BẠC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0857	N4	n4_vocab_image_40	857	取る	とる	lấy	THỦ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0858	N4	n4_vocab_image_40	858	直す	なおす	sửa, chữa	TRỰC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0859	N4	n4_vocab_image_40	859	直る	なおる	khỏi, được sửa chữa, hồi phục	TRỰC			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0860	N4	n4_vocab_image_40	860	治る	なおる	khỏi, hồi phục (chỉ tình trạng sức khỏe của sinh vật sống)	TRỊ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0861	N4	n4_vocab_image_40	861	泣く	なく	khóc	KHẤP			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0862	N4	n4_vocab_image_40	862	無くなる	なくなる	mất, biến mất	VÔ			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0863	N4	n4_vocab_image_40	863	亡くなる	なくなる	chết, qua đời	VONG			Động từ nhóm 1;source_image:40.jpg	manual_reviewed
+N4-VOCAB-0864	N4	n4_vocab_image_40	864	鳴る	なる	kêu, reo lên (máy móc, đồng hồ)	MINH			Động từ nhóm 1;source_image:40.jpg	manual_reviewed

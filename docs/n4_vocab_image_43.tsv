@@ -1,0 +1,59 @@
+item_id	level	deck_id	source_position	word	reading	meaning	hanviet	example_jp	example_vi	tags	status
+N4-VOCAB-0980	N4	n4_vocab_image_43	980	注射（する）	ちゅうしゃ（する）	tiêm	CHÚ XẠ			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0981	N4	n4_vocab_image_43	981	入院（する）	にゅういん（する）	nhập viện	NHẬP VIỆN			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0982	N4	n4_vocab_image_43	982	寝坊（する）	ねぼう（する）	ngủ quên, thức dậy muộn	TẨM PHƯỜNG			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0983	N4	n4_vocab_image_43	983	拝見（する）	はいけん（する）	nhìn, xem (khiêm nhường ngữ)	BÁI KIẾN			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0984	N4	n4_vocab_image_43	984	発音（する）	はつおん（する）	phát âm	PHÁT ÂM			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0985	N4	n4_vocab_image_43	985	反対（する）	はんたい（する）	phản đối	PHẢN ĐỐI			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0986	N4	n4_vocab_image_43	986	復習（する）	ふくしゅう（する）	ôn tập	PHỤC TẬP			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0987	N4	n4_vocab_image_43	987	返事（する）	へんじ（する）	trả lời, phản hồi	PHẢN SỰ			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0988	N4	n4_vocab_image_43	988	放送（する）	ほうそう（する）	phát thanh, phát sóng	PHÓNG TỐNG			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0989	N4	n4_vocab_image_43	989	翻訳（する）	ほんやく（する）	biên dịch	PHIÊN DỊCH			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0990	N4	n4_vocab_image_43	990	約束（する）	やくそく（する）	hứa hẹn	ƯỚC THÚC			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0991	N4	n4_vocab_image_43	991	輸出（する）	ゆしゅつ（する）	xuất khẩu	THÂU XUẤT			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0992	N4	n4_vocab_image_43	992	輸入（する）	ゆにゅう（する）	nhập khẩu	THÂU NHẬP			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0993	N4	n4_vocab_image_43	993	用意（する）	ようい（する）	chuẩn bị	DỤNG Ý			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0994	N4	n4_vocab_image_43	994	予習（する）	よしゅう（する）	học trước, soạn bài trước	DỰ TẬP			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0995	N4	n4_vocab_image_43	995	予約（する）	よやく（する）	đặt chỗ	DỰ ƯỚC			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0996	N4	n4_vocab_image_43	996	利用（する）	りよう（する）	sử dụng, lợi dụng	LỢI DỤNG			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0997	N4	n4_vocab_image_43	997	連絡（する）	れんらく（する）	liên lạc	LIÊN LẠC			Động từ nhóm 3;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0998	N4	n4_vocab_image_43	998	上げる	あげる	nâng lên, đưa lên	THƯỢNG			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-0999	N4	n4_vocab_image_43	999	上がる	あがる	dâng lên, cao lên	THƯỢNG			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1000	N4	n4_vocab_image_43	1000	集める	あつめる	thu thập, sưu tập; tập hợp	TẬP			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1001	N4	n4_vocab_image_43	1001	集まる	あつまる	tập trung, tập hợp lại	TẬP			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1002	N4	n4_vocab_image_43	1002	起こす	おこす	đánh thức, gây ra	KHỞI			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1003	N4	n4_vocab_image_43	1003	起きる	おきる	thức dậy; xuất hiện; xảy ra	KHỞI			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1004	N4	n4_vocab_image_43	1004	落とす	おとす	đánh rơi, làm rơi	LẠC			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1005	N4	n4_vocab_image_43	1005	落ちる	おちる	bị rơi	LẠC			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1006	N4	n4_vocab_image_43	1006	折る	おる	bẻ gãy, gấp	CHIẾT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1007	N4	n4_vocab_image_43	1007	折れる	おれる	bị gãy, bị gập	CHIẾT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1008	N4	n4_vocab_image_43	1008	変える	かえる	làm thay đổi, biến đổi	BIẾN			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1009	N4	n4_vocab_image_43	1009	変わる	かわる	bị thay đổi, bị biến đổi	BIẾN			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1010	N4	n4_vocab_image_43	1010	決める	きめる	quyết định	QUYẾT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1011	N4	n4_vocab_image_43	1011	決まる	きまる	được quyết định	QUYẾT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1012	N4	n4_vocab_image_43	1012	消す	けす	tắt (cái gì đó), xóa	TIÊU			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1013	N4	n4_vocab_image_43	1013	消える	きえる	biến mất, bị tắt/xóa	TIÊU			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1014	N4	n4_vocab_image_43	1014	壊す	こわす	làm hỏng	HOẠI			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1015	N4	n4_vocab_image_43	1015	壊れる	こわれる	bị vỡ, bị hỏng	HOẠI			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1016	N4	n4_vocab_image_43	1016	下げる	さげる	giảm xuống, hạ bớt	HẠ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1017	N4	n4_vocab_image_43	1017	下がる	さがる	hạ xuống, giảm đi	HẠ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1018	N4	n4_vocab_image_43	1018	倒す	たおす	lật đổ, đánh đổ	ĐẢO			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1019	N4	n4_vocab_image_43	1019	倒れる	たおれる	gục, quỵ, bị đổ	ĐẢO			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1020	N4	n4_vocab_image_43	1020	続ける	つづける	tiếp tục	TỤC			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1021	N4	n4_vocab_image_43	1021	続く	つづく	liên tục, tiếp diễn	TỤC			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1022	N4	n4_vocab_image_43	1022	止める	とめる	dừng, ngăn cản (cái gì lại)	CHỈ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1023	N4	n4_vocab_image_43	1023	止まる	とまる	dừng lại, đỗ	CHỈ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1024	N4	n4_vocab_image_43	1024	始める	はじめる	bắt đầu	THỦY			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1025	N4	n4_vocab_image_43	1025	始まる	はじまる	(cái gì đó) bắt đầu	THỦY			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1026	N4	n4_vocab_image_43	1026	見つける	みつける	tìm thấy	KIẾN			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1027	N4	n4_vocab_image_43	1027	見つかる	みつかる	được tìm thấy, được tìm ra	KIẾN			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1028	N4	n4_vocab_image_43	1028	焼く	やく	nướng	THIÊU			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1029	N4	n4_vocab_image_43	1029	焼ける	やける	cháy, xém	THIÊU			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1030	N4	n4_vocab_image_43	1030	止める	やめる	ngưng, dừng (làm gì đó)	CHỈ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1031	N4	n4_vocab_image_43	1031	止む	やむ	dừng, ngừng; tạnh (mưa)	CHỈ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1032	N4	n4_vocab_image_43	1032	沸かす	わかす	đun sôi	PHÍ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1033	N4	n4_vocab_image_43	1033	沸く	わく	(nước) sôi	PHÍ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1034	N4	n4_vocab_image_43	1034	渡す	わたす	chuyển qua, đưa cho, truyền cho	ĐỘ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1035	N4	n4_vocab_image_43	1035	渡る	わたる	đi qua, băng qua	ĐỘ			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1036	N4	n4_vocab_image_43	1036	割る	わる	đập (trứng), chia ra	CÁT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed
+N4-VOCAB-1037	N4	n4_vocab_image_43	1037	割れる	われる	bị vỡ, bị nứt	CÁT			Cặp tha động từ - tự động từ;source_image:43.jpg	manual_reviewed

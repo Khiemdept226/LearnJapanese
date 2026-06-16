@@ -1,0 +1,53 @@
+item_id	level	deck_id	source_position	word	reading	meaning	hanviet	example_jp	example_vi	tags	status
+N4-VOCAB-0277	N4	n4_vocab_image_31	277	歳	さい	tuổi	TUẾ			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0278	N4	n4_vocab_image_31	278	冊	さつ	quyển sách	SÁCH			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0279	N4	n4_vocab_image_31	279	本	ほん	vật thon dài	BẢN			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0280	N4	n4_vocab_image_31	280	枚	まい	vật mỏng, dẹt (giấy, tiền, quần áo...)	MAI			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0281	N4	n4_vocab_image_31	281	台	だい	xe cộ, máy móc	ĐÀI			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0282	N4	n4_vocab_image_31	282	杯	はい	chén, bát, ly, cốc	BÔI			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0283	N4	n4_vocab_image_31	283	匹	ひき	động vật bé (chó, mèo, lợn...)	THẤT			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0284	N4	n4_vocab_image_31	284	羽	わ	chim, thỏ	VŨ			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0285	N4	n4_vocab_image_31	285	頭	とう	động vật lớn (ngựa, voi...)	ĐẦU			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0286	N4	n4_vocab_image_31	286	足	そく	giày, dép, tất	TÚC			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0287	N4	n4_vocab_image_31	287	件	けん	căn nhà	KIỆN			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0288	N4	n4_vocab_image_31	288	階	かい	tầng, lầu	GIAI			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0289	N4	n4_vocab_image_31	289	着	ちゃく	bộ quần áo	TRƯỚC			Đơn vị đếm trong tiếng Nhật;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0290	N4	n4_vocab_image_31	290	雨	あめ	mưa, cơn mưa	VŨ			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0291	N4	n4_vocab_image_31	291	雲	くも	mây, đám mây	VÂN			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0292	N4	n4_vocab_image_31	292	雪	ゆき	tuyết	TUYẾT			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0293	N4	n4_vocab_image_31	293	雷	かみなり	sấm sét	LÔI			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0294	N4	n4_vocab_image_31	294	嵐	あらし	dông bão	LAM			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0295	N4	n4_vocab_image_31	295	風	かぜ	con gió	PHONG			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0296	N4	n4_vocab_image_31	296	晴れ	はれ	trời quang đãng, trời nắng đẹp	TÌNH			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0297	N4	n4_vocab_image_31	297	虹	にじ	cầu vồng	HỒNG			Thời tiết;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0298	N4	n4_vocab_image_31	298	嬉しい	うれしい	vui sướng	HI			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0299	N4	n4_vocab_image_31	299	楽しい	たのしい	vui vẻ	LẠC			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0300	N4	n4_vocab_image_31	300	悲しい	かなしい	buồn	BI			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0301	N4	n4_vocab_image_31	301	寂しい	さびしい	cô đơn	TỊCH			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0302	N4	n4_vocab_image_31	302	幸せ	しあわせ	hạnh phúc	HẠNH			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0303	N4	n4_vocab_image_31	303	好き	すき	thích, quý	HẢO			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0304	N4	n4_vocab_image_31	304	恥ずかしい	はずかしい	xấu hổ	SỈ			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0305	N4	n4_vocab_image_31	305	懐かしい	なつかしい	hoài niệm	HOÀI			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0306	N4	n4_vocab_image_31	306	羨ましい	うらやましい	ghen tị	TIỆN			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0307	N4	n4_vocab_image_31	307	驚く	おどろく	ngạc nhiên	KINH			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0308	N4	n4_vocab_image_31	308	びっくり	びっくり	ngạc nhiên				Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0309	N4	n4_vocab_image_31	309	がっかり	がっかり	thất vọng				Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0310	N4	n4_vocab_image_31	310	怖い	こわい	sợ hãi	BỐ			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0311	N4	n4_vocab_image_31	311	安心	あんしん	yên tâm	AN TÂM			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0312	N4	n4_vocab_image_31	312	不安	ふあん	bất an, lo lắng	BẤT AN			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0313	N4	n4_vocab_image_31	313	嫌	いや	ghét	HIỀM			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0314	N4	n4_vocab_image_31	314	怒る	おこる	tức giận	NỘ			Tâm trạng, cảm xúc;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0315	N4	n4_vocab_image_31	315	アイロン	アイロン	bàn là				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0316	N4	n4_vocab_image_31	316	エアコン	エアコン	máy điều hoà				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0317	N4	n4_vocab_image_31	317	コンセント	コンセント	ổ cắm, ổ điện				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0318	N4	n4_vocab_image_31	318	炊飯器	すいはんき	nồi cơm điện	XÚY PHẠN KHÍ			Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0319	N4	n4_vocab_image_31	319	スピーカー	スピーカー	cái loa				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0320	N4	n4_vocab_image_31	320	洗濯機	せんたくき	máy giặt	TẨY TRẠC CƠ			Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0321	N4	n4_vocab_image_31	321	扇風機	せんぷうき	quạt điện	PHIẾN PHONG CƠ			Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0322	N4	n4_vocab_image_31	322	テレビ	テレビ	ti-vi				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0323	N4	n4_vocab_image_31	323	電子レンジ	でんしレンジ	lò vi sóng	ĐIỆN TỬ			Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0324	N4	n4_vocab_image_31	324	掃除機	そうじき	máy hút bụi	TẢO TRỪ CƠ			Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0325	N4	n4_vocab_image_31	325	ドライヤー	ドライヤー	máy sấy				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0326	N4	n4_vocab_image_31	326	パソコン	パソコン	máy tính cá nhân, laptop				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0327	N4	n4_vocab_image_31	327	ラジオ	ラジオ	radio				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
+N4-VOCAB-0328	N4	n4_vocab_image_31	328	リモコン	リモコン	điều khiển từ xa				Đồ dùng trong nhà - Thiết bị điện tử;source_image:31.jpg	manual_reviewed
