@@ -206,3 +206,131 @@ def find_learning_item(deck_id, item_id):
     row = cursor.fetchone()
     conn.close()
     return dict(row) if row else None
+
+
+def _legacy_item_id(flashcard_id):
+    return f"legacy-flashcard-{flashcard_id}"
+
+
+def _ensure_default_deck(cursor, deck_id):
+    cursor.execute("""
+        INSERT INTO decks (
+            deck_id, title, level, item_type, worksheet_name, source, status, description,
+            created_at, updated_at
+        ) VALUES (?, 'N4 Core Vocabulary', 'N4', 'vocab', 'vocab_n4_core', 'legacy', 'active', 'Migrated legacy flashcards', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        ON CONFLICT(deck_id) DO UPDATE SET
+            updated_at = CURRENT_TIMESTAMP
+    """, (deck_id,))
+
+
+def migrate_legacy_flashcards(default_deck_id="n4_vocab_core"):
+    init_learning_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    _ensure_default_deck(cursor, default_deck_id)
+
+    cursor.execute("SELECT * FROM flashcards ORDER BY id ASC")
+    flashcard_rows = [dict(row) for row in cursor.fetchall()]
+    conn.commit()
+    conn.close()
+    id_map = {}
+    for card in flashcard_rows:
+        learning_item_id = upsert_learning_item({
+            "item_id": _legacy_item_id(card["id"]),
+            "level": card["level"],
+            "item_type": "vocab",
+            "deck_id": default_deck_id,
+            "source": card["source"],
+            "source_position": card["source_position"],
+            "front": card["word"],
+            "back": card["meaning"],
+            "reading": card["reading"],
+            "meaning": card["meaning"],
+            "hanviet": card["hanviet"],
+            "example_jp": card["example_jp"],
+            "example_vi": card["example_vi"],
+            "tags": "legacy,vocab",
+            "status": "ready",
+        })
+        id_map[card["id"]] = learning_item_id
+
+    conn = get_connection()
+    cursor = conn.cursor()
+    reviews = 0
+    if id_map:
+        cursor.execute("SELECT * FROM user_flashcard_reviews ORDER BY telegram_user_id, flashcard_id")
+        for review in cursor.fetchall():
+            learning_item_id = id_map.get(review["flashcard_id"])
+            if not learning_item_id:
+                continue
+            cursor.execute("""
+                INSERT INTO user_learning_reviews (
+                    telegram_user_id, learning_item_id, state, due_at, interval_days, ease_factor,
+                    repetitions, lapses, last_reviewed_at, created_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(telegram_user_id, learning_item_id) DO UPDATE SET
+                    state = excluded.state,
+                    due_at = excluded.due_at,
+                    interval_days = excluded.interval_days,
+                    ease_factor = excluded.ease_factor,
+                    repetitions = excluded.repetitions,
+                    lapses = excluded.lapses,
+                    last_reviewed_at = excluded.last_reviewed_at,
+                    updated_at = excluded.updated_at
+            """, (
+                review["telegram_user_id"], learning_item_id, review["state"], review["due_at"],
+                review["interval_days"], review["ease_factor"], review["repetitions"], review["lapses"],
+                review["last_reviewed_at"], review["created_at"], review["updated_at"],
+            ))
+            reviews += 1
+
+        cursor.execute("SELECT * FROM user_flashcard_sessions ORDER BY telegram_user_id")
+        for session in cursor.fetchall():
+            current_learning_item_id = id_map.get(session["current_flashcard_id"])
+            cursor.execute("""
+                INSERT INTO user_learning_sessions (
+                    telegram_user_id, current_learning_item_id, current_direction, shown_at, answer_shown_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT(telegram_user_id) DO UPDATE SET
+                    current_learning_item_id = excluded.current_learning_item_id,
+                    current_direction = excluded.current_direction,
+                    shown_at = excluded.shown_at,
+                    answer_shown_at = excluded.answer_shown_at,
+                    updated_at = excluded.updated_at
+            """, (
+                session["telegram_user_id"], current_learning_item_id, session["current_direction"],
+                session["shown_at"], session["answer_shown_at"], session["updated_at"],
+            ))
+
+    settings = 0
+    cursor.execute("SELECT * FROM user_flashcard_settings ORDER BY telegram_user_id")
+    for setting in cursor.fetchall():
+        cursor.execute("""
+            INSERT INTO user_learning_settings (
+                telegram_user_id, preset, level, item_type, deck_id, tags, daily_new_limit,
+                daily_review_limit, again_delay_minutes, stop_new_cards_before_exam_days,
+                exam_date, created_at, updated_at
+            ) VALUES (?, ?, ?, 'vocab', ?, NULL, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(telegram_user_id) DO UPDATE SET
+                preset = excluded.preset,
+                level = excluded.level,
+                item_type = excluded.item_type,
+                deck_id = excluded.deck_id,
+                tags = excluded.tags,
+                daily_new_limit = excluded.daily_new_limit,
+                daily_review_limit = excluded.daily_review_limit,
+                again_delay_minutes = excluded.again_delay_minutes,
+                stop_new_cards_before_exam_days = excluded.stop_new_cards_before_exam_days,
+                exam_date = excluded.exam_date,
+                updated_at = excluded.updated_at
+        """, (
+            setting["telegram_user_id"], setting["preset"], setting["level"], default_deck_id,
+            setting["daily_new_limit"], setting["daily_review_limit"], setting["again_delay_minutes"],
+            setting["stop_new_cards_before_exam_days"], setting["exam_date"], setting["created_at"], setting["updated_at"],
+        ))
+        settings += 1
+
+    conn.commit()
+    conn.close()
+    return {"items": len(flashcard_rows), "reviews": reviews, "settings": settings}
+
