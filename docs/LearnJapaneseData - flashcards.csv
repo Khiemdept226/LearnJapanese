@@ -1,0 +1,277 @@
+card_id,level,source,source_position,word,reading,meaning,hanviet,example_jp,example_vi,tags,status
+N4-0001,N4,n4_md,1,石,いし,Đá,THẠCH,一番大きいピラミッドをつくるのに石が 270万個も使われました。,270 vạn khối đá đã được sử dụng để xây lên Kim tự tháp lớn nhất.,,ready
+N4-0002,N4,n4_md,2,経験,けいけん,Kinh nghiệm,KINH NGHIỆM,先生は面白 いし、親切 だし、それに経験も あります。,"Thầy giáo tôi vừa thân thiện, thú vị lại còn có nhiều kinh nghiệm.",,ready
+N4-0003,N4,n4_md,3,店員,てんいん,Nhân viên quán,ĐIẾM VIÊN,あの店 員はいつも優 しい。,Nhân viên quán đó lúc nào cũng hiền lành tốt bụng.,,ready
+N4-0004,N4,n4_md,4,食堂,しょくどう,Nhà ăn,THỰC ĐƯỜNG,この大学には食堂がない。,Trường học này không có nhà ăn.,,ready
+N4-0005,N4,n4_md,5,港,みなと,Cảng,CẢNG,ここから港が見える。,Có thể nhìn thấy cảng từ đây.,,ready
+N4-0006,N4,n4_md,6,小説,しょうせつ,Tiểu thuyết,TIỂU THUYẾT,Q: どんな本を 読みますか。 A: 小説を 読みます。,Bạn đọc sách gì vậy? Tớ đọc tiểu thuyết.,,ready
+N4-0007,N4,n4_md,7,日記,にっき,Nhật ký,NHẬT KÝ,毎日日記を書く。,Viết nhật ký hàng ngày.,,ready
+N4-0008,N4,n4_md,8,夕方,ゆうがた,Chiều tối,TỊCH PHƯƠNG,夕方、飲みに 行きませんか。,Chiều tối đi nhậu với mình nhé?,,ready
+N4-0009,N4,n4_md,9,秋,あき,Mùa thu,THU,春と秋、どちらの方が 好きですか。,"Mùa hè và mùa thu, bạn thích mùa nào hơn?",,ready
+N4-0010,N4,n4_md,10,青い,あおい,Xanh da trời,THANH,その青いかさは 私のです。,Cái ô màu xanh da trời đó là của tôi.,,ready
+N4-0011,N4,n4_md,11,場所,ばしょ,"Nơi, chỗ, địa điểm, vị trí",TRƯỜNG SỞ,この場所に座 ってはいけません。,Không được ngồi chỗ này. 2,,ready
+N4-0012,N4,n4_md,12,歩く,あるく,Đi bộ,BỘ,うちから学校まで歩いて10分です。,Đi bộ từ nhà tới trường hết 10 phút.,,ready
+N4-0013,N4,n4_md,13,便利,べんり,"Thuận tiện, tiện lợi",TIỆN LỢI,私は 安くて 便利なパソコンが 欲しいです。,Tôi muốn một cái máy tính vừa rẻ vừa tiện lợi.,,ready
+N4-0014,N4,n4_md,14,眠い,ねむい,Buồn ngủ,MIÊN,眠いので、コーヒーを飲みたいです。,Vì buồn ngủ nên tôi muốn uống cà phê.,,ready
+N4-0015,N4,n4_md,15,雪,ゆき,Tuyết,TUYẾT,日本の 冬は 雪が 降 ります。,Mùa đông ở Nhật có tuyết rơi.,,ready
+N4-0016,N4,n4_md,16,熱心な,ねっしんな,Nhiệt tình,NHIỆT TÂM,先生は熱心な人です。,Thầy giáo tôi là người rất nhiệt tình.,,ready
+N4-0017,N4,n4_md,17,興味,きょうみ,Hứng thú,HƯNG VỊ,日本の教育に興味があります。,Tôi có hứng thú với nền giáo dục Nhật Bản.,,ready
+N4-0018,N4,n4_md,18,ルール,,Quy tắc,,大人なので、社会のルールは守ること。,"Là người lớn, phải tuân thủ các quy tắc xã hội.",,ready
+N4-0019,N4,n4_md,19,用意,ようい,"Sửa soạn, chuẩn bị",DỤNG Ý,音楽会は６時に始まります。今、会場 用意しているところです。,Buổi hòa nhạc bắt đầu lúc 6 giờ. Bây giờ tôi đang chuẩn bị hội trường.,,ready
+N4-0020,N4,n4_md,20,相談,そうだん,"Tư vấn, trao đổi",TƯƠNG ĐÀM,ご相談ください。,Hãy trao đổi với chúng tôi nhé!,,ready
+N4-0021,N4,n4_md,21,運ぶ,はこぶ,Vận chuyển,VẬN,一人でこれを運んでください,Bê cái này một mình đi!,,ready
+N4-0022,N4,n4_md,22,危険,きけん,Nguy hiểm,NGUY HIỂM,危険ですから入らないでください,Nguy hiểm nên đừng vào!,,ready
+N4-0023,N4,n4_md,23,止める,とめる,"Đỗ (xe); dừng lại; bỏ, ngừng; cấm chỉ",CHỈ,ここで車をとめてはいけません,Không được đỗ xe tại đây!,,ready
+N4-0024,N4,n4_md,24,触る,さわる,Sờ; mó; chạm,XÚC,あついからさわらないでくださいね,Nóng nên đừng sờ vào nhé!,,ready
+N4-0025,N4,n4_md,25,留守,るす,Vắng nhà,LƯU THỦ,留守にしておりまして失礼 しました。,Xin lỗi hiện tại tôi đang không ở nhà. 3,,ready
+N4-0026,N4,n4_md,26,親切,しんせつ,"Tốt bụng, thân thiện, tử tế",THÂN THIẾT,お年寄りに親切にする。,Cư xử thân thiện với những người cao tuổi. 彼は親切でかっこいいので人気がある。 Anh ấy được hâm mộ vì tốt bụng và đẹp trai.,,ready
+N4-0027,N4,n4_md,27,苦い,にがい,Đắng,KHỔ,このコーヒーは苦くて飲めない,Cà phê này đắng nên không uống được,,ready
+N4-0028,N4,n4_md,28,割る,わる,"Vỡ, bể, nứt",CÁT,ガラスのコップを床 に落 として割る。,Đánh rơi cốc thủy tinh xuống sàn nên bị vỡ.,,ready
+N4-0029,N4,n4_md,29,遅刻,ちこく,"Muộn, trễ",TRÌ KHẮC,彼は時間に正確 なので、遅刻しない。,"Vì anh ấy là người rất chính xác về thời gian nên sẽ không bao giờ đi trễ. 4 Những Chữ Hán, Từ vựng xuất hiện trong đề N4 – 7/2015 番号 言葉 読み方 意味 例文",,ready
+N4-0030,N4,n4_md,30,生年月日,せいねんがっぴ,Ngày tháng năm sinh,SANH NIÊN NGUYỆT NHẬT,書類 に生年月日を記入 する。,Ghi ngày tháng năm sinh vào hồ sơ.,,ready
+N4-0031,N4,n4_md,31,袖,そで,Tay áo,TỤ,そでをまくる。,Xắn tay áo.,,ready
+N4-0032,N4,n4_md,32,台風,たいふう,Bão,THAI PHONG,新聞によると、台風でたくさんの木 倒,"Theo như bài báo, nhiều cây cối đã bị đổ do bão.",,ready
+N4-0033,N4,n4_md,33,自然,しぜん,"Thiên nhiên, tự nhiên",TỰ NHIÊN,科学の力を利用 して自然を守 ります。,Sử dụng sức mạnh của khoa học kỹ thuật để bảo vệ thiên nhiên.,,ready
+N4-0034,N4,n4_md,34,丁寧,ていねい,"Lịch sự cẩn thận,",ĐINH NINH,彼女は丁寧に おじぎを しました。,Cô ấy cúi chào một cách lịch sự. ていねいにつかってください Sử dụng cẩn thận nhé!,,ready
+N4-0035,N4,n4_md,35,うらやましい,,"Ghen tỵ (ý thèm muốn, ko có ý ganh ghét)",,私は彼の幸運 がうらやましい。,Ghen tị với sự may mắn của anh ta.,,ready
+N4-0036,N4,n4_md,36,行う,おこなう,"Tổ chức, tiến hành, thực hiện",HÀNH,会議 を行う。,Tiến hành cuộc họp.,,ready
+N4-0037,N4,n4_md,37,空く,あく,"Bị thủng, trống, rảnh rỗi",KHÔNG,ズボンのひざの部分 空いてしまった。,Ở chỗ đầu gối quần đã thủng một lỗ. 空いている席 せき はありますか。 Còn chỗ trống không? 土曜日の夜、空いていますか。 Tối thứ 7 cậu có rảnh không? 5,,ready
+N4-0038,N4,n4_md,38,届く,とどく,"Tới, đạt được",GIỚI,送った荷物がちゃんと届いたようで よかったです。,Thật may vì hành lý tôi gửi đã tới nơi an toàn.,,ready
+N4-0039,N4,n4_md,39,洗濯,せんたく,Giặt giũ,TẨY TRẠC,洗濯して、服 が 真 っ白 に なりました。,"Sau khi giặt giũ, quần áo trở nên trắng sáng.",,ready
+N4-0040,N4,n4_md,40,卒業,そつぎょう,Tốt nghiệp,TỐT NGHIỆP,いつご卒業ですか。,Khi nào bạn tốt nghiệp?,,ready
+N4-0041,N4,n4_md,41,嫌い,きらい,Ghét,HIỀM,マムトムが嫌いです。,Tôi ghét mắm tôm.,,ready
+N4-0042,N4,n4_md,42,浅い,あさい,Nông cạn; hời hợt; ít (kinh nghiệm),THIỂN,この川は浅い。,Con sông này cạn. 私は経験 けいけん が浅い。 Kinh nghiệm của tôi còn non nớt.,,ready
+N4-0043,N4,n4_md,43,巻く,まく,"Cuộn, quấn",QUYỂN,あせが出るので、頭にタオルを巻く。,Vì ra mồ hôi nên tôi quấn khăn mặt lên đầu,,ready
+N4-0044,N4,n4_md,44,騒ぎ,さわぎ,Sự ồn ào,TAO,彼女は自分 の給料 が少なすぎると騒ぎ 立てました。,Cô ấy làm ầm ỹ lên khi tiền lương quá ít.,,ready
+N4-0045,N4,n4_md,45,辺り,あたり,"Vùng lân cận, quanh đây",BIÊN,昨日から降 り続 く雪 でこの辺りが 真 っ白 だ。,Từ hôm qua tuyết vẫn tiếp tục rơi trắng xóa khu vực quanh đây.,,ready
+N4-0046,N4,n4_md,46,相手,あいて,Đối phương; đối tác; đối thủ,TƯƠNG THỦ,一年で四回同 じ相手に負 けるのは悔 しい 。,Thật đáng tiếc khi thua cùng một đối thủ tận 4 lần trong 1 năm.,,ready
+N4-0047,N4,n4_md,47,安心,あんしん,Yên tâm,AN TÂM,母の声を 聞いて 安心しました。,Tôi đã yên tâm khi nghe thấy giọng nói của mẹ.,,ready
+N4-0048,N4,n4_md,48,辛い,つらい,"Khổ cực, khó khăn, đau đớn",TÂN,彼はつらい人生 を送 った。,Anh ấy đã sống một đời cơ cực.,,ready
+N4-0049,N4,n4_md,49,飼う,かう,Nuôi (con gì đó),TỰ,犬を飼おうと思っています。,Tôi định nuôi chó. 6,,ready
+N4-0050,N4,n4_md,50,誘う,さそう,"Mời, rủ rê",DỤ,彼にデートに誘われました。,Tôi được anh ấy rủ đi hẹn hò.,,ready
+N4-0051,N4,n4_md,51,いつまでも,,Mãi mãi,,いつまでもお幸せに。,Mãi mãi hạnh phúc nhé!,,ready
+N4-0052,N4,n4_md,52,うっかり,,"Lơ đễnh, không để ý",,うっかりして携帯を家に忘れてしまった。,Lơ đễnh để quên điện thoại ở nhà. 今日試験 しけん があることを、うっかり 忘れていた。 Quên khuấy mất hôm nay có bài kiểm tra.,,ready
+N4-0053,N4,n4_md,53,代わりに,かわりに,"Thay vì, bù lại..",ĐẠI,彼はテニスをする代わりに野球 に行った。,Anh ấy đã đi chơi bóng chày thay vì đi đánh tennis.,,ready
+N4-0054,N4,n4_md,54,チェック,,Kiểm tra,,この データの 最後 もらえませんか。,Bạn kiểm tra lần cuối dữ liệu này giúp tôi được không?,,ready
+N4-0055,N4,n4_md,55,お見舞い,おみまい,Thăm hỏi,KIẾN VŨ,入院中の彼のお見舞いに行ってきたんだ。,Tôi đã đi thăm anh ấy trong bệnh viện.,,ready
+N4-0056,N4,n4_md,56,急ぐ,いそぐ,Nhanh; vội vã,CẤP,急ぐときは 、タクシーで 行きます。,"Khi vội vã, tôi đi taxi.",,ready
+N4-0057,N4,n4_md,57,ただ,,Chỉ,,母に何を聞いてもただ黙っているだけだ。,Dù hỏi mẹ gì đi chăng nữa thì mẹ chỉ im lặng.,,ready
+N4-0058,N4,n4_md,58,スピード,,Tốc độ,,スピードを出しすぎて、警察 に捕 まった。,"Tôi bị cảnh sát bắt do chạy quá tốc độ. 彼は単語を覚えるスピードがはやい。 Tốc độ ghi nhớ từ vựng của anh ấy rất nhanh. 7 Những Chữ Hán, Từ vựng xuất hiện trong đề N4 – 12/2015 番号 言葉 読み方 意味 例文",,ready
+N4-0059,N4,n4_md,59,力,ちから,Sức lực,LỰC,力を弱 めて、マッサージをする。,Dùng lực nhẹ nhàng để mát xa,,ready
+N4-0060,N4,n4_md,60,父親,ちちおや,"Cha, bố",PHỤ THÂN,先輩 は父親にそっくりな性格 だ。,Tiền bối của tôi có tính cách giống hệt như cha của anh ấy.,,ready
+N4-0061,N4,n4_md,61,昼食,ちゅうしょく,Bữa trưa,TRÚ THỰC,私たちは喫茶店 で昼食を食べた。,Chúng tôi ăn cơm trưa tại quán nước.,,ready
+N4-0062,N4,n4_md,62,健康,けんこう,Sức khỏe,KIỆN KHANG,健康のために、毎日1時間歩いている。,"Để có sức khỏe tốt, tôi đi bộ 1 tiếng mỗi ngày.",,ready
+N4-0063,N4,n4_md,63,主,おも,Chủ,CHỦ,私が成功 したのは主に両親 の援助 あった。,Thành công của tôi chủ yếu đều là do sự khích lệ của ba mẹ.,,ready
+N4-0064,N4,n4_md,64,悲しい,かなしい,Buồn,BI,悲しいお知らせがあります。,Chúng tôi xin thông báo một tin buồn.,,ready
+N4-0065,N4,n4_md,65,育つ,そだつ,"Lớn, phát triển",DỤC,今年は野菜 が良く育つ。,Năm nay các loại rau phát triển tốt. 子供 こども が元気 げんき に育つ。Đứa trẻ lớn lên khỏe mạnh.,,ready
+N4-0066,N4,n4_md,66,転ぶ,ころぶ,Ngã,CHUYỂN,自転車で転んで、両足 を怪我 した。,Tôi bị thương cả 2 bên chân do ngã xe.,,ready
+N4-0067,N4,n4_md,67,預かる,あずかる,Trông giữ,DỰ,チェックインまで荷物を預かって もらえますか。,Có thể giữ hành lý giúp tôi cho đến lúc checkin được không?,,ready
+N4-0068,N4,n4_md,68,調子,ちょうし,Tình trạng,ĐIỀU TỬ,最近身体 の調子がいい。,Dạo này tình hình sức khoẻ tốt. 後半戦から、調子が上がってきた。 Phong độ lên cao từ nửa sau của trận đấu. 8,,ready
+N4-0069,N4,n4_md,69,予報,よほう,Dự báo,DƯ BÁO,天気予報によれば、雨季 が来週始 まるそうだ。,Theo như dự báo thời tiết thì mùa mưa sẽ bắt đầu vào tuần sau.,,ready
+N4-0070,N4,n4_md,70,全然,ぜんぜん,Hoàn toàn,TOÀN NHIÊN,最近全然眠 れない。,Dạo này tôi chẳng thể ngủ được.,,ready
+N4-0071,N4,n4_md,71,厳しい,きびしく,Nghiêm khắc,NGHIÊM,その先生は厳しく生徒を叱 った。,Giáo viên nghiêm khắc mắng học sinh.,,ready
+N4-0072,N4,n4_md,72,表す,あらわす,Biểu thị; biểu hiện; diễn tả,BIỂU,P.S という文字は何を表していますか。,P.S là viết tắt của từ gì thế?,,ready
+N4-0073,N4,n4_md,73,写す,うつす,Chụp,TẢ,パーティーの様子 を写真 に写す。 友達のノートを写した。,Chụp lại khung cảnh bữa tiệc. Chép lại vở đứa bạn.,,ready
+N4-0074,N4,n4_md,74,祝い,いわい,Lễ mừng; chúc mừng,CHÚC,就職 祝いのお礼をする。,Đáp lại món quà mừng nhận được việc mới.,,ready
+N4-0075,N4,n4_md,75,受付,うけつけ,Lễ tân,THU PHÓ,詳 しくは受付でお聞きになってください。,Vui lòng hỏi lễ tân để biết chi tiết!,,ready
+N4-0076,N4,n4_md,76,粗末,そまつな,"Đơn sơ, đạm bạc",THÔ MẠT,どんなにそまつでも、我が家が一番だ。,Mặc dù rất đơn sơ nhưng nhà chúng tôi vẫn là nhất.,,ready
+N4-0077,N4,n4_md,77,苦い,にがい,Đắng,KHỔ,このビールは苦い。,Bia này đắng.,,ready
+N4-0078,N4,n4_md,78,片付く,かたづく,Được dọn dẹp,PHIẾN PHÓ,仕事の半分は片付いた。,Một nửa công việc đã được hoàn thành.,,ready
+N4-0079,N4,n4_md,79,強いる,しいる,Ép buộc,CƯỠNG,学問はしいられるべきではない。やる気が 大切だ。,Việc học không nên ép buộc. Động lực mới là quan trọng 無理 むり しても働くように強いられる。,,ready
+N4-0080,N4,n4_md,80,かなり,,Khá là,,体調はかなりよくなってきた。,Tình trạng cơ thể đã tốt hơn khá nhiều. かなり大きな荷物が届いた。 Một kiện hành lý khá to đã được chuyển tới. 9,,ready
+N4-0081,N4,n4_md,81,ぐっすり,,Ngủ say,,昨晩はぐっすりと眠れた。,Đêm qua tôi ngủ rất ngon. 娘たちは、ベットでぐっすり寝ている。 Mấy đứa con gái của tôi đang ngủ say trên giường.,,ready
+N4-0082,N4,n4_md,82,すると,,Cứ...thì sẽ,,アイドルが登場 すると、会場がわいた。,"Khi thần tượng xuất hiện, hội trường trở nên sôi động.",,ready
+N4-0083,N4,n4_md,83,プリント,,Bản in,,学生たちにプリントを配 りました。,Tôi đã phát bản in cho học sinh.,,ready
+N4-0084,N4,n4_md,84,原因,げんいん,Nguyên nhân,NGUYÊN NHÂN,警察 が車 の故障 の原因を調 べています。,Cảnh sát đang điều tra nguyên nhân hỏng xe.,,ready
+N4-0085,N4,n4_md,85,楽,らく,"Vui vẻ, thoải mái, dễ chịu",LẠC,妻 が働 き始 めてから、生活がだいぶ楽に なった。,"Từ sau khi vợ tôi đi làm, cuộc sống trở nên dễ chịu hơn.",,ready
+N4-0086,N4,n4_md,86,通う,かよう,Đi lại,THÔNG,このレストランは私がよく通っている店だ。,Nhà hàng này là nơi tôi thường xuyên tới.,,ready
+N4-0087,N4,n4_md,87,一度も,いちども,Một lần cũng,NHẤT ĐỘ,こんなおいしい料理は今まで一度も食べた ことがない。,Cho tới bây giờ tôi chưa từng ăn món nào ngon như thế này.,,ready
+N4-0088,N4,n4_md,88,メニュー,,Thực đơn,,そのレストランはメニューが豊かです。,"Nhà hàng đó có thực đơn phong phú. 10 Những Chữ Hán, Từ vựng xuất hiện trong đề N4 – 12/2016 番号 言葉 読み方 意味 例文",,ready
+N4-0089,N4,n4_md,89,楽しい,たのしい,Vui vẻ; vui nhộn; vui tính,LẠC,母は面白 い人で、話していて楽しい。,Nói chuyện với mẹ tôi rất vui vì bà có khiếu hài hước.,,ready
+N4-0090,N4,n4_md,90,味,あじ,Vị; mùi vị,VỊ,お客さんの好みに合わせて味つけを変 える。,Thay đổi hương vị để phù hợp với khẩu vị của khách hàng. 醤油 しょうゆ で味をつける。 Nêm nếm bằng nước tương.,,ready
+N4-0091,N4,n4_md,91,不便,ふべん,Bất tiện; không thuận lợi,BẤT TIỆN,今の家はせまくて不便です。,Căn nhà hiện tại chật và bất tiện.,,ready
+N4-0092,N4,n4_md,92,切る,きる,Cắt; chặt,THIẾT,髪 を切ってけっこうかっこよくなった。,Cắt tóc xong nhìn cũng đẹp trai ra kha khá.,,ready
+N4-0093,N4,n4_md,93,以外,いがい,Ngoài ra,DĨ NGOẠI,関係者 以外立ち入り禁止 です。,Cấm vào ngoại trừ những người có liên quan.,,ready
+N4-0094,N4,n4_md,94,雲,くも,Mây,VÂN,雲が流 れて、月がる。,Mây trôi và trăng bỗng xuất hiện.,,ready
+N4-0095,N4,n4_md,95,急行,きゅうこう,Tốc hành,CẤP HÀNH,これは 急行ですか。 各駅停車 ですか。,"Đây là tàu nhanh, hay là tàu thường vậy?",,ready
+N4-0096,N4,n4_md,96,写す,うつす,"Sao chép, soi gương",TẢ,友達のノートを写した。,Chép vở của bạn 景色 けしき を写した写真。 Đây là bức ảnh chụp phong cảnh.,,ready
+N4-0097,N4,n4_md,97,反対,はんたい,"Phản đối, mặt đối diện",PHẢN ĐỐI,その人の意見に反対します,Phản đối ý kiến của người đó.,,ready
+N4-0098,N4,n4_md,98,黒い,くろい,Đen; u ám; đen tối,HẮC,肉を 焼 きすぎて 黒く なった。,Thịt bị đen vì cháy quá,,ready
+N4-0099,N4,n4_md,99,計画,けいかく,"Chương trình, kế hoạch",KẾ HOẠCH,計画を立てる。,Lập kế hoạch. 11,,ready
+N4-0100,N4,n4_md,100,医者,いしゃ,Bác sĩ,Y GIẢ,医者になるために、 医学を 勉 強するつもりです。,Tôi dự định học ngành Y để trở thành bác sỹ.,,ready
+N4-0101,N4,n4_md,101,夜,よる,Buổi tối,DẠ,土曜日の夜、彼氏,Tối thứ 7 sẽ hẹn hò với bạn trai.,,ready
+N4-0102,N4,n4_md,102,貸し,かし,"Cho vay, cho mượn",THẢI,百万ドン貸してくれませんか,Cho mình vay 1 triệu đồng được không.,,ready
+N4-0103,N4,n4_md,103,試合,しあい,Cuộc thi đấu; trận đấu,THÍ HỢP,練習 を重 ねて、試合に勝 った。,Tôi đã chiến thắng trận đấu nhờ tăng cường luyện tập.,,ready
+N4-0104,N4,n4_md,104,心配,しんぱい,Lo âu; lo lắng,TÂM PHỐI,日本に来たとき、私の日本語が通 心配 だった。,Khi đến Nhật tôi đã lo rằng không biết người ta có hiểu tiếng Nhật của tôi không,,ready
+N4-0105,N4,n4_md,105,夢,ゆめ,Giấc mơ,MỘNG,はいゆうになるという夢 があります。,Tôi mơ ước trở thành diễn viên.,,ready
+N4-0106,N4,n4_md,106,ぜひ,ぜひ,"Rất, nhất định",,ぜひ見たいです。 ぜひ参加してください。,Tôi rất muốn xem. Nhất định tham gia nhé!,,ready
+N4-0107,N4,n4_md,107,説明,せつめい,Thuyết minh,THUYẾT MINH,やりかたを説明しますので安心 してください。,Xin hãy yên tâm vì tôi sẽ giải thích cách làm.,,ready
+N4-0108,N4,n4_md,108,かたい,かたい,Cứng,,かたいパンは好きじゃない,Không thích bánh mỳ cứng.,,ready
+N4-0109,N4,n4_md,109,誘い,さそい,Rủ rê; mời,DỤ,彼からのデートの誘いを断った。,Tôi đã từ chôi lời mời hẹn hò của anh ấy.,,ready
+N4-0110,N4,n4_md,110,センチ,,Xen-ti-mét,,10センチくらい背 が伸,Cao lên khoảng 10 cm.,,ready
+N4-0111,N4,n4_md,111,比べて,くらべて,So sánh,TỶ,今年は去年と比べて暑い気がする。,Có cảm giác năm nay nóng hơn năm ngoái.,,ready
+N4-0112,N4,n4_md,112,留守,るす,Vắng nhà,LƯU THỦ,息子に留守番を頼 む。,Nhờ con trai trông nhà. 12,,ready
+N4-0113,N4,n4_md,113,見つかる,みつかる,Tìm thấy; tìm ra,KIẾN,なくなった財布 が見つかった。,Tìm thấy cái ví đã bị mất,,ready
+N4-0114,N4,n4_md,114,最近,さいきん,Gần đây,TỐI CẬN,最近彼氏の様子 が怪 しい。,Gần đây bộ dạng anh người yêu rất đáng nghi.,,ready
+N4-0115,N4,n4_md,115,音,おと,Âm thanh,ÂM,そとの車の音が聞こえます。,Nghe thấy tiếng xe ô tô bên ngoài.,,ready
+N4-0116,N4,n4_md,116,見学,けんがく,Tham quan,KIẾN HỌC,国会議事堂 を 見学したいんですが、 どうすれば いいですか。,Tôi muốn tham quan tòa nhà quốc hội thì phải làm những gì?,,ready
+N4-0117,N4,n4_md,117,飾る,かざる,Trang trí,SỨC,クリスマスツリーにいろいろなものを飾りました,Trang trí nhiều đồ lên cây thông noel.,,ready
+N4-0118,N4,n4_md,118,工事,こうじ,"Sửa chữa, thi công",CÔNG SỰ,今インターネットの工事をしています,"Hiện tại đang sửa mạng internet. 13 Những Chữ Hán, Từ vựng xuất hiện trong đề 12/2020 番号 言葉 読み方 意味 例文",,ready
+N4-0119,N4,n4_md,119,自転車,じてんしゃ,Xe đạp,TỰ CHUYỂN XA,自転車より バイクの 方が 速いです。,Xe máy nhanh hơn xe đạp.,,ready
+N4-0120,N4,n4_md,120,売れる,うれる,Bán ra; bán chạy,MẠI,この 店の バインミーは よく 売れています。,Sandwich của cửa hàng này bán rất chạy.,,ready
+N4-0121,N4,n4_md,121,氷,こおり,Đá (ăn),BĂNG,ビールに氷をたくさん入れる。,Thêm nhiều đá vào bia.,,ready
+N4-0122,N4,n4_md,122,眠い,ねむい,Buồn ngủ,MIÊN,家に帰りすぐ眠りにつく。,"Về nhà và chìm vào giấc ngủ. 少し寝たら、かえって眠くなった。 Ngủ một lát, ai dè lại thấy buồn ngủ hơn.",,ready
+N4-0123,N4,n4_md,123,出発,しゅっぱつ,Xuất phát; khởi hành,XUẤT PHÁT,全員集 まりましたね。では、出発しましょう。,Tất cả mọi người tập hợp đủ rồi nhỉ. Vậy thì xuất phát thôi.,,ready
+N4-0124,N4,n4_md,124,机,つくえ,Bàn,KỶ,スチールの製 の机。,Cái bàn được làm bằng thép,,ready
+N4-0125,N4,n4_md,125,住所,じゅうしょ,Chỗ ở,TRÚ SỞ,住所が変わった場合は、すぐに学校に 知らせてください。,"Trong trường hợp thay đổi chỗ ở, hãy thông báo cho nhà trường ngay!",,ready
+N4-0126,N4,n4_md,126,日記,にっき,Nhật ký,NHẬT KÝ,1日の反省 を日記に書く。,Viết nhật ký xem xét lại bản thân trong một ngày.,,ready
+N4-0127,N4,n4_md,127,暗い,くらい,Tối; tối màu; mờ ám,ÁM,いつの間にか、外は暗くなっていた。,"Trong lúc không để ý, bên ngoài trời đã tối từ lúc nào.",,ready
+N4-0128,N4,n4_md,128,注意,ちゅうい,Chú ý,CHÚ Ý,この書類 を書 くときには、細かい注意が必要 だ。,"Trong lúc viết hồ sơ này, việc chú ý cẩn thận, tỉ mỉ là rất cần thiết.",,ready
+N4-0129,N4,n4_md,129,声,こえ,Tiếng; giọng nói,THANH,アイドルと同 じ服 を着 る。歌手 に声を似せて歌う。,14,,ready
+N4-0130,N4,n4_md,130,進む,すすむ,Tiến lên; tiến triển; tiến bộ,TIẾN,日本は科学技術 が進んでいる。,Nhật Bản có khoa học kỹ thuật tiên tiến.,,ready
+N4-0131,N4,n4_md,131,洗濯,せんたく,Giặt giũ,TẨY TRẠC,服を洗濯しました。,Đã giặt quần áo.,,ready
+N4-0132,N4,n4_md,132,お見舞い,おみまい,Đi thăm người ốm,KIẾN VŨ,友達のお見舞いに行く。,Đi thăm người bạn bị ốm.,,ready
+N4-0133,N4,n4_md,133,育てる,そだてる,"Nuôi dưỡng, bồi dưỡng",DỤC,あの会社は人材を育てるのが上手だ。,Công ty đo giỏi trong việc nuôi dưỡng (bồi dưỡng) nhân tài.,,ready
+N4-0134,N4,n4_md,134,丁寧,ていねい,"Cẩn thận, lịch sự",ĐINH NINH,このコップは壊 れやすいので丁寧に使ってください,"Cốc này dễ vỡ nên hãy sử dụng cẩn thận. 15 Những Chữ Hán, Từ vựng xuất hiện ＃1 番号 言葉 読み方 意味 例文",,ready
+N4-0135,N4,n4_md,135,売る,うる,Bán,MẠI,あのスーパーで チョコレートが 売っています。,Ở siêu thị này có bán socola.,,ready
+N4-0136,N4,n4_md,136,光,ひかり,Ánh sáng,QUANG,太陽 の光がまぶしい。・強い光の電灯 。,,,ready
+N4-0137,N4,n4_md,137,暑い,あつい,"Nóng (khí hậu, thời tiết)",THỬ,今年の 夏 は 去年 より 暑いです。,Mùa hè năm nay nóng hơn năm ngoái.,,ready
+N4-0138,N4,n4_md,138,料理,りょうり,Món ăn; bữa ăn; sự nấu ăn,LIỆU LÝ,私の 趣味 は 料理を することです。,Sở thích của tôi là nấu ăn. はじめは日本料理が食べられませんでしたが、 今は何でも食べられるようになりました。 Lúc đầu tôi không ăn được đồ ăn Nhật nhưng bây giờ cái gì tôi cũng ăn được.,,ready
+N4-0139,N4,n4_md,139,薬,くすり,Thuốc,DƯỢC,かぜのとき、薬を 飲んだ方が いいです。,"Khi bị ốm, nên uống thuốc. １日３回 薬を 飲むように してください。 Hãy uống thuốc này 3 lần trong một ngày!",,ready
+N4-0140,N4,n4_md,140,去年,きょねん,Năm ngoái,KHỨ NIÊN,去年の冬、彼と 結婚 しました。,Tôi đã kết hôn với anh ấy vào mùa đông năm ngoái. 去年、N1に 合格 ごうかく しました。 Tôi đã đỗ N1 vào năm ngoái.,,ready
+N4-0141,N4,n4_md,141,使う,つかう,"Dùng, sử dụng",SỬ,先生、このパソコンは使えますか。,"Thưa thầy, cái máy tính này có sử dụng được không ạ? ご飯 はん を食 た べながら電話を使う人がきらいです。 Tôi ghét người vừa ăn vừa dùng điện thoại.",,ready
+N4-0142,N4,n4_md,142,交通,こうつう,Giao thông,GIAO THÔNG,ベトナムの 交通について どう思いますか。,Bạn nghĩ như thế nào về giao thông Việt Nam? 交通事故 じこ で、怪我 けが をしてしまいました。 Do tai nạn giao thông nên tôi đã bị thương. 16,,ready
+N4-0143,N4,n4_md,143,明るい,あかるい,"Tươi sáng, vui vẻ, sáng sủa",MINH,彼女 は いつも 明るいね。,Cô ấy lúc nào cũng vui vẻ nhỉ!,,ready
+N4-0144,N4,n4_md,144,紙,かみ,Giấy,CHỈ,机 の上 に 紙が たくさん あります。,Có rất nhiều giấy ở trên bàn. 線 せん のとおりに、紙を切ってください。 Hãy cắt giấy theo đường kẻ.,,ready
+N4-0145,N4,n4_md,145,新聞,しんぶん,Báo,TÂN VĂN,めがねをかけなければ、新聞を読めません。,"Nếu không có kính, tôi sẽ không thể đọc báo được.",,ready
+N4-0146,N4,n4_md,146,洋服,ようふく,Âu phục,DƯƠNG PHỤC,洋服は 自分 で 買いに 行きます。,Tôi tự mình đi mua âu phục.,,ready
+N4-0147,N4,n4_md,147,友名,ゆうめい,Nổi tiếng,HỮU DANH,彼の 両親 は 有名な 音楽家 です。,Bố mẹ anh ấy là nhạc sĩ nổi tiếng. この 喫茶店 きっさてん は コーヒーが 有名です。 Tiệm nước giải khát này nổi tiếng với cà phê.,,ready
+N4-0148,N4,n4_md,148,経験,けいけん,Kinh nghiệm,KINH NGHIỆM,この仕事の 経験は どのくらい ありますか。,"Bạn có bao nhiêu kinh nghiệm trong công việc này? 先生は面白 おもしろ いし、親切 しんせつ だし、それに経験もあります。 Thầy tôi vừa thân thiện, vừa thú vị lại còn có nhiều kinh nghiệm.",,ready
+N4-0149,N4,n4_md,149,趣味,しゅみ,Sở thích,THÚ VỊ,私の 趣味は 料理 を することです。,Sở thích của tôi là nấu ăn.,,ready
+N4-0150,N4,n4_md,150,きっと,,"Nhất định, chắc chắn",,あなたならきっとできるはずだよ。,Nếu là bạn thì nhất định sẽ làm được. きっと今日中には返 かえ すよ。 Chắc chắn trong hôm nay sẽ trả lại.,,ready
+N4-0151,N4,n4_md,151,約束,やくそく,Lời hứa; cuộc hẹn,ƯỚC THÚC,彼女 と 映画 を 見に行く 約束をしています。,Tôi có hẹn đi xem phim với cô ấy.,,ready
+N4-0152,N4,n4_md,152,恥ずかしい,はずかしい,"Ngượng, xấu hổ",SỈ,死 ぬほど恥ずかしい,Ngượng chết mất (đến mức muốn chết) 17,,ready
+N4-0153,N4,n4_md,153,混む,こむ,Đông đúc,HỖN,この道は毎朝混んでいます,Con đường này sáng nào cũng đông,,ready
+N4-0154,N4,n4_md,154,グラム,,Gram,,これを１００グラムでお願いします,Cho tôi 100gam cái này.,,ready
+N4-0155,N4,n4_md,155,具合,ぐあい,"Tình trạng, tình hình, điều kiện, phương thức",CỤ HỢP,時計の具合が悪い。,Tình trạng cái đồng hồ không tốt.,,ready
+N4-0156,N4,n4_md,156,伝える,つたえる,"Truyền đạt, truyền lại",TRUYỀN,若者 に日本 の歴史 を伝える。,Truyền đạt lại cho các bạn trẻ về lịch sử Nhật Bản. メールで要件 ようけん を伝える。 Dùng email để truyền đạt yêu cầu. メールで仕事の内容 ないよう を伝える。,,ready
+N4-0157,N4,n4_md,157,今度,こんど,"Lần này; lần tới, sắp tới; lần sau",KIM ĐỘ,今度、おしゃれなカフェに連 れて行 ってね。,Lần tới dẫn tôi tới quán cafe nào sang chảnh nhé.,,ready
+N4-0158,N4,n4_md,158,競争,きょうそう,"Cạnh tranh, thi đua",CẠNH TRANH,どちらが足 が速 いか、友達 と競争する。,Chạy đua với bạn để xem chân ai nhanh hơn. 飲食業界 いんしょくぎょうかい は競争がはげしい。 Ngành công nghiệp thực phẩm đồ uống cạnh tranh khốc liệt.,,ready
+N4-0159,N4,n4_md,159,計画,けいかく,"Phương án, kế hoạch",KẾ HOẠCH,友だちと旅行 の計画を立 てる。,Lên kế hoạch đi du lịch với bạn. 冬休 ふゆやす みは、北海道 ほっかいどう でスキーをしようと計画している。 Tôi đang lên kế hoạch đi trượt tuyết ở Hokkaido vào kỳ nghỉ đông.,,ready
+N4-0160,N4,n4_md,160,消す,けす,"Tẩy, xóa, tắt",TIÊU,暖 かくなってきたので、暖房 を消す。,Vì ấm lên rồi nên tắt lò sưởi đi.,,ready
+N4-0161,N4,n4_md,161,連絡,れんらく,Sự liên lạc,LIÊN LẠC,仕事 を休 むときは、必 ず連絡するようにしてください。,"Lúc nghỉ việc, nhất định phải liên lạc đấy! 息子 むすこ から連絡がなくて、心配 しんぱい しました。 Không có liên lạc từ con trai, tôi đã rất lo lắng. 18 Những Chữ Hán, Từ vựng xuất hiện ＃2 番号 言葉 読み方 意味 例文",,ready
+N4-0162,N4,n4_md,162,触る,さわる,"Sờ mó, chạm",XÚC,このドアは、手で軽 く触ると自動的 に開く。,Cái cửa này cứ chạm tay nhẹ sẽ tự động mở.,,ready
+N4-0163,N4,n4_md,163,途中,とちゅう,"Giữa đường, đang trên đường",ĐỒ TRUNG,学校に行く途中で先生に会った。,Trên đường tới trường tôi đã gặp thầy giáo.,,ready
+N4-0164,N4,n4_md,164,急行,きゅうこう,Tốc hành,CẤP HÀNH,彼は東京行 きの急行に乗 っていった。,Anh ấy đi tàu tốc hành tới Tokyo.,,ready
+N4-0165,N4,n4_md,165,受付,うけつけ,Lễ tân,THU PHÓ,受付 でチケットを買ってください。,Vui lòng mua vé ở quầy tiếp tân.,,ready
+N4-0166,N4,n4_md,166,遠慮,えんりょ,Ngại ngần,VIỄN LỰ,遠慮せずに使ってください。,"Đừng ngại ngần, hãy sử dụng đi. ここでの飲食はご遠慮ください。 Đừng ăn uống ở đây.",,ready
+N4-0167,N4,n4_md,167,行い,おこない,"Tổ chức, tiến hành",HÀNH,昨日近くの公園 では小さなコンサートを 行いました。,Tối qua ở công viên gần đây đã tổ chức một buổi hòa nhạc nhỏ.,,ready
+N4-0168,N4,n4_md,168,折る,おる,Gấp lại; gập lại,CHIẾT,手紙 を二つに折って封筒 に入れました。,Gấp lá thư làm đôi và bỏ vào phong bì.,,ready
+N4-0169,N4,n4_md,169,連絡,れんらく,Liên lạc,LIÊN LẠC,連絡をくれない恋人 に対 し、不満 ふ ま ん を持 っている。,Tôi không hài lòng với việc người yêu không liên lạc với tôi. 来る時は前もって連絡をください。 Trước khi tới thì hãy liên lạc nhé. 19,,ready
+N4-0170,N4,n4_md,170,入学,にゅうがく,Nhập học,NHẬP HỌC,あの学校の制服 がかわいいので入学を決 めた。,Vì đồng phục của ngôi trường đó dễ thương nên tôi đã quyết định theo học. 大学の入学試験に失敗 しっぱい する。 Tôi đã thi trượt kỳ thi vào đại học.,,ready
+N4-0171,N4,n4_md,171,意見,いけん,Ý kiến,Ý KIẾN,意見がぶつかってけんかになった。,Do xung đột ý kiến nên đã xảy ra cãi vã. クラスのみんなはそれぞれ違 ちが う意見を言った。 Trong lớp mỗi người lại đưa ra ý kiến khác nhau.,,ready
+N4-0172,N4,n4_md,172,布,ぬの,Vải,BỐ,この靴 は皮 に見 えるが、実際 はぬのです。,Đôi giày này trông giống da nhưng thực tế lại là vải.,,ready
+N4-0173,N4,n4_md,173,止まる,とまる,"Dừng, đỗ",CHỈ,警察 は私にとまるように指示 した。,Cảnh sát ra hiệu cho tôi dừng xe lại.,,ready
+N4-0174,N4,n4_md,174,作る,つくる,"Chế tạo, làm",TÁC,どこへ行っても、彼は必 ず友達 をつくります。,Dù đi tới đâu anh ấy nhất định sẽ kết bạn.,,ready
+N4-0175,N4,n4_md,175,通り,とおり,Đi qua,THÔNG,救 急 車 が通ります。道をあけてください。,Xe cấp cứu đi qua. Hãy tránh đường.,,ready
+N4-0176,N4,n4_md,176,空いて,あいて,"Bị thủng, trống, rảnh rỗi",KHÔNG,まだおなかが空いているのでもっと食べたい。 はありますか。,Vì vẫn đói nên tôi muốn ăn thêm. 土曜日の夜、空いていますか。 Tối thứ 7 có rảnh không? 空いている席 せき Còn chỗ trống không?,,ready
+N4-0177,N4,n4_md,177,故障,こしょう,Hỏng hóc; trục trặc; sự cố,CỐ CHƯỚNG,パソコンの故障で仕事に遅 れが出 た。,Công việc bị chậm lại do máy tính bị hỏng.,,ready
+N4-0178,N4,n4_md,178,とうとう,,"Sau cùng, cuối cùng, sau tất cả",,お気に入りのコップがとうとう使えなくなった。,"Chiếc cốc yêu thich của tôi cuối cùng cũng hỏng mất rồi １年かけてとうとう完成 かんせい した。 Mất 1 năm, cuối cùng thì cũng hoàn thành.",,ready
+N4-0179,N4,n4_md,179,考える,かんがえる,Suy nghĩ,KHẢO,頭の中で考えていたことを行動 に移 す。,Chuyển những ý nghĩ trong đầu thành hành động. 20,,ready
+N4-0180,N4,n4_md,180,翻訳,ほんやく,Biên dịch,PHIÊN DỊCH,ベトナム語の教科書 を、英語に翻訳 ください。,Hãy dịch sách giáo khoa tiếng Việt sang tiếng Anh.,,ready
+N4-0181,N4,n4_md,181,カーテン,,Rèm,,日が入らないようにカーテンを引く。,Kéo rèm để ánh nắng không chiếu vào.,,ready
+N4-0182,N4,n4_md,182,連れる,つれる,Dẫn đi,LIÊN,子供を連れて散歩 に行く。,Dẫn con đi dạo. 今度、おしゃれなカフェに連れて行ってね。 Lần tới dẫn tôi tới quán cafe nào sang chảnh nhé.,,ready
+N4-0183,N4,n4_md,183,最近,さいきん,"Dạo này, gần đây",TỐI CẬN,最近目 が悪く、（文字に）顔を近づけないと 字 が読めない。,"Dạo này mắt tôi kém, nếu không đưa lại gần mặt thì không thể đọc nổi chữ.",,ready
+N4-0184,N4,n4_md,184,ずっと,,"Suốt, nhiều",,ずっと前から好きでした。,Tôi đã thích nó suốt từ trước rồi. 昨日はずっと勉強していた。 Tôi đã học suốt ngày hôm qua.,,ready
+N4-0185,N4,n4_md,185,見物,けんぶつ,Tham quan,KIẾN VẬT,今日は、街 を見物するつもりだ。,Tôi định hôm nay sẽ đi thăm quan thành phố.,,ready
+N4-0186,N4,n4_md,186,十分,じゅうぶん,Đủ,THẬP PHÂN,贅沢 をしなければ、今の収入 で十分に足 りる。,"Nếu không tiêu xài hoang phí, thì với thu nhập hiện tại là quá đủ. 無駄遣 むだづか いをしなければ、今の収入で十分に足りる",,ready
+N4-0187,N4,n4_md,187,試合,しあい,Trận đấu,THÍ HỢP,試合の前半に、2点入 れることができた。,Nửa đầu của trận đấu đã giành được 2 điểm.,,ready
+N4-0188,N4,n4_md,188,適当,てきとう,"Phù hợp, thích hợp",THÍCH ĐƯƠNG,日本についてしらべるのにてきとうな本は ありませんか。,Có quyển sách nào thích hợp cho việc tìm hiểu về Nhật Bản không?,,ready
+N4-0189,N4,n4_md,189,滑る,すべる,Trượt,HOẠT,冬 は、スキーを滑ることができるので好きだ。,"Tôi thích mùa đông vì có thể trượt tuyết. 手が滑って、皿 さら を落 お として割 わ ってしまった。 Tôi lỡ trượt tay làm rơi và đánh vỡ cái đĩa. 21 Những Chữ Hán, Từ vựng xuất hiện ＃3 番号 言葉 読み方 意味 例文",,ready
+N4-0190,N4,n4_md,190,指,ゆび,Ngón tay,CHỈ,包丁 で指を怪我 した。,Ngón tay bị thương do dao. 指輪を買う。 Mua nhẫn,,ready
+N4-0191,N4,n4_md,191,決める,きめる,Quyết định,QUYẾT,友達 と会 う日時 を決める。,Quyết định ngày giờ gặp bạn bè. 産 う まれてくる赤 あか ちゃんの名前 なまえ を決める。 Quyết định đặt tên cho em bé vừa được sinh ra.,,ready
+N4-0192,N4,n4_md,192,再来週,さらいしゅう,Tuần sau nữa,TÁI LAI CHU,また再来週、会いましょうね。,Tuần sau nữa gặp lại nhau nhé.,,ready
+N4-0193,N4,n4_md,193,経営,けいえい,"Kinh doanh, quản lý",KINH DOANH,その若者 が大きなデパートを経営している。,Người trẻ tuổi đó đang quản lý một trung tâm mua sắm lớn. 私の会社は日本のやり方で経営している。 Công ty tôi đang kinh doanh theo phương thức của Nhật.,,ready
+N4-0194,N4,n4_md,194,建物,たてもの,Tòa nhà,KIẾN VẬT,寒 いですから、建物の中で待っていてください。,Vì trời lạnh nên hãy chờ ở trong tòa nhà nhé.,,ready
+N4-0195,N4,n4_md,195,色,いろ,Màu sắc,SẮC,一番 好きな色は 何色 ですか。,Màu bạn thích nhất là màu gì?,,ready
+N4-0196,N4,n4_md,196,集合,しゅうごう,"Tập hợp, tập trung",TẬP HỢP,12時に駅 の前 に集合してください。,Hãy tập trung trước ga lúc 12 giờ.,,ready
+N4-0197,N4,n4_md,197,地図,ちず,Bản đồ,ĐỊA ĐỒ,地図を見ながらしましょう。,Vừa nhìn bản đồ vừa giải thích.,,ready
+N4-0198,N4,n4_md,198,動く,うごく,"Chuyển động, di chuyển",ĐỘNG,この車は動きません。,Cái ô tô này không chuyển động được. 22,,ready
+N4-0199,N4,n4_md,199,落ちる,おちる,"Rơi, rụng, tuột xuống",LẠC,10人もの学生が試験 に落ちました。,Có những 10 học sinh bị trượt trong kì thi. スキャンダルで会社の評判 ひょうばん が落ちました。 Do scandal nên tiếng tăm của công ty bị giảm xuống. iPhoneが地面 じめん に落ちて壊 こわ れた。 Iphone rơi xuống mặt đất rồi bị hỏng.,,ready
+N4-0200,N4,n4_md,200,夏,なつ,Mùa hè,HẠ,今年の 夏は 去年より 暑 いです。,Mùa hè năm nay nóng hơn năm ngoái. 来年の夏、いっしょに 海へ 行きませんか。 Mùa hè tới chúng ta cùng đi biển nhé?,,ready
+N4-0201,N4,n4_md,201,仕事,しごと,"Việc, công việc",SĨ SỰ,この仕事の 経験は どのくらい ありますか。 しかったです。,Bạn có bao nhiêu kinh nghiệm ở công việc này? 仕事 しごと は 忙 いそが Công việc bận rộn.,,ready
+N4-0202,N4,n4_md,202,待つ,まつ,Chờ đợi,ĐÃI,電車 を 待 つとき、本を 読みます。,"Trong lúc chờ tàu, tôi đọc sách.",,ready
+N4-0203,N4,n4_md,203,家族,かぞく,Gia đình,GIA TỘC,家族から電話をもらって、安心 しました。,"Nhận được điện thoại từ gia đình, tôi đã yên tâm. 彼は仕事より家族を大切 たいせつ にしています。 Với anh ấy gia đình quan trọng hơn công việc.",,ready
+N4-0204,N4,n4_md,204,ちゅうしょく,昼食,Bữa trưa,TRÚ THỰC,彼は 今昼食を とっている ところです。,Bây giờ anh ấy đang chuẩn bị ăn trưa.,,ready
+N4-0205,N4,n4_md,205,見える,みえる,Nhìn thấy,KIẾN,部屋 の窓 から山が見える。,Có thể nhìn thấy núi từ cửa sổ phòng ngủ. 船から 見える 景色 けしき は すばらしいです。 Phong cảnh nhìn thấy từ con thuyền thật tuyệt vời 飛行機 ひこうき から見える景色 けしき はすばらしいです。. Phong cảnh nhìn từ máy bay thật tuyệt vời.,,ready
+N4-0206,N4,n4_md,206,安全,あんぜん,An toàn,AN TOÀN,安全のために、シートベルトをします。,"Để an toàn, hãy thắt dây an toàn lại! 23",,ready
+N4-0207,N4,n4_md,207,怖い,こわい,Sợ hãi,BỐ,顔は怖いが案外 やさしい人だった。,Anh ấy có gương mặt đáng sợ nhưng không ngờ lại là người tốt bụng.,,ready
+N4-0208,N4,n4_md,208,すっかり,,"Hoàn toàn, toàn bộ, tất cả",,おなかがすいていたので、れいぞうこの中の 食べ物を すっかり 食べてしましました。,Vì đói nên tôi đã ăn toàn bộ đồ ăn trong tủ lạnh.,,ready
+N4-0209,N4,n4_md,209,けんか,,"Cãi cọ, tranh chấp",,兄とは性格 が合わずよくけんかする。,Tôi và anh trai không hợp tính nên hay cãi nhau.,,ready
+N4-0210,N4,n4_md,210,調べる,しらべる,"Điều tra, nghiên cứu, kiểm tra",ĐIỀU,インターネットで電話番号が調べられますか。,Tôi có thể tìm số điện thoại trên internet được không? 電子辞書 でんしじしょ は言葉 ことば を調べるのに役 やく に立 た ちます。 Kim từ điển giúp tra cứu từ vựng.,,ready
+N4-0211,N4,n4_md,211,売り場,うりば,Quầy bán hàng,MẠI TRÀNG,ワイン売 り場 は ２階 です。,Quầy bán rượu ở tầng 2.,,ready
+N4-0212,N4,n4_md,212,軒,けん,Đơn vị đếm số tòa nhà,HIÊN,うちのちかくに本屋 が 二けん あります。,Có hai cửa hàng sách ở gần nhà tôi.,,ready
+N4-0213,N4,n4_md,213,エレベーター,,Thang máy,,レストランは５かいにあります。 エレベーターで行ったほうがいいですよ。,Nhà hàng ở tầng 5. Chúng ta nên đi thang máy!,,ready
+N4-0214,N4,n4_md,214,すばらしい,,Tuyệt vời,,すばらしいアイディアを思いついた。,Nghĩ ra một ý tưởng tuyệt vời.,,ready
+N4-0215,N4,n4_md,215,紹介,しょうかい,Giới thiệu,THIỆU GIỚI,いい先生を紹介していただけませんか。,Bạn có thể giới thiệu cho tôi một thầy giáo tốt được không?,,ready
+N4-0216,N4,n4_md,216,先に,さきに,"Trước, phía trước",TIÊN,悲 しみの先にはきっと喜 びがある。,Phía trước của nỗi buồn nhất định sẽ có niềm vui. この苦労の先に良い未来 みらい がある。 Phía trước sự cam khổ này là 1 tương lai tương sáng. 友達をおいてどんどん先に行く。 Bỏ bạn bè lại rồi tiếp tục tiến lên phía trước. 24,,ready
+N4-0217,N4,n4_md,217,沸かす,わかす,Đun sôi; làm sôi lên,PHÍ,おゆを沸かしてコーヒーをのみましょう。,Đun nước nóng để pha cà phê nhé!,,ready
+N4-0218,N4,n4_md,218,支度,したく,"Chuẩn bị, sửa soạn",CHI ĐỘ,しょくじの支度ができました。,Tôi đã chuẩn bị xong bữa ăn.,,ready
+N4-0219,N4,n4_md,219,うまい,,"Khéo léo, giỏi",,友達はダンスがうまい。,"Bạn tôi nhảy đẹp. 25 Những Chữ Hán, Từ vựng xuất hiện ＃4 番号 言葉 読み方 意味 例文",,ready
+N4-0220,N4,n4_md,220,夕飯,ゆうはん,Bữa tối,TỊCH PHẠN,今日の夕飯は魚 を使 った料理 にします。,Bữa tối nay sẽ dùng cá để nấu.,,ready
+N4-0221,N4,n4_md,221,教室,きょうしつ,Phòng học,GIÁO THẤT,となりの教室から歌 が聞 こえる.,Nghe thấy bài hát từ phòng học bên cạnh.,,ready
+N4-0222,N4,n4_md,222,閉める,しめる,Đóng,BẾ,まどを閉めてください。,Hãy đóng cửa sổ lại!,,ready
+N4-0223,N4,n4_md,223,電話代,でんわだい,Phí điện thoại,ĐIỆN THOẠI ĐẠI,電話代は夜 の間 と日曜日が安いです。,Phí điện thoại vào buổi tối vào chủ nhật rẻ.,,ready
+N4-0224,N4,n4_md,224,通う,かよう,"Đi học, đi làm",THÔNG,学生は毎日地下鉄 で大学に通っています。,Sinh viên mỗi ngày đều đi học bằng tàu điện ngầm.,,ready
+N4-0225,N4,n4_md,225,優しい,やさしい,"Hiền lành, hòa nhã, tốt bụng",ƯU,先生の奥 さんはとても優しいです。,"Vợ của thầy tôi rất hiền lành, tốt bụng.",,ready
+N4-0226,N4,n4_md,226,都,みやこ,Thủ đô,ĐÔ,奈良 と京都 は日本の古い都です。,Nara và Kyoto là thủ đô cổ của Nhật Bản.,,ready
+N4-0227,N4,n4_md,227,動く,うごく,"Di chuyển, hoạt động (máy móc)",ĐỘNG,彼女 は硬直 したようにうごかない。,Cô ấy không nhúc nhích như là đã bị đông cứng lại vậy.,,ready
+N4-0228,N4,n4_md,228,急に,きゅうに,"Đột nhiên, bất chợt",CẤP,きゅうに空 が暗 くなりました。,Đột nhiên bầu trời trở nên tối sầm lại.,,ready
+N4-0229,N4,n4_md,229,渇く,かわく,"Khô, khát (nước)",KHÁT,のどがかわいています。水が飲みたいです。,Tôi khát. Tôi muốn uống nước!,,ready
+N4-0230,N4,n4_md,230,寂しい,さびしい,"Buồn bã, cô đơn",TỊCH,友達がいなくて、さびしいです。,"Không có bạn bè, tôi cảm thấy cô đơn. 26",,ready
+N4-0231,N4,n4_md,231,小説,しょうせつ,Tiểu thuyết,TIỂU THUYẾT,Q: どんな本を 読みますか。,Bạn đọc sách gì vậy? A: 小説を 読みます。 Tớ đọc tiểu thuyết.,,ready
+N4-0232,N4,n4_md,232,植える,うえる,Trồng (cây); gieo (hạt),THỰC,にわにきれいな花をうえましょう。,Hãy trồng những bông hoa xinh đẹp trong vườn nhé!,,ready
+N4-0233,N4,n4_md,233,見つかる,みつかる,Được tim thấy,KIẾN,ここに置いたはずなのですが、かぎが みつかりません。,Chìa khóa chắc chắn để chỗ này mà lại không tìm thấy.,,ready
+N4-0234,N4,n4_md,234,招待,しょうたい,"Mời, chiêu đãi",CHIÊU ĐÃI,結婚式 に だれを招待しましょうか。,Bạn mời ai tới lễ cưới?,,ready
+N4-0235,N4,n4_md,235,珍しい,めずらしい,Hiếm,TRÂN,動物園 では、めずらしい動物 できます。,Có thể nhìn thấy những động vật quý hiếm ở sở thú.,,ready
+N4-0236,N4,n4_md,236,人間,にんげん,Con người,NHÂN GIAN,きみの心 を動 かすようなにんげん はいつ 現れるのかね。,Đến khi nào mới xuất hiện người làm tim em rung động nhỉ?,,ready
+N4-0237,N4,n4_md,237,変える,かえる,Thay đổi,BIẾN,彼 は顔色 をかえた。,Anh ấy đã thay đổi sắc mặt,,ready
+N4-0238,N4,n4_md,238,足す,たす,"Thêm vào, cộng",TÚC,２に３をたすと５になる。,2 Cộng 3 bằng 5.,,ready
+N4-0239,N4,n4_md,239,安全,あんぜん,An toàn,AN TOÀN,このへんは あんぜんで住みやすいですよ。,Nơi này an toàn nên dễ sống.,,ready
+N4-0240,N4,n4_md,240,パートタイム,,"Việc làm thêm, bán thời gian",,私は パートタイム で一日3時間働いています。,Tôi làm việc bán thời gian 3 tiếng 1 ngày. 27,,ready
+N4-0241,N4,n4_md,241,引き出し,ひきだし,Ngăn kéo,DẪN XUẤT,さいふはつくえの ひきだし の中にあります。,Cái ví ở trong ngăn kéo bàn.,,ready
+N4-0242,N4,n4_md,242,真面目,まじめ,"Nghiêm túc, chăm chú",CHÂN DIỆN MỤC,子どもたちは先生の話をまじめに聞いています。,Bọn trẻ chăm chú nghe câu chuyện của thầy giáo.,,ready
+N4-0243,N4,n4_md,243,おかげさまで,,Nhờ trời; ơn trời; may quá,,Ａ「おげんきですか。」,"Bạn có khỏe không? Ｂ「ええ、おかげさまで。」 Vâng, tôi khỏe.",,ready
+N4-0244,N4,n4_md,244,叱る,しかる,"La, mắng",SẤT,「もっと真面目 にやりなさい。」 と叱られました。,Tôi đã bị mắng là Hãy làm cẩn thận hơn đi!,,ready
+N4-0245,N4,n4_md,245,準備,じゅんび,"Chuẩn bị, sắp xếp",CHUẨN BỊ,パーティーの準備ができました。,Bữa tiệc đã chuẩn bị xong.,,ready
+N4-0246,N4,n4_md,246,うまい,うまい,"Giỏi, khéo léo",,私はピアノがうまくありません。,"Tôi không giỏi chơi piano. 28 Những Chữ Hán, Từ vựng xuất hiện ＃5 番号 言葉 読み方 意味 例文",,ready
+N4-0247,N4,n4_md,247,泥,どろ,Bùn đất,NÊ,ズボンに泥が付 いている。,Tôi bị dính bùn lên quần.,,ready
+N4-0248,N4,n4_md,248,踊る,おどる,Nhảy múa,DŨNG,みんな歌 いながら踊っている。,Mọi người vừa hát vừa nhảy.,,ready
+N4-0249,N4,n4_md,249,簡単,かんたん,Đơn giản,GIẢN ĐƠN,外国人 にとって、漢字 はあまり簡単では ありません。,"Đối với người nước ngoài, kanji không đơn giản chút nào.",,ready
+N4-0250,N4,n4_md,250,住む,すむ,Sống,TRÚ,わたしの住んでいる町 は、海 に近 いです。,Thành phố tôi đang sống gần biển.,,ready
+N4-0251,N4,n4_md,251,重要,じゅうよう,Quan trọng,TRỌNG YẾU,とても重要な書類 をなくしてしまった。,Tôi đã làm mất tài liệu rất quan trọng.,,ready
+N4-0252,N4,n4_md,252,断る,ことわる,Từ chối,ĐOẠN,忙 しかったので、友達 の誘 いを断った。,Do bận nên tôi đã từ chối lời mời của bạn.,,ready
+N4-0253,N4,n4_md,253,普段,ふだん,Thông thường,PHỔ ĐOẠN,これは普段あまり使 わない言葉 です。,Đây là từ tôi không sử dụng thường xuyên.,,ready
+N4-0254,N4,n4_md,254,暇,ひま,Rảnh rỗi,HẠ,きのう暇があって、家族 といっしょに花見 いきました。,"Hôm qua rảnh, tôi đã cùng gia đình đi ngắm hoa.",,ready
+N4-0255,N4,n4_md,255,珍しい,めずらしい,Hiếm,TRÂN,とても珍しい植物 を集 めている。,Tôi đang sưu tập những thực vật quý hiếm.,,ready
+N4-0256,N4,n4_md,256,なおる,なおる,Khỏi bệnh,,風邪 がすっかりなおるまで、ちゃんと薬を 飲みなさい。,Hãy uống thuốc đều đặn cho tới khi cảm lạnh khỏi hoàn toàn. 29,,ready
+N4-0257,N4,n4_md,257,終わる,おわる,"Xong, kết thúc",CHUNG,卒業式 が おわってから 日本へ 来ました。,Lễ tốt nghiệp kết thúc thì tôi sang Nhật.,,ready
+N4-0258,N4,n4_md,258,濃い,こい,Đậm đặc,NỒNG,このお茶はこくて苦い。,Trà này đặc và đắng.,,ready
+N4-0259,N4,n4_md,259,考える,かんがえる,Cách suy nghĩ,KHẢO,校長先生 のかんがえかたは正しいと思う。,Tôi nghĩ rằng cách suy nghĩ của hiệu trưởng là đúng.,,ready
+N4-0260,N4,n4_md,260,交通,こうつう,Giao thông,GIAO THÔNG,家はやはりこうつうが便利 べ ん り なところがいいです。,Nhà có giao thông thuận tiện đương nhiên là tốt.,,ready
+N4-0261,N4,n4_md,261,まわり,,Xung quanh,,まわりの人たちからいろいろお世話 になった。,Tôi đã nhận được sự giúp đỡ rất nhiều từ những người xung quanh.,,ready
+N4-0262,N4,n4_md,262,暖房,だんぼう,"Lò, máy sưởi",NOÃN PHÒNG,部屋の だんぼうをつけて、暖 かくします。,"Bật lò sưởi, làm ấm căn phòng.",,ready
+N4-0263,N4,n4_md,263,大事な,だいじな,Quan trọng,ĐẠI SỰ,先生「みなさん、今日は 大事な 話があります。」,Thầy giáo: Mọi người hôm nay có buổi nói chuyện quan trọng nhé!,,ready
+N4-0264,N4,n4_md,264,噛む,かむ,Cắn,GIẢO,この肉はかたいので、よく かんで食べてください。,Thịt này dai nên nhai kỹ rồi hãy ăn nhé!,,ready
+N4-0265,N4,n4_md,265,郊外,こうがい,Ngoại thành,GIAO NGOẠI,東京 の こうがい に小さな家 を買 いました。,Tôi đã mua một ngôi nhà ở ngoại thành Tokyo.,,ready
+N4-0266,N4,n4_md,266,連絡,れんらく,Liên lạc,LIÊN LẠC,休 む人 は電話 で私に れんらく してください。,Người nào nghỉ hãy liên lạc với tôi qua điện thoại nhé!,,ready
+N4-0267,N4,n4_md,267,残念,ざんねん,Tiếc nuối,TÀN NIỆM,たなか「明日のパーティーですが、ちょっと 行けなくなってしましました。」,"Tanaka: Buổi tiệc ngày mai, tôi không thể đi được rồi! さとう「そうですか、それは ざんねん ですね。」 Satou: Vậy à! Tiếc quá nhỉ!",,ready
+N4-0268,N4,n4_md,268,必ず,かならず,Nhất định,TẤT,毎日 かならずふくしゅうしてください。,Nhất định hãy ôn bài cũ mỗi ngày nhé!,,ready
+N4-0269,N4,n4_md,269,苦い,にがい,Đắng,KHỔ,このくすりはとても にがくてのみにくいです。,Thuốc này rất đắng nên khó uống. 30,,ready
+N4-0270,N4,n4_md,270,または,,Hoặc,,かいぎの時間は、はがき または 電話で おしらせします。,Thời gian họp hãy thông báo cho mọi người qua bưu thiếp hoặc điện thoại.',,ready
+N4-0271,N4,n4_md,271,機会,きかい,"Cơ hội, dịp",CƠ HỘI,機会があったら、ぜひいらっしゃってください！,"Nếu bạn có dịp tới đây, nhất định phải ghé thăm chúng tôi nhé!",,ready
+N4-0272,N4,n4_md,272,かまいません,,"Không sao, không vấn đề",,A「ここにすわってもいいですか。」,"Tôi ngồi chỗ này được không? B「かまいませんよ。」 Không sao, bạn ngồi đi.",,ready
+N4-0273,N4,n4_md,273,熱心,ねっしん,"Nhiệt huyết, nhiệt tình",NHIỆT TÂM,学生は熱心にかいわの練習 をしました。,Sinh viên đã luyện tập hội thoại rất nhiệt tình.,,ready
+N4-0274,N4,n4_md,274,プレゼント,,Món quà,,おっとの誕生日 にとけいをプレゼントした。,Tôi đã tặng đồng hồ vào ngày sinh nhật chồng mình.,,ready
+N4-0275,N4,n4_md,275,寒い,さむい,Lạnh,HÀN,きょうはとくにさむいですね。,Hôm nay buồn ngủ thật đấy!,,ready
+N4-0276,N4,n4_md,276,返事,へんじ,"Trả lời, hồi đáp",PHẢN SỰ,名前をよびましたが返事 がありませんでした。,Mặc dù đã gọi tên nhưng vẫn không trả lời.,,ready

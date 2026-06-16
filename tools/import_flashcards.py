@@ -1,9 +1,10 @@
-import argparse
+﻿import argparse
 
 import flashcards
+import learning_items
 from config import FLASHCARD_IMPORT_SOURCE
 from flashcard_sources import pdf_source, sheet_source
-
+from learning_sources import sheet_source as learning_sheet_source
 
 IMPORT_FIELDS = (
     "level",
@@ -12,7 +13,6 @@ IMPORT_FIELDS = (
     "word",
     "reading",
     "meaning",
-    "hanviet",
     "example_jp",
     "example_vi",
 )
@@ -50,22 +50,49 @@ def run_import(source=None, dry_run=False):
     }, result.warnings
 
 
-def print_summary(summary, warnings):
+def run_learning_import(all_decks=False, dry_run=False):
+    rows = learning_sheet_source.load_all_active_decks()
+    imported = 0
+    if not dry_run and rows:
+        learning_items.upsert_learning_items(rows)
+        imported = len(rows)
+    return {
+        "model": "learning",
+        "source": "sheet",
+        "all_decks": all_decks,
+        "fetched": len(rows),
+        "ready": len(rows),
+        "imported": imported,
+        "skipped": 0,
+        "warnings": 0,
+    }
+
+
+def print_summary(summary, warnings=None):
+    if summary.get("model"):
+        print(f"Model: {summary['model']}")
     print(f"Source: {summary['source']}")
     print(f"Fetched: {summary['fetched']}")
     print(f"Ready: {summary['ready']}")
     print(f"Imported: {summary['imported']}")
     print(f"Skipped: {summary['skipped']}")
     print(f"Warnings: {summary['warnings']}")
-    for warning in warnings:
+    for warning in warnings or []:
         print(f"Warning: {warning}")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Import flashcards from Sheet or PDF into SQLite.")
     parser.add_argument("--source", choices=("sheet", "pdf"), default=None)
+    parser.add_argument("--model", choices=("legacy", "learning"), default="legacy")
+    parser.add_argument("--all-decks", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
+
+    if args.model == "learning":
+        summary = run_learning_import(all_decks=args.all_decks, dry_run=args.dry_run)
+        print_summary(summary)
+        return
 
     summary, warnings = run_import(source=args.source, dry_run=args.dry_run)
     print_summary(summary, warnings)
@@ -73,3 +100,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+

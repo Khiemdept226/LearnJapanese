@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import re
 from pathlib import Path
 
@@ -9,11 +9,11 @@ except ImportError:  # pragma: no cover
 
 import flashcards
 
-DEFAULT_PDF = Path("docs/20250312140417_Tài liệu flash N4.pdf")
+DEFAULT_PDF = Path("docs/20250312140417_Tﾃi li盻㎡ flash N4.pdf")
 ENTRY_RE = re.compile(r"^(\d+)\s+(\S+)\s+(\S+)\s+(.+)$")
 SKIP_LINES = (
-    "番号 ",
-    "Những Chữ Hán",
+    "逡ｪ蜿ｷ ",
+    "Nh盻ｯng Ch盻ｯ Hﾃ｡n",
 )
 
 
@@ -29,16 +29,16 @@ def _clean_text(value):
 
 
 def _looks_japanese(value):
-    return bool(re.search(r"[ぁ-んァ-ン一-龯々ー]", value))
+    return bool(re.search(r"[\u3040-\u30ff\u3400-\u9fff]", value))
 
 
 def _is_standalone_furigana(value):
     compact = value.strip()
-    return bool(re.fullmatch(r"[ぁ-んァ-ンー]{1,12}", compact))
+    return bool(re.fullmatch(r"[\u3040-\u30ffー]{1,12}", compact))
 
 
 def _looks_vietnamese(value):
-    return not _looks_japanese(value) and bool(re.search(r"[A-Za-zÀ-ỹĐđ0-9]", value))
+    return not _looks_japanese(value) and bool(re.search(r"[A-Za-zÀ-ỹ0-9]", value))
 
 
 def _split_example(lines):
@@ -49,7 +49,7 @@ def _split_example(lines):
         line = raw.strip()
         if not line or line.startswith("--") or line.isdigit():
             continue
-        if line.startswith("・"):
+        if line.startswith("・") or line.startswith("繝ｻ"):
             line = line[1:].strip()
         if not line:
             continue
@@ -69,8 +69,9 @@ def _split_example(lines):
 
 def _build_card(entry, level, source):
     position, word, reading, meaning, body = entry
-    if "・" in meaning:
-        meaning_part, inline_example = meaning.split("・", 1)
+    if "・" in meaning or "繝ｻ" in meaning:
+        separator = "・" if "・" in meaning else "繝ｻ"
+        meaning_part, inline_example = meaning.split(separator, 1)
         meaning = meaning_part.strip()
         body = [inline_example.strip()] + body
     example_jp, example_vi = _split_example(body)
@@ -81,7 +82,6 @@ def _build_card(entry, level, source):
         "word": word,
         "reading": reading,
         "meaning": _clean_text(meaning),
-        "hanviet": "",
         "example_jp": example_jp,
         "example_vi": example_vi,
     }
@@ -152,6 +152,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
 

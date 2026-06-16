@@ -1,10 +1,11 @@
-import datetime as dt
+﻿import datetime as dt
+import json
 
 import pytz
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
-import flashcards
+import learning_items
 from config import FLASHCARD_TIMEZONE
 
 
@@ -23,14 +24,12 @@ def continue_keyboard():
 
 
 def answer_keyboard():
-    return InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton("Quên", callback_data="flash:grade:again"),
-            InlineKeyboardButton("Khó", callback_data="flash:grade:hard"),
-            InlineKeyboardButton("Nhớ", callback_data="flash:grade:good"),
-            InlineKeyboardButton("Dễ", callback_data="flash:grade:easy"),
-        ]
-    ])
+    return InlineKeyboardMarkup([[
+        InlineKeyboardButton("Quên", callback_data="flash:grade:again"),
+        InlineKeyboardButton("Khó", callback_data="flash:grade:hard"),
+        InlineKeyboardButton("Nhớ", callback_data="flash:grade:good"),
+        InlineKeyboardButton("Dễ", callback_data="flash:grade:easy"),
+    ]])
 
 
 def goal_keyboard():
@@ -45,12 +44,10 @@ def goal_keyboard():
 
 
 def reset_keyboard():
-    return InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton("Huỷ", callback_data="flash:reset:cancel"),
-            InlineKeyboardButton("Reset tiến độ", callback_data="flash:reset:confirm"),
-        ]
-    ])
+    return InlineKeyboardMarkup([[
+        InlineKeyboardButton("Hủy", callback_data="flash:reset:cancel"),
+        InlineKeyboardButton("Reset tiến độ", callback_data="flash:reset:confirm"),
+    ]])
 
 
 def stats_keyboard():
@@ -60,18 +57,37 @@ def stats_keyboard():
     ])
 
 
+def _item_front(item):
+    return item.get("front") or item.get("word") or "-"
+
+
+def _item_meaning(item):
+    return item.get("meaning") or item.get("back") or "-"
+
+
+def _settings_filters(settings):
+    return {
+        "level": settings.get("level"),
+        "item_type": settings.get("item_type"),
+        "deck_id": settings.get("deck_id"),
+        "tags": settings.get("tags"),
+    }
+
+
+def _session_item_id(session):
+    return session.get("current_learning_item_id") or session.get("current_flashcard_id")
+
+
 def today_cards_keyboard(cards):
-    rows = []
-    for card in cards[:10]:
-        rows.append([InlineKeyboardButton(card["word"], callback_data=f"flash:card:{card['id']}")])
+    rows = [[InlineKeyboardButton(_item_front(card), callback_data=f"flash:card:{card['id']}")] for card in cards[:10]]
     rows.append([InlineKeyboardButton("Quay lại thống kê", callback_data="flash:stats")])
     return InlineKeyboardMarkup(rows)
 
 
 def format_reset_confirm():
     return (
-        "Bạn chắc muốn xoá tiến độ flashcard và học lại từ đầu?\n\n"
-        "Không xoá dữ liệu thẻ đã import. Chỉ reset tiến độ của riêng bạn."
+        "Bạn chắc muốn xóa tiến độ flashcard và học lại từ đầu?\n\n"
+        "Không xóa dữ liệu thẻ đã import. Chỉ reset tiến độ của riêng bạn."
     )
 
 
@@ -81,69 +97,112 @@ def format_help():
         "/start - bắt đầu bot\n"
         "/today - bài hôm nay\n"
         "/flash_start - bật flashcard\n"
-        "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy từ mới\n"
-        "/flash_new - chỉ lấy từ mới chưa học\n"
+        "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy thẻ mới\n"
+        "/flash_new - chỉ lấy thẻ mới chưa học\n"
         "/flash_review - chỉ ôn thẻ đã đến hạn\n"
         "/flash_stats - xem tiến độ\n"
         "/flash_goal - chọn mục tiêu học\n"
         "/flash_reset - học lại flashcard từ đầu\n"
+        "/flash_settings - xem bộ lọc hiện tại\n"
+        "/flash_level N4 - chọn level\n"
+        "/flash_type vocab|kanji|grammar|kaiwa - chọn loại thẻ\n"
+        "/flash_deck n4_vocab_core - chọn deck\n"
+        "/flash_tags food,verb - lọc theo tag\n"
         "/show - hiện đáp án\n"
-        "/again /hard /good /easy - chấm thẻ\n\n"
-        "Flow học flashcard\n"
-        "1. Dùng /flash để nhận từ.\n"
-        "2. Tự nhớ cách đọc + nghĩa.\n"
-        "3. Bấm Hiện đáp án.\n"
-        "4. Chọn Quên / Khó / Nhớ / Dễ để lên lịch ôn."
+        "/again /hard /good /easy - chấm thẻ"
     )
+
+
+def item_extra(item):
+    raw = item.get("extra_json")
+    if not raw:
+        return {}
+    if isinstance(raw, dict):
+        return raw
+    try:
+        return json.loads(raw)
+    except (TypeError, ValueError):
+        return {}
+
+
+def format_item_front(item):
+    return (
+        "Flashcard\n"
+        f"Mặt trước: {_item_front(item)}\n\n"
+        "Tự nhớ cách đọc và nghĩa, rồi bấm Hiện đáp án."
+    )
+
+
+def format_item_answer(item):
+    extra = item_extra(item)
+    item_type = item.get("item_type") or "vocab"
+    lines = [f"Mặt trước: {_item_front(item)}"]
+
+    if item_type == "kanji":
+        if item.get("hanviet"):
+            lines.append(f"Hán Việt: {item['hanviet']}")
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if extra.get("onyomi"):
+            lines.append(f"Onyomi: {extra['onyomi']}")
+        if extra.get("kunyomi"):
+            lines.append(f"Kunyomi: {extra['kunyomi']}")
+        if extra.get("examples"):
+            lines.append(f"Ví dụ: {extra['examples']}")
+    elif item_type == "grammar":
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if extra.get("usage"):
+            lines.append(f"Cách dùng: {extra['usage']}")
+        if item.get("example_jp"):
+            lines.append(f"Ví dụ: {item['example_jp']}")
+        if item.get("example_vi"):
+            lines.append(f"Dịch: {item['example_vi']}")
+    elif item_type == "kaiwa":
+        if extra.get("dialogue_jp"):
+            lines.append(f"Hội thoại JP: {extra['dialogue_jp']}")
+        if extra.get("dialogue_vi"):
+            lines.append(f"Hội thoại VI: {extra['dialogue_vi']}")
+        if extra.get("vocab"):
+            lines.append(f"Từ vựng: {extra['vocab']}")
+        if extra.get("grammar"):
+            lines.append(f"Ngữ pháp: {extra['grammar']}")
+        if extra.get("shadowing"):
+            lines.append(f"Shadowing: {extra['shadowing']}")
+        if extra.get("quiz"):
+            lines.append(f"Quiz: {extra['quiz']}")
+        if extra.get("quiz_answer"):
+            lines.append(f"Đáp án: {extra['quiz_answer']}")
+    else:
+        reading = item.get("reading") or "-"
+        lines.append(f"Cách đọc: {reading}")
+        if item.get("hanviet"):
+            lines.append(f"Hán Việt: {item['hanviet']}")
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if item.get("example_jp"):
+            lines.append(f"Ví dụ: {item['example_jp']}")
+        if item.get("example_vi"):
+            lines.append(f"Dịch: {item['example_vi']}")
+
+    lines.extend(["", "Bạn nhớ mức nào?"])
+    return "\n".join(lines)
 
 
 def format_card_front(card):
-    return (
-        "N4 Flashcard\n"
-        f"言葉: {card['word']}\n\n"
-        "Tự nhớ cách đọc + nghĩa, rồi bấm Hiện đáp án."
-    )
+    return format_item_front(card)
 
 
 def format_card_answer(card):
-    reading = card.get("reading") or "-"
-    lines = [
-        f"言葉: {card['word']}",
-        f"読み方: {reading}",
-    ]
-    if card.get("hanviet"):
-        lines.append(f"Hán Việt: {card['hanviet']}")
-    lines.append(f"意味: {card['meaning']}")
-    if card.get("example_jp"):
-        lines.append(f"例文: {card['example_jp']}")
-    if card.get("example_vi"):
-        lines.append(f"Dịch: {card['example_vi']}")
-    lines.append("")
-    lines.append("Bạn nhớ mức nào?")
-    return "\n".join(lines)
+    return format_item_answer(card)
 
 
 def format_card_detail(card):
-    reading = card.get("reading") or "-"
-    lines = [
-        f"言葉: {card['word']}",
-        f"読み方: {reading}",
-    ]
-    if card.get("hanviet"):
-        lines.append(f"Hán Việt: {card['hanviet']}")
-    lines.append(f"意味: {card['meaning']}")
-    if card.get("example_jp"):
-        lines.append(f"例文: {card['example_jp']}")
-    if card.get("example_vi"):
-        lines.append(f"Dịch: {card['example_vi']}")
-    return "\n".join(lines)
+    return format_item_answer(card).replace("\n\nBạn nhớ mức nào?", "")
 
 
 def format_stats(stats, today_count=None):
     lines = [
         "Tiến độ flashcard",
         f"Tổng thẻ: {stats['total']}",
-        f"Từ mới: {stats['new']}",
+        f"Thẻ mới: {stats['new']}",
         f"Đến hạn: {stats['due']}",
         f"Đang học: {stats['learning']}",
         f"Đã vào review: {stats['review']}",
@@ -160,7 +219,7 @@ def format_today_card_list(cards):
     lines = ["Các thẻ đã chấm hôm nay"]
     for index, card in enumerate(cards[:10], start=1):
         reading = card.get("reading") or "-"
-        lines.append(f"{index}. {card['word']} / {reading} / {card['meaning']}")
+        lines.append(f"{index}. {_item_front(card)} / {reading} / {_item_meaning(card)}")
     if len(cards) > 10:
         lines.append(f"... còn {len(cards) - 10} thẻ khác")
     return "\n".join(lines)
@@ -170,9 +229,20 @@ def format_goal(settings):
     return (
         "Mục tiêu hiện tại\n"
         f"Preset: {settings['preset']}\n"
-        f"Từ mới/ngày: {settings['daily_new_limit']}\n"
+        f"Thẻ mới/ngày: {settings['daily_new_limit']}\n"
         f"Ôn tối đa/ngày: {settings['daily_review_limit']}\n"
         f"Quên: ôn lại sau {settings['again_delay_minutes']} phút"
+    )
+
+
+def format_settings(settings):
+    return (
+        "Flash settings\n"
+        f"Level: {settings.get('level') or '-'}\n"
+        f"Type: {settings.get('item_type') or 'all'}\n"
+        f"Deck: {settings.get('deck_id') or 'all'}\n"
+        f"Tags: {settings.get('tags') or 'all'}\n"
+        f"Preset: {settings.get('preset')}"
     )
 
 
@@ -200,15 +270,21 @@ def _today_bounds_utc(now=None):
     local_now = current.astimezone(tz)
     start_local = local_now.replace(hour=0, minute=0, second=0, microsecond=0)
     end_local = start_local + dt.timedelta(days=1)
-    return (
-        start_local.astimezone(dt.timezone.utc).isoformat(),
-        end_local.astimezone(dt.timezone.utc).isoformat(),
-    )
+    return start_local.astimezone(dt.timezone.utc).isoformat(), end_local.astimezone(dt.timezone.utc).isoformat()
 
 
-def _today_cards(telegram_user_id, level):
+def _today_cards(telegram_user_id, settings):
     start_at, end_at = _today_bounds_utc()
-    return flashcards.get_reviewed_cards_between(telegram_user_id, level, start_at, end_at, limit=30)
+    return learning_items.get_reviewed_items_between(
+        telegram_user_id,
+        settings.get("level"),
+        start_at,
+        end_at,
+        limit=30,
+        item_type=settings.get("item_type"),
+        deck_id=settings.get("deck_id"),
+        tags=settings.get("tags"),
+    )
 
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -220,9 +296,9 @@ async def flash_reset(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def flash_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    flashcards.init_flashcard_db()
+    learning_items.init_learning_db()
     await update.message.reply_text(
-        "Đã bật học flashcard N4. Dùng /flash để học, hoặc /flash_goal để chọn mục tiêu.",
+        "Đã bật học flashcard. Dùng /flash để học, hoặc /flash_settings để xem bộ lọc.",
         reply_markup=goal_keyboard(),
     )
 
@@ -235,7 +311,7 @@ async def _send_card_to_message(message, telegram_user_id, card):
     if not card:
         await message.reply_text("Chưa có thẻ flashcard phù hợp. Hãy import dữ liệu Sheet trước.")
         return
-    flashcards.set_current_session(telegram_user_id, card["id"], answer_shown=False)
+    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False)
     await message.reply_text(format_card_front(card), reply_markup=front_keyboard())
 
 
@@ -243,58 +319,93 @@ async def _edit_card_for_query(query, telegram_user_id, card):
     if not card:
         await query.edit_message_text("Chưa có thẻ phù hợp lúc này.")
         return
-    flashcards.set_current_session(telegram_user_id, card["id"], answer_shown=False)
+    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False)
     await query.edit_message_text(format_card_front(card), reply_markup=front_keyboard())
 
 
 async def flash(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    settings = flashcards.get_user_settings(user_id)
-    card = flashcards.pick_next_card(user_id, settings["level"])
+    settings = learning_items.get_user_settings(user_id)
+    card = learning_items.pick_next_item(user_id, **_settings_filters(settings))
     await _send_card_to_message(update.message, user_id, card)
 
 
 async def flash_new(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    settings = flashcards.get_user_settings(user_id)
-    card = flashcards.pick_new_card(user_id, settings["level"])
+    settings = learning_items.get_user_settings(user_id)
+    card = learning_items.pick_new_item(user_id, **_settings_filters(settings))
     await _send_card_to_message(update.message, user_id, card)
 
 
 async def flash_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    settings = flashcards.get_user_settings(user_id)
-    card = flashcards.pick_due_card(user_id, settings["level"])
+    settings = learning_items.get_user_settings(user_id)
+    card = learning_items.pick_due_item(user_id, **_settings_filters(settings))
     if not card:
-        await update.message.reply_text("Hiện chưa có thẻ nào đến hạn.\nDùng /flash để học tiếp hoặc /flash_new để học từ mới.")
+        await update.message.reply_text("Hiện chưa có thẻ nào đến hạn. Dùng /flash hoặc /flash_new để học tiếp.")
         return
     await _send_card_to_message(update.message, user_id, card)
 
 
 async def flash_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    settings = flashcards.get_user_settings(user_id)
-    stats = flashcards.get_flashcard_stats(user_id, settings["level"])
-    today_cards = _today_cards(user_id, settings["level"])
+    settings = learning_items.get_user_settings(user_id)
+    stats = learning_items.get_learning_stats(user_id, **_settings_filters(settings))
+    today_cards = _today_cards(user_id, settings)
     await update.message.reply_text(format_stats(stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
+
+
+async def flash_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    settings = learning_items.get_user_settings(update.effective_user.id)
+    await update.message.reply_text(format_settings(settings))
+
+
+async def flash_level(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /flash_level N4")
+        return
+    settings = learning_items.set_user_learning_filter(update.effective_user.id, level=context.args[0].upper())
+    await update.message.reply_text(format_settings(settings))
+
+
+async def flash_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args or context.args[0] not in {"vocab", "kanji", "grammar", "kaiwa"}:
+        await update.message.reply_text("Usage: /flash_type vocab|kanji|grammar|kaiwa")
+        return
+    settings = learning_items.set_user_learning_filter(update.effective_user.id, item_type=context.args[0])
+    await update.message.reply_text(format_settings(settings))
+
+
+async def flash_deck(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args:
+        await update.message.reply_text("Usage: /flash_deck n4_vocab_core")
+        return
+    settings = learning_items.set_user_learning_filter(update.effective_user.id, deck_id=context.args[0])
+    await update.message.reply_text(format_settings(settings))
+
+
+async def flash_tags(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    tags = " ".join(context.args).strip() if context.args else ""
+    settings = learning_items.set_user_learning_filter(update.effective_user.id, tags=tags or None)
+    await update.message.reply_text(format_settings(settings))
 
 
 async def show(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    session = flashcards.get_current_session(user_id)
-    if not session or not session.get("current_flashcard_id"):
+    session = learning_items.get_current_session(user_id)
+    if not session or not _session_item_id(session):
         await update.message.reply_text("Chưa có thẻ nào. Dùng /flash trước.")
         return
-    card = flashcards.get_flashcard(session["current_flashcard_id"])
+    card = learning_items.get_learning_item(_session_item_id(session))
     if not card:
         await update.message.reply_text("Không tìm thấy thẻ hiện tại. Dùng /flash để lấy thẻ khác.")
         return
-    flashcards.reveal_current_session(user_id)
+    learning_items.reveal_current_session(user_id)
     await update.message.reply_text(format_card_answer(card), reply_markup=answer_keyboard())
 
 
 async def _grade_message(update, grade):
-    updated, error = flashcards.grade_current_card(update.effective_user.id, grade)
+    updated, error = learning_items.grade_current_item(update.effective_user.id, grade)
     if error:
         await update.message.reply_text(grade_error_message(error))
         return
@@ -318,9 +429,9 @@ async def easy(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def _edit_stats(query, user_id):
-    settings = flashcards.get_user_settings(user_id)
-    stats = flashcards.get_flashcard_stats(user_id, settings["level"])
-    today_cards = _today_cards(user_id, settings["level"])
+    settings = learning_items.get_user_settings(user_id)
+    stats = learning_items.get_learning_stats(user_id, **_settings_filters(settings))
+    today_cards = _today_cards(user_id, settings)
     await query.edit_message_text(format_stats(stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
 
 
@@ -331,21 +442,21 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
     data = query.data
 
     if data == "flash:show":
-        session = flashcards.get_current_session(user_id)
-        if not session or not session.get("current_flashcard_id"):
+        session = learning_items.get_current_session(user_id)
+        if not session or not _session_item_id(session):
             await query.edit_message_text("Chưa có thẻ nào. Dùng /flash trước.")
             return
-        card = flashcards.get_flashcard(session["current_flashcard_id"])
+        card = learning_items.get_learning_item(_session_item_id(session))
         if not card:
             await query.edit_message_text("Không tìm thấy thẻ hiện tại. Dùng /flash để lấy thẻ khác.")
             return
-        flashcards.reveal_current_session(user_id)
+        learning_items.reveal_current_session(user_id)
         await query.edit_message_text(format_card_answer(card), reply_markup=answer_keyboard())
         return
 
     if data.startswith("flash:grade:"):
         grade = data.split(":")[-1]
-        updated, error = flashcards.grade_current_card(user_id, grade)
+        updated, error = learning_items.grade_current_item(user_id, grade)
         if error:
             await query.edit_message_text(grade_error_message(error))
             return
@@ -353,46 +464,40 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         return
 
     if data == "flash:reset:cancel":
-        await query.edit_message_text("Đã huỷ reset tiến độ.")
+        await query.edit_message_text("Đã hủy reset tiến độ.")
         return
 
     if data == "flash:reset:confirm":
-        flashcards.reset_user_flashcard_progress(user_id)
+        learning_items.reset_user_learning_progress(user_id)
         await query.edit_message_text("Đã reset tiến độ flashcard. Dùng /flash để học lại từ đầu.")
         return
 
     if data.startswith("flash:goal:"):
         preset = data.split(":")[-1]
-        settings = flashcards.set_user_goal_preset(user_id, preset)
+        settings = learning_items.set_user_goal_preset(user_id, preset)
         await query.edit_message_text(format_goal(settings))
         return
 
     if data == "flash:today:list":
-        settings = flashcards.get_user_settings(user_id)
-        cards = _today_cards(user_id, settings["level"])
+        settings = learning_items.get_user_settings(user_id)
+        cards = _today_cards(user_id, settings)
         await query.edit_message_text(format_today_card_list(cards), reply_markup=today_cards_keyboard(cards))
         return
 
     if data.startswith("flash:card:"):
         card_id = int(data.split(":")[-1])
-        card = flashcards.get_flashcard(card_id)
+        card = learning_items.get_learning_item(card_id)
         if not card:
             await query.edit_message_text("Không tìm thấy thẻ này.")
             return
         await query.edit_message_text(format_card_detail(card), reply_markup=stats_keyboard())
         return
 
-    settings = flashcards.get_user_settings(user_id)
+    settings = learning_items.get_user_settings(user_id)
     if data == "flash:next":
-        card = flashcards.pick_next_card(user_id, settings["level"])
+        card = learning_items.pick_next_item(user_id, **_settings_filters(settings))
         await _edit_card_for_query(query, user_id, card)
         return
     if data == "flash:stats":
         await _edit_stats(query, user_id)
-
-
-
-
-
-
 

@@ -338,3 +338,147 @@ docker compose run --rm bot python -c "import sqlite3; c=sqlite3.connect('/app/d
 Ket qua nen la `219` hoac lon hon neu sau nay import them bo moi.
 
 
+
+## Learning items deck model
+
+Flashcard learning now uses new canonical SQLite tables while keeping old tables for fallback:
+
+```text
+decks
+learning_items
+user_learning_reviews
+user_learning_sessions
+user_learning_settings
+```
+
+Do not drop legacy tables during rollout:
+
+```text
+flashcards
+user_flashcard_reviews
+user_flashcard_sessions
+user_flashcard_settings
+```
+
+Google Sheet uses one spreadsheet from `GOOGLE_SHEET_ID`. Keep existing daily lesson sheet and legacy `flashcards` worksheet. Add these worksheets for the long-term deck model:
+
+### `deck_catalog`
+
+Columns:
+
+```text
+deck_id
+title
+level
+item_type
+worksheet_name
+source
+status
+description
+```
+
+Example active decks:
+
+```text
+n4_vocab_core | N4 Core Vocabulary | N4 | vocab | vocab_n4_core | manual | active | Core N4 vocabulary
+n4_kanji_core | N4 Core Kanji | N4 | kanji | kanji_n4_core | manual | active | Core N4 kanji
+n4_grammar_core | N4 Core Grammar | N4 | grammar | grammar_n4_core | manual | active | Core N4 grammar
+n4_kaiwa_daily | N4 Daily Kaiwa | N4 | kaiwa | kaiwa_n4_daily | manual | active | Daily N4 conversation
+```
+
+### `vocab_n4_core`
+
+Columns:
+
+```text
+item_id
+level
+deck_id
+source_position
+word
+reading
+meaning
+hanviet
+example_jp
+example_vi
+tags
+status
+```
+
+### `kanji_n4_core`
+
+Columns:
+
+```text
+item_id
+level
+deck_id
+source_position
+kanji
+onyomi
+kunyomi
+hanviet
+meaning
+examples
+tags
+status
+```
+
+### `grammar_n4_core`
+
+Columns:
+
+```text
+item_id
+level
+deck_id
+source_position
+pattern
+meaning
+usage
+example_jp
+example_vi
+tags
+status
+```
+
+### `kaiwa_n4_daily`
+
+Columns:
+
+```text
+item_id
+level
+deck_id
+source_position
+title
+dialogue_jp
+dialogue_vi
+vocab
+grammar
+shadowing
+quiz
+quiz_answer
+tags
+status
+```
+
+Only `deck_catalog.status=active` decks and item rows with `status=ready` are imported.
+
+Learning item commands:
+
+```text
+/flash_settings
+/flash_level N4
+/flash_type vocab|kanji|grammar|kaiwa
+/flash_deck n4_vocab_core
+/flash_tags food,verb
+```
+
+Migration and import:
+
+```powershell
+docker compose run --rm bot python tools/migrate_flashcards_to_learning_items.py --default-deck-id n4_vocab_core
+docker compose run --rm bot python tools/import_flashcards.py --model learning --all-decks --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --model learning --all-decks
+```
