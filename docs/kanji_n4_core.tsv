@@ -1,0 +1,5 @@
+item_id	level	deck_id	source_position	kanji	onyomi	kunyomi	hanviet	meaning	examples	tags	status
+N4-KANJI-0001	N4	n4_kanji_core	1	食	ショク	たべる	THUC	Eat; food	食べる = to eat; 食事 = meal	food,verb,lesson-01	ready
+N4-KANJI-0002	N4	n4_kanji_core	2	飲	イン	のむ	AM	Drink	飲む = to drink; 飲み物 = beverage	food,verb,lesson-01	ready
+N4-KANJI-0003	N4	n4_kanji_core	3	駅	エキ		DICH	Station	駅に行きます = go to the station	travel,place,lesson-02	ready
+N4-KANJI-0004	N4	n4_kanji_core	4	新	シン	あたらしい	TAN	New	新しい本 = new book	adjective,common,lesson-02	draft

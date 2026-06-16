@@ -1,0 +1,5 @@
+item_id	level	deck_id	source_position	pattern	meaning	usage	example_jp	example_vi	tags	status
+N4-GRAMMAR-0001	N4	n4_grammar_core	1	〜ている	Doing; currently in a state	Use after te-form to describe an ongoing action or resulting state.	今、日本語を勉強しています。	I am studying Japanese now.	te-form,progressive,lesson-01	ready
+N4-GRAMMAR-0002	N4	n4_grammar_core	2	〜てもいい	May; allowed to	Use after te-form to ask or give permission.	ここで写真を撮ってもいいですか。	May I take photos here?	te-form,permission,lesson-01	ready
+N4-GRAMMAR-0003	N4	n4_grammar_core	3	〜なければならない	Must; have to	Use negative conditional form plus narimasen/naranai for obligation.	明日までに宿題をしなければなりません。	I must do homework by tomorrow.	obligation,formal,lesson-02	ready
+N4-GRAMMAR-0004	N4	n4_grammar_core	4	〜そうだ	Looks like; seems	Use stem/adjective form to describe appearance or hearsay depending pattern.	このケーキはおいしそうです。	This cake looks delicious.	appearance,adjective,lesson-02	draft

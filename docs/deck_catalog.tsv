@@ -1,0 +1,5 @@
+deck_id	title	level	item_type	worksheet_name	source	status	description
+n4_vocab_core	N4 Core Vocabulary	N4	vocab	vocab_n4_core	manual	active	Core N4 vocabulary imported from current flashcard data
+n4_kanji_core	N4 Core Kanji	N4	kanji	kanji_n4_core	manual	active	Core N4 kanji deck
+n4_grammar_core	N4 Core Grammar	N4	grammar	grammar_n4_core	manual	active	Core N4 grammar deck
+n4_kaiwa_daily	N4 Daily Kaiwa	N4	kaiwa	kaiwa_n4_daily	manual	active	Daily N4 conversation and shadowing deck
