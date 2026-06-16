@@ -1,4 +1,5 @@
-﻿import json
+﻿import datetime as dt
+import json
 import os
 import sqlite3
 from typing import Iterable, Optional
@@ -334,3 +335,410 @@ def migrate_legacy_flashcards(default_deck_id="n4_vocab_core"):
     conn.close()
     return {"items": len(flashcard_rows), "reviews": reviews, "settings": settings}
 
+
+VALID_GRADES = {"again", "hard", "good", "easy"}
+DEFAULT_SETTINGS = {
+    "preset": "jlpt_sprint",
+    "level": "N4",
+    "item_type": None,
+    "deck_id": None,
+    "tags": None,
+    "daily_new_limit": 15,
+    "daily_review_limit": 60,
+    "again_delay_minutes": 10,
+    "stop_new_cards_before_exam_days": 7,
+    "exam_date": "2026-07-05",
+}
+GOAL_PRESETS = {
+    "light": {"preset": "light", "daily_new_limit": 3, "daily_review_limit": 10, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": None, "exam_date": None},
+    "steady": {"preset": "steady", "daily_new_limit": 5, "daily_review_limit": 20, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": None, "exam_date": None},
+    "heavy": {"preset": "heavy", "daily_new_limit": 10, "daily_review_limit": 40, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": None, "exam_date": None},
+    "jlpt_sprint": {"preset": "jlpt_sprint", "daily_new_limit": 15, "daily_review_limit": 60, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": 7, "exam_date": "2026-07-05"},
+}
+
+
+def utc_now():
+    return dt.datetime.now(dt.timezone.utc)
+
+
+def _item_filters(alias="li", level="N4", item_type=None, deck_id=None, tags=None):
+    clauses = [f"{alias}.status = 'ready'"]
+    params = []
+    if level:
+        clauses.append(f"{alias}.level = ?")
+        params.append(level)
+    if item_type:
+        clauses.append(f"{alias}.item_type = ?")
+        params.append(item_type)
+    if deck_id:
+        clauses.append(f"{alias}.deck_id = ?")
+        params.append(deck_id)
+    for tag in (normalize_tags(tags) or "").split(","):
+        if not tag:
+            continue
+        clauses.append(f"(',' || COALESCE({alias}.tags, '') || ',') LIKE ?")
+        params.append(f"%,{tag},%")
+    return " AND ".join(clauses), params
+
+
+def ensure_user_review(telegram_user_id, learning_item_id, now=None):
+    init_learning_db()
+    now = now or utc_now()
+    timestamp = now.isoformat()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT OR IGNORE INTO user_learning_reviews (
+            telegram_user_id, learning_item_id, state, due_at, interval_days, ease_factor,
+            repetitions, lapses, last_reviewed_at, created_at, updated_at
+        ) VALUES (?, ?, 'new', NULL, 0, 2.5, 0, 0, NULL, ?, ?)
+    """, (telegram_user_id, learning_item_id, timestamp, timestamp))
+    cursor.execute("""
+        SELECT * FROM user_learning_reviews
+        WHERE telegram_user_id = ? AND learning_item_id = ?
+    """, (telegram_user_id, learning_item_id))
+    row = cursor.fetchone()
+    conn.commit()
+    conn.close()
+    return dict(row) if row else None
+
+
+def save_review_state(telegram_user_id, learning_item_id, review):
+    now = utc_now().isoformat()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE user_learning_reviews SET
+            state = ?, due_at = ?, interval_days = ?, ease_factor = ?, repetitions = ?,
+            lapses = ?, last_reviewed_at = ?, updated_at = ?
+        WHERE telegram_user_id = ? AND learning_item_id = ?
+    """, (
+        review["state"], review.get("due_at"), review["interval_days"], review["ease_factor"],
+        review["repetitions"], review["lapses"], review.get("last_reviewed_at"), now,
+        telegram_user_id, learning_item_id,
+    ))
+    conn.commit()
+    conn.close()
+
+
+def apply_review_grade(review, grade, now=None, again_delay_minutes=10):
+    if grade not in VALID_GRADES:
+        raise ValueError(f"Invalid learning item grade: {grade}")
+    now = now or utc_now()
+    interval = float(review.get("interval_days") or 0)
+    ease = float(review.get("ease_factor") or 2.5)
+    repetitions = int(review.get("repetitions") or 0)
+    lapses = int(review.get("lapses") or 0)
+
+    due_delta = None
+    if grade == "again":
+        state = "relearning"
+        interval = 0
+        due_delta = dt.timedelta(minutes=again_delay_minutes)
+        ease = max(1.3, round(ease - 0.2, 2))
+        repetitions = 0
+        lapses += 1
+    elif grade == "hard":
+        state = "review"
+        interval = max(1, round(interval * 1.2, 2))
+        ease = max(1.3, round(ease - 0.15, 2))
+        repetitions += 1
+    elif grade == "good":
+        state = "review"
+        repetitions += 1
+        if repetitions == 1:
+            interval = 1
+        elif repetitions == 2:
+            interval = 3
+        else:
+            interval = max(1, round(interval * ease, 2))
+    else:
+        state = "review"
+        repetitions += 1
+        if repetitions == 1:
+            interval = 4
+        elif repetitions == 2:
+            interval = 7
+        else:
+            interval = max(4, round(interval * ease * 1.5, 2))
+        ease = round(ease + 0.15, 2)
+
+    due_at = now + (due_delta or dt.timedelta(days=interval))
+    return {
+        "state": state,
+        "due_at": due_at.isoformat(),
+        "interval_days": interval,
+        "ease_factor": ease,
+        "repetitions": repetitions,
+        "lapses": lapses,
+        "last_reviewed_at": now.isoformat(),
+    }
+
+
+def pick_next_item(telegram_user_id, level="N4", now=None, include_new=True, item_type=None, deck_id=None, tags=None):
+    init_learning_db()
+    now = now or utc_now()
+    filters, params = _item_filters("li", level, item_type, deck_id, tags)
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(f"""
+        SELECT li.* FROM learning_items li
+        JOIN user_learning_reviews r ON r.learning_item_id = li.id AND r.telegram_user_id = ?
+        WHERE {filters} AND r.state != 'suspended' AND r.due_at IS NOT NULL AND r.due_at <= ?
+        ORDER BY r.due_at ASC, li.source_position ASC, li.id ASC
+        LIMIT 1
+    """, [telegram_user_id] + params + [now.isoformat()])
+    row = cursor.fetchone()
+    if not row and include_new:
+        cursor.execute(f"""
+            SELECT li.* FROM learning_items li
+            LEFT JOIN user_learning_reviews r ON r.learning_item_id = li.id AND r.telegram_user_id = ?
+            WHERE {filters} AND r.learning_item_id IS NULL
+            ORDER BY li.source_position ASC, li.id ASC
+            LIMIT 1
+        """, [telegram_user_id] + params)
+        row = cursor.fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def pick_new_item(telegram_user_id, level="N4", item_type=None, deck_id=None, tags=None):
+    return pick_next_item(telegram_user_id, level, include_new=True, item_type=item_type, deck_id=deck_id, tags=tags)
+
+
+def pick_due_item(telegram_user_id, level="N4", now=None, item_type=None, deck_id=None, tags=None):
+    return pick_next_item(telegram_user_id, level, now=now, include_new=False, item_type=item_type, deck_id=deck_id, tags=tags)
+
+
+def get_learning_stats(telegram_user_id, level="N4", now=None, item_type=None, deck_id=None, tags=None):
+    init_learning_db()
+    now = now or utc_now()
+    filters, params = _item_filters("li", level, item_type, deck_id, tags)
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT COUNT(*) AS count FROM learning_items li WHERE {filters}", params)
+    total = cursor.fetchone()["count"]
+    cursor.execute(f"""
+        SELECT COUNT(*) AS count FROM learning_items li
+        LEFT JOIN user_learning_reviews r ON r.learning_item_id = li.id AND r.telegram_user_id = ?
+        WHERE {filters} AND r.learning_item_id IS NULL
+    """, [telegram_user_id] + params)
+    new = cursor.fetchone()["count"]
+    cursor.execute(f"""
+        SELECT
+            SUM(CASE WHEN r.due_at IS NOT NULL AND r.due_at <= ? AND r.state != 'suspended' THEN 1 ELSE 0 END) AS due,
+            SUM(CASE WHEN r.state IN ('learning', 'relearning') THEN 1 ELSE 0 END) AS learning,
+            SUM(CASE WHEN r.state = 'review' THEN 1 ELSE 0 END) AS review,
+            SUM(r.lapses) AS lapses
+        FROM user_learning_reviews r
+        JOIN learning_items li ON li.id = r.learning_item_id
+        WHERE r.telegram_user_id = ? AND {filters}
+    """, [now.isoformat(), telegram_user_id] + params)
+    row = cursor.fetchone()
+    conn.close()
+    return {
+        "total": total,
+        "new": new,
+        "due": int(row["due"] or 0),
+        "learning": int(row["learning"] or 0),
+        "review": int(row["review"] or 0),
+        "lapses": int(row["lapses"] or 0),
+    }
+
+
+def get_reviewed_items_between(telegram_user_id, level, start_at, end_at, limit=20, item_type=None, deck_id=None, tags=None):
+    init_learning_db()
+    filters, params = _item_filters("li", level, item_type, deck_id, tags)
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(f"""
+        SELECT li.*, r.state, r.due_at, r.lapses, r.last_reviewed_at
+        FROM user_learning_reviews r
+        JOIN learning_items li ON li.id = r.learning_item_id
+        WHERE r.telegram_user_id = ? AND {filters}
+          AND r.last_reviewed_at IS NOT NULL
+          AND r.last_reviewed_at >= ?
+          AND r.last_reviewed_at < ?
+        ORDER BY r.last_reviewed_at DESC, li.source_position ASC
+        LIMIT ?
+    """, [telegram_user_id] + params + [start_at, end_at, limit])
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(row) for row in rows]
+
+
+def get_user_settings(telegram_user_id):
+    init_learning_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user_learning_settings WHERE telegram_user_id = ?", (telegram_user_id,))
+    row = cursor.fetchone()
+    conn.close()
+    if not row:
+        return dict(DEFAULT_SETTINGS)
+    settings = dict(DEFAULT_SETTINGS)
+    settings.update(dict(row))
+    return settings
+
+
+def _save_settings(telegram_user_id, settings, now=None):
+    now = now or utc_now()
+    timestamp = now.isoformat()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO user_learning_settings (
+            telegram_user_id, preset, level, item_type, deck_id, tags, daily_new_limit,
+            daily_review_limit, again_delay_minutes, stop_new_cards_before_exam_days,
+            exam_date, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(telegram_user_id) DO UPDATE SET
+            preset = excluded.preset,
+            level = excluded.level,
+            item_type = excluded.item_type,
+            deck_id = excluded.deck_id,
+            tags = excluded.tags,
+            daily_new_limit = excluded.daily_new_limit,
+            daily_review_limit = excluded.daily_review_limit,
+            again_delay_minutes = excluded.again_delay_minutes,
+            stop_new_cards_before_exam_days = excluded.stop_new_cards_before_exam_days,
+            exam_date = excluded.exam_date,
+            updated_at = excluded.updated_at
+    """, (
+        telegram_user_id, settings["preset"], settings["level"], settings.get("item_type"),
+        settings.get("deck_id"), normalize_tags(settings.get("tags")), settings["daily_new_limit"],
+        settings["daily_review_limit"], settings["again_delay_minutes"],
+        settings.get("stop_new_cards_before_exam_days"), settings.get("exam_date"), timestamp, timestamp,
+    ))
+    conn.commit()
+    conn.close()
+    return settings
+
+
+def set_user_goal_preset(telegram_user_id, preset, now=None):
+    if preset not in GOAL_PRESETS:
+        raise ValueError(f"Invalid flashcard goal preset: {preset}")
+    settings = get_user_settings(telegram_user_id)
+    settings.update(GOAL_PRESETS[preset])
+    return _save_settings(telegram_user_id, settings, now=now)
+
+
+def set_user_learning_filter(telegram_user_id, *, level=None, item_type=None, deck_id=None, tags=None):
+    settings = get_user_settings(telegram_user_id)
+    if level is not None:
+        settings["level"] = level
+    if item_type is not None:
+        settings["item_type"] = item_type
+    if deck_id is not None:
+        settings["deck_id"] = deck_id
+    if tags is not None:
+        settings["tags"] = normalize_tags(tags)
+    return _save_settings(telegram_user_id, settings)
+
+
+def reset_user_learning_progress(telegram_user_id):
+    init_learning_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    deleted = {}
+    cursor.execute("DELETE FROM user_learning_reviews WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["reviews"] = cursor.rowcount
+    cursor.execute("DELETE FROM user_learning_sessions WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["sessions"] = cursor.rowcount
+    cursor.execute("DELETE FROM user_learning_settings WHERE telegram_user_id = ?", (telegram_user_id,))
+    deleted["settings"] = cursor.rowcount
+    conn.commit()
+    conn.close()
+    return deleted
+
+
+def should_allow_new_cards(settings, today=None):
+    if not settings.get("exam_date") or settings.get("stop_new_cards_before_exam_days") is None:
+        return True
+    today = today or utc_now().date()
+    exam_date = dt.date.fromisoformat(settings["exam_date"])
+    return (exam_date - today).days > int(settings["stop_new_cards_before_exam_days"])
+
+
+def set_current_session(telegram_user_id, learning_item_id, answer_shown=False, now=None):
+    init_learning_db()
+    now = now or utc_now()
+    shown_at = now.isoformat()
+    answer_shown_at = shown_at if answer_shown else None
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO user_learning_sessions (
+            telegram_user_id, current_learning_item_id, current_direction, shown_at, answer_shown_at, updated_at
+        ) VALUES (?, ?, 'front_to_back', ?, ?, ?)
+        ON CONFLICT(telegram_user_id) DO UPDATE SET
+            current_learning_item_id = excluded.current_learning_item_id,
+            current_direction = excluded.current_direction,
+            shown_at = excluded.shown_at,
+            answer_shown_at = excluded.answer_shown_at,
+            updated_at = excluded.updated_at
+    """, (telegram_user_id, learning_item_id, shown_at, answer_shown_at, shown_at))
+    conn.commit()
+    conn.close()
+
+
+def reveal_current_session(telegram_user_id, now=None):
+    now = now or utc_now()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE user_learning_sessions
+        SET answer_shown_at = ?, updated_at = ?
+        WHERE telegram_user_id = ? AND current_learning_item_id IS NOT NULL
+    """, (now.isoformat(), now.isoformat(), telegram_user_id))
+    conn.commit()
+    conn.close()
+
+
+def get_current_session(telegram_user_id):
+    init_learning_db()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM user_learning_sessions WHERE telegram_user_id = ?", (telegram_user_id,))
+    row = cursor.fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def clear_current_session(telegram_user_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE user_learning_sessions
+        SET current_learning_item_id = NULL, answer_shown_at = NULL, updated_at = ?
+        WHERE telegram_user_id = ?
+    """, (utc_now().isoformat(), telegram_user_id))
+    conn.commit()
+    conn.close()
+
+
+def grade_current_item(telegram_user_id, grade, now=None):
+    now = now or utc_now()
+    session = get_current_session(telegram_user_id)
+    if not session or not session.get("current_learning_item_id"):
+        return None, "no_pending"
+    if not session.get("answer_shown_at"):
+        return None, "answer_not_shown"
+    item_id = session["current_learning_item_id"]
+    review = ensure_user_review(telegram_user_id, item_id, now)
+    settings = get_user_settings(telegram_user_id)
+    updated = apply_review_grade(review, grade, now, settings["again_delay_minutes"])
+    save_review_state(telegram_user_id, item_id, updated)
+    clear_current_session(telegram_user_id)
+    return updated, None
+
+
+# Compatibility names for existing flashcard handlers while they move to learning_items.
+pick_next_card = pick_next_item
+pick_new_card = pick_new_item
+pick_due_card = pick_due_item
+get_flashcard_stats = get_learning_stats
+get_reviewed_cards_between = get_reviewed_items_between
+reset_user_flashcard_progress = reset_user_learning_progress
+grade_current_card = grade_current_item
+get_flashcard = get_learning_item

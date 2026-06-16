@@ -1,31 +1,31 @@
-import flashcard_handlers as handlers
+﻿import flashcard_handlers as handlers
 
 CARD = {
     "id": 7,
-    "word": "石",
+    "front": "石",
     "reading": "いし",
-    "meaning": "Đá",
-    "example_jp": "一番大きいピラミッドをつくるのに石が270万個も使われました。",
-    "example_vi": "270 vạn khối đá đã được sử dụng.",
+    "meaning": "đá",
+    "example_jp": "石があります。",
+    "example_vi": "Có đá.",
 }
 
 
 def test_format_front_prompts_show_before_grading_without_reading():
     text = handlers.format_card_front(CARD)
 
-    assert "言葉: 石" in text
-    assert "読み方: いし" not in text
-    assert "Tự nhớ cách đọc + nghĩa" in text
+    assert "Mặt trước: 石" in text
+    assert "Cách đọc: いし" not in text
+    assert "Hiện đáp án" in text
     assert "/again" not in text
 
 
 def test_format_answer_contains_reading_meaning_examples_and_grades():
     text = handlers.format_card_answer(CARD)
 
-    assert "言葉: 石" in text
-    assert "読み方: いし" in text
-    assert "意味: Đá" in text
-    assert "例文:" in text
+    assert "Mặt trước: 石" in text
+    assert "Cách đọc: いし" in text
+    assert "Nghĩa: đá" in text
+    assert "Ví dụ:" in text
     assert "Dịch:" in text
     assert "Bạn nhớ mức nào?" in text
 
@@ -42,21 +42,24 @@ def test_format_stats_message_includes_today_count():
 
     assert "Tổng thẻ: 10" in text
     assert "Đến hạn: 2" in text
-    assert "Từ mới: 3" in text
+    assert "Thẻ mới: 3" in text
     assert "Hôm nay" in text
     assert "Đã chấm: 5" in text
 
 
-def test_format_help_lists_flashcard_flow():
+def test_format_help_lists_flashcard_flow_and_settings_commands():
     text = handlers.format_help()
 
-    assert "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy từ mới" in text
-    assert "/flash_new - chỉ lấy từ mới chưa học" in text
-    assert "/flash_review - chỉ ôn thẻ đã đến hạn" in text
-    assert "/flash_stats - xem tiến độ" in text
-    assert "/flash_reset - học lại flashcard từ đầu" in text
-    assert "Bấm Hiện đáp án" in text
-    assert "Quên / Khó / Nhớ / Dễ" in text
+    assert "/flash - học thông minh" in text
+    assert "/flash_new" in text
+    assert "/flash_review" in text
+    assert "/flash_stats" in text
+    assert "/flash_reset" in text
+    assert "/flash_settings" in text
+    assert "/flash_level N4" in text
+    assert "/flash_type vocab|kanji|grammar|kaiwa" in text
+    assert "/flash_deck n4_vocab_core" in text
+    assert "/flash_tags food,verb" in text
 
 
 def test_format_next_review_uses_flashcard_timezone(monkeypatch):
@@ -71,7 +74,7 @@ def test_format_today_card_list():
     text = handlers.format_today_card_list([CARD])
 
     assert "Các thẻ đã chấm hôm nay" in text
-    assert "1. 石 / いし / Đá" in text
+    assert "1. 石 / いし / đá" in text
 
 
 def test_today_cards_keyboard_links_to_card_detail():
@@ -117,7 +120,7 @@ def test_reset_keyboard_requires_confirmation():
     buttons = [button for row in markup.inline_keyboard for button in row]
 
     assert [(button.text, button.callback_data) for button in buttons] == [
-        ("Huỷ", "flash:reset:cancel"),
+        ("Hủy", "flash:reset:cancel"),
         ("Reset tiến độ", "flash:reset:confirm"),
     ]
 
@@ -125,7 +128,26 @@ def test_reset_keyboard_requires_confirmation():
 def test_format_reset_confirm_message():
     text = handlers.format_reset_confirm()
 
-    assert "xoá tiến độ flashcard" in text
-    assert "Không xoá dữ liệu thẻ" in text
+    assert "xóa tiến độ flashcard" in text
+    assert "Không xóa dữ liệu thẻ" in text
 
 
+def test_format_settings_lists_learning_filters():
+    text = handlers.format_settings({
+        "preset": "jlpt_sprint",
+        "level": "N4",
+        "item_type": "vocab",
+        "deck_id": "n4_vocab_core",
+        "tags": "food,verb",
+    })
+
+    assert "Level: N4" in text
+    assert "Type: vocab" in text
+    assert "Deck: n4_vocab_core" in text
+    assert "Tags: food,verb" in text
+
+
+def test_format_card_front_accepts_legacy_card_shape():
+    text = handlers.format_card_front({"id": 1, "word": "石", "meaning": "đá"})
+
+    assert "石" in text
