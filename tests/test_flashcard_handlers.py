@@ -151,3 +151,59 @@ def test_format_card_front_accepts_legacy_card_shape():
     text = handlers.format_card_front({"id": 1, "word": "石", "meaning": "đá"})
 
     assert "石" in text
+
+def test_format_item_answer_vocab_shows_core_fields():
+    text = handlers.format_item_answer({
+        "item_type": "vocab",
+        "front": "石",
+        "reading": "いし",
+        "meaning": "đá",
+        "hanviet": "Thạch",
+        "example_jp": "石があります。",
+        "example_vi": "Có đá.",
+    })
+
+    assert "Mặt trước: 石" in text
+    assert "Cách đọc: いし" in text
+    assert "Hán Việt: Thạch" in text
+    assert "Nghĩa: đá" in text
+    assert "Ví dụ: 石があります。" in text
+
+
+def test_format_item_answer_kanji_reads_extra_json():
+    text = handlers.format_item_answer({
+        "item_type": "kanji",
+        "front": "石",
+        "meaning": "đá",
+        "hanviet": "Thạch",
+        "extra_json": '{"onyomi":"セキ","kunyomi":"いし","examples":"石, 宝石"}',
+    })
+
+    assert "Onyomi: セキ" in text
+    assert "Kunyomi: いし" in text
+    assert "Ví dụ: 石, 宝石" in text
+
+
+def test_format_item_answer_grammar_reads_usage():
+    text = handlers.format_item_answer({
+        "item_type": "grammar",
+        "front": "〜たことがある",
+        "meaning": "đã từng",
+        "extra_json": '{"usage":"Vた + ことがある"}',
+    })
+
+    assert "Cách dùng: Vた + ことがある" in text
+
+
+def test_format_item_answer_kaiwa_reads_dialogue_shadowing_and_quiz():
+    text = handlers.format_item_answer({
+        "item_type": "kaiwa",
+        "front": "At the shop",
+        "extra_json": '{"dialogue_jp":"いらっしゃいませ。","dialogue_vi":"Xin chào quý khách.","shadowing":"repeat x3","quiz":"Clerk says?","quiz_answer":"Welcome"}',
+    })
+
+    assert "Hội thoại JP: いらっしゃいませ。" in text
+    assert "Hội thoại VI: Xin chào quý khách." in text
+    assert "Shadowing: repeat x3" in text
+    assert "Quiz: Clerk says?" in text
+    assert "Đáp án: Welcome" in text

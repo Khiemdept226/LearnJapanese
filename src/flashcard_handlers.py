@@ -1,4 +1,5 @@
 ﻿import datetime as dt
+import json
 
 import pytz
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -112,33 +113,89 @@ def format_help():
     )
 
 
-def format_card_front(card):
+def item_extra(item):
+    raw = item.get("extra_json")
+    if not raw:
+        return {}
+    if isinstance(raw, dict):
+        return raw
+    try:
+        return json.loads(raw)
+    except (TypeError, ValueError):
+        return {}
+
+
+def format_item_front(item):
     return (
         "Flashcard\n"
-        f"Mặt trước: {_item_front(card)}\n\n"
+        f"Mặt trước: {_item_front(item)}\n\n"
         "Tự nhớ cách đọc và nghĩa, rồi bấm Hiện đáp án."
     )
 
 
-def format_card_answer(card):
-    reading = card.get("reading") or "-"
-    lines = [
-        f"Mặt trước: {_item_front(card)}",
-        f"Cách đọc: {reading}",
-    ]
-    if card.get("hanviet"):
-        lines.append(f"Hán Việt: {card['hanviet']}")
-    lines.append(f"Nghĩa: {_item_meaning(card)}")
-    if card.get("example_jp"):
-        lines.append(f"Ví dụ: {card['example_jp']}")
-    if card.get("example_vi"):
-        lines.append(f"Dịch: {card['example_vi']}")
+def format_item_answer(item):
+    extra = item_extra(item)
+    item_type = item.get("item_type") or "vocab"
+    lines = [f"Mặt trước: {_item_front(item)}"]
+
+    if item_type == "kanji":
+        if item.get("hanviet"):
+            lines.append(f"Hán Việt: {item['hanviet']}")
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if extra.get("onyomi"):
+            lines.append(f"Onyomi: {extra['onyomi']}")
+        if extra.get("kunyomi"):
+            lines.append(f"Kunyomi: {extra['kunyomi']}")
+        if extra.get("examples"):
+            lines.append(f"Ví dụ: {extra['examples']}")
+    elif item_type == "grammar":
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if extra.get("usage"):
+            lines.append(f"Cách dùng: {extra['usage']}")
+        if item.get("example_jp"):
+            lines.append(f"Ví dụ: {item['example_jp']}")
+        if item.get("example_vi"):
+            lines.append(f"Dịch: {item['example_vi']}")
+    elif item_type == "kaiwa":
+        if extra.get("dialogue_jp"):
+            lines.append(f"Hội thoại JP: {extra['dialogue_jp']}")
+        if extra.get("dialogue_vi"):
+            lines.append(f"Hội thoại VI: {extra['dialogue_vi']}")
+        if extra.get("vocab"):
+            lines.append(f"Từ vựng: {extra['vocab']}")
+        if extra.get("grammar"):
+            lines.append(f"Ngữ pháp: {extra['grammar']}")
+        if extra.get("shadowing"):
+            lines.append(f"Shadowing: {extra['shadowing']}")
+        if extra.get("quiz"):
+            lines.append(f"Quiz: {extra['quiz']}")
+        if extra.get("quiz_answer"):
+            lines.append(f"Đáp án: {extra['quiz_answer']}")
+    else:
+        reading = item.get("reading") or "-"
+        lines.append(f"Cách đọc: {reading}")
+        if item.get("hanviet"):
+            lines.append(f"Hán Việt: {item['hanviet']}")
+        lines.append(f"Nghĩa: {_item_meaning(item)}")
+        if item.get("example_jp"):
+            lines.append(f"Ví dụ: {item['example_jp']}")
+        if item.get("example_vi"):
+            lines.append(f"Dịch: {item['example_vi']}")
+
     lines.extend(["", "Bạn nhớ mức nào?"])
     return "\n".join(lines)
 
 
+def format_card_front(card):
+    return format_item_front(card)
+
+
+def format_card_answer(card):
+    return format_item_answer(card)
+
+
 def format_card_detail(card):
-    return format_card_answer(card).replace("\n\nBạn nhớ mức nào?", "")
+    return format_item_answer(card).replace("\n\nBạn nhớ mức nào?", "")
 
 
 def format_stats(stats, today_count=None):
@@ -443,3 +500,4 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         return
     if data == "flash:stats":
         await _edit_stats(query, user_id)
+
