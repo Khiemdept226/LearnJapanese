@@ -7,6 +7,18 @@ Muc tieu: giu ca 2 huong import tu vung flashcard:
 
 Bot van hoc tu SQLite nhu hien tai. PDF/Sheet chi la nguon sync du lieu the vao bang `flashcards`, khong luu tien do hoc.
 
+## Trang thai hien tai
+
+Ke hoach nay da duoc trien khai trong code hien tai:
+
+- `src/flashcard_sources/validation.py`
+- `src/flashcard_sources/sheet_source.py`
+- `src/flashcard_sources/pdf_source.py`
+- `tools/import_flashcards.py`
+- tests lien quan trong `tests/`
+
+SQLite hien tai van khong luu `card_id` va `tags`, nhung da co them cot `hanviet` trong bang `flashcards`.
+
 ## 1. Van de hien tai
 
 PDF khong phai du lieu co cau truc. Khi extract text tu PDF, parser phai doan:
@@ -93,6 +105,7 @@ Moi source adapter nen tra ve list dict cung schema:
     "word": "石",
     "reading": "いし",
     "meaning": "Đá",
+    "hanviet": "Thach",
     "example_jp": "一番大きいピラミッドをつくるのに石が270万個も使われました。",
     "example_vi": "270 vạn khối đá đã được sử dụng...",
     "tags": "noun,kanji",
@@ -100,7 +113,7 @@ Moi source adapter nen tra ve list dict cung schema:
 }
 ```
 
-SQLite hien tai chua bat buoc `card_id` va `tags`. Co 2 lua chon:
+SQLite hien tai da co cot `hanviet`, nhung chua bat buoc `card_id` va `tags`. Co 2 lua chon:
 
 ### Option A: Khong doi schema SQLite ngay
 
@@ -113,6 +126,7 @@ source_position
 word
 reading
 meaning
+hanviet
 example_jp
 example_vi
 ```
@@ -159,6 +173,7 @@ source_position
 word
 reading
 meaning
+hanviet
 example_jp
 example_vi
 tags
@@ -167,9 +182,9 @@ status
 
 Vi du row:
 
-| card_id | level | source | source_position | word | reading | meaning | example_jp | example_vi | tags | status |
-|---|---|---|---:|---|---|---|---|---|---|---|
-| N4-0001 | N4 | n4_pdf | 1 | 石 | いし | Đá | 一番大きいピラミッドをつくるのに石が270万個も使われました。 | 270 vạn khối đá đã được sử dụng để xây lên Kim tự tháp lớn nhất. | noun,kanji | ready |
+| card_id | level | source | source_position | word | reading | meaning | hanviet | example_jp | example_vi | tags | status |
+|---|---|---|---:|---|---|---|---|---|---|---|---|
+| N4-0001 | N4 | n4_pdf | 1 | 石 | いし | Đá | Thach | 一番大きいピラミッドをつくるのに石が270万個も使われました。 | 270 vạn khối đá đã được sử dụng để xây lên Kim tự tháp lớn nhất. | noun,kanji | ready |
 
 Chi sync row:
 

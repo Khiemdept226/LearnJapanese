@@ -1,0 +1,198 @@
+# LearnJapanese
+
+Telegram bot hoc tieng Nhat cho nguoi Viet. Du an hien co 2 luong chinh:
+
+- Daily lessons: bot doc bai hoc tu Google Sheet va gui/xu ly cac lenh hoc moi ngay.
+- N4 flashcards: bot hoc tu vung bang SQLite + SRS nhe, co import du lieu tu Google Sheet hoac PDF fallback.
+
+Tai lieu nay la cua vao cho nguoi moi hoac AI agent khac. Doc file nay truoc, sau do doc cac file trong phan "Tai lieu nen doc".
+
+## Trang thai hien tai
+
+- Source code bot da co trong `src/`.
+- May hien tai khong cai Python local. Khong gia dinh lenh `python` tren host chay duoc.
+- Cach chay/test uu tien la Docker. Neu Docker Desktop chua bat engine, `docker compose ...` se loi ket noi pipe.
+- Co the dev/sua code tai repo nay, nhung verification bang test can Docker hoac may khac co Python.
+- Git repo chinh nam o `F:\PersonalProject\LearningLanguage\LearnJapanese`.
+
+## Kien truc nhanh
+
+```text
+Telegram user
+  -> python-telegram-bot handlers
+  -> SQLite progress/review state
+  -> Google Sheet lessons/flashcard source when needed
+```
+
+Thu muc quan trong:
+
+```text
+src/
+  bot.py                    # entrypoint, dang ky handlers va schedulers
+  config.py                 # env config
+  db.py                     # SQLite users, sent lesson history, settings
+  sheets.py                 # Google Sheet lesson reader
+  handlers.py               # lesson commands
+  scheduler.py              # daily lesson dispatch
+  flashcards.py             # flashcard DB, SRS, stats, sessions
+  flashcard_handlers.py     # Telegram flashcard commands/callbacks
+  flashcard_scheduler.py    # daily flashcard reminder
+  flashcard_sources/        # sheet/pdf adapters + validation
+
+tools/
+  import_flashcards.py      # unified Sheet/PDF flashcard import CLI
+  import_n4_pdf.py          # legacy PDF importer/parser
+
+tests/                      # pytest tests, run in Docker or Python env
+docs/                       # specs, deployment guide, source data notes
+data/                       # SQLite DB, ignored/runtime data
+credentials/                # Google service account JSON, ignored secret
+```
+
+## Bot commands
+
+Daily lesson commands:
+
+```text
+/start      dang ky user va gioi thieu bot
+/today      xem bai hien tai
+/dich       xem ban dich
+/tuvung     xem tu vung cua bai
+/nguphap    xem ngu phap
+/quiz       xem cau hoi
+/dapan      xem dap an quiz
+/shadowing  luyen noi
+/next       chuyen bai tiep theo
+/review     xem bai cu gan nhat da gui
+```
+
+Flashcard commands:
+
+```text
+/flash_start   bat dau flashcard N4
+/flash         lay the uu tien: due truoc, new sau
+/flash_new     chi lay the moi
+/flash_review  chi lay the den han
+/flash_stats   xem thong ke
+/flash_goal    chon muc tieu hoc
+/flash_reset   reset tien do flashcard cua user
+/show          hien dap an
+/again /hard /good /easy  cham diem the hien tai
+```
+
+Flashcard co inline buttons cho show answer, grade, next, stats, goal preset, reset confirm.
+
+## Du lieu
+
+Daily lessons doc tu Google Sheet dau tien (`sheet1`) trong spreadsheet `GOOGLE_SHEET_ID`. Schema goc nam trong `docs/mvp-telegram-google-sheet.md`.
+
+Flashcards mac dinh import tu worksheet `flashcards`. Header can co:
+
+```text
+card_id
+level
+source
+source_position
+word
+reading
+meaning
+hanviet
+example_jp
+example_vi
+tags
+status
+```
+
+Chi row `status=ready` duoc import. PDF N4 van giu lam fallback qua `tools/import_flashcards.py --source pdf`.
+
+## Runtime va config
+
+File `.env` can co cac bien chinh:
+
+```env
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+GOOGLE_SHEET_ID=your_google_sheet_id
+GOOGLE_SERVICE_ACCOUNT_FILE=credentials/google-service-account.json
+GOOGLE_SERVICE_ACCOUNT_JSON=
+TIMEZONE=Asia/Bangkok
+DAILY_SEND_TIME=07:30
+DATABASE_PATH=data/learningjp.sqlite3
+
+FLASHCARD_ENABLED=true
+FLASHCARD_DAILY_TIME=20:30
+FLASHCARD_LEVEL=N4
+FLASHCARD_TIMEZONE=Asia/Bangkok
+FLASHCARD_IMPORT_SOURCE=sheet
+FLASHCARD_SHEET_NAME=flashcards
+```
+
+Credential Google co 2 cach:
+
+- File local: `credentials/google-service-account.json`
+- Env JSON: `GOOGLE_SERVICE_ACCOUNT_JSON`
+
+Khong commit `.env`, DB runtime, hoac credential.
+
+## Lenh van hanh
+
+Build Docker image:
+
+```powershell
+docker compose build
+```
+
+Chay bot:
+
+```powershell
+docker compose up -d
+```
+
+Xem log:
+
+```powershell
+docker compose logs -f bot
+```
+
+Run tests trong Docker:
+
+```powershell
+docker compose run --rm bot pytest -q
+```
+
+Import flashcards tu Sheet dry-run:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source sheet --dry-run
+```
+
+Import that tu Sheet:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source sheet
+```
+
+PDF fallback:
+
+```powershell
+docker compose run --rm bot python tools/import_flashcards.py --source pdf --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --source pdf
+```
+
+## Tai lieu nen doc
+
+- `docs/agent-handoff.md`: huong dan nhanh cho AI agent tiep quan du an.
+- `docs/runtime-environment-memo.md`: quy uoc runtime tren may hien tai.
+- `docs/docker-deployment-guide.md`: setup/deploy bang Docker.
+- `docs/mvp-telegram-google-sheet.md`: thiet ke MVP daily lessons.
+- `docs/flashcard-import-source-plan.md`: thiet ke import flashcards Sheet/PDF.
+- `docs/superpowers/specs/`: specs da viet truoc do.
+- `docs/superpowers/plans/`: implementation plans da dung truoc do.
+
+## Nguyen tac khi sua tiep
+
+- Doc `docs/agent-handoff.md` truoc khi sua lon.
+- Khong yeu cau cai Python tren may hien tai.
+- Dung Docker de test neu Docker Desktop engine dang chay.
+- Giu progress user trong SQLite, tranh schema migration lon neu khong can.
+- Sheet/PDF import chi sync card master data; tien do hoc nam trong SQLite review/session tables.
+- Khi sua logic flashcard, chay targeted tests lien quan truoc, sau do full `pytest` trong Docker.

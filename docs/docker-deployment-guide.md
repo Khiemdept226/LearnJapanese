@@ -1,4 +1,6 @@
-﻿# Docker Deployment Guide
+# Docker Deployment Guide
+
+Doc `README.md` va `docs/agent-handoff.md` truoc neu ban la agent/developer moi tiep quan du an.
 
 Huong dan nay dung de clone repo tren may moi va chay bot bang Docker, khong can cai Python tren host.
 
@@ -18,6 +20,8 @@ Kiem tra Docker:
 docker --version
 docker compose version
 ```
+
+Neu `docker --version` chay duoc nhung `docker compose ...` bao loi pipe `dockerDesktopLinuxEngine`, Docker CLI da co nhung Docker Desktop engine chua bat. Mo Docker Desktop roi chay lai lenh.
 
 ## 2. Clone repo
 
@@ -112,6 +116,7 @@ source_position
 word
 reading
 meaning
+hanviet
 example_jp
 example_vi
 tags
@@ -162,6 +167,8 @@ Remove-Item .\data\learningjp.sqlite3-journal -Force -ErrorAction SilentlyContin
 docker compose run --rm bot python tools/import_flashcards.py --source sheet
 ```
 ## 7. Chay tests
+
+May hien tai khong cai Python local theo `docs/runtime-environment-memo.md`. Dung Docker de test khi Docker engine dang chay.
 
 ```powershell
 docker compose run --rm bot pytest -q
