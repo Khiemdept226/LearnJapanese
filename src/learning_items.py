@@ -225,6 +225,10 @@ def _ensure_default_deck(cursor, deck_id):
 
 
 def migrate_legacy_flashcards(default_deck_id="n4_vocab_core"):
+    import flashcards
+
+    flashcards.DATABASE_PATH = DATABASE_PATH
+    flashcards.init_flashcard_db()
     init_learning_db()
     conn = get_connection()
     cursor = conn.cursor()
@@ -742,3 +746,4 @@ get_reviewed_cards_between = get_reviewed_items_between
 reset_user_flashcard_progress = reset_user_learning_progress
 grade_current_card = grade_current_item
 get_flashcard = get_learning_item
+

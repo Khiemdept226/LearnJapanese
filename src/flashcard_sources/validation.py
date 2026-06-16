@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+﻿from dataclasses import dataclass
 
 
 OPTIONAL_WARNING_FIELDS = ("reading", "example_jp", "example_vi", "tags")
@@ -68,6 +68,9 @@ def validate_rows(rows, default_level="N4", default_source="n4_pdf"):
             if not row.get(field):
                 warnings.append(f"row {index} warning: missing {field}")
 
+        if not row.get("hanviet"):
+            row.pop("hanviet", None)
+
         key = (row["level"], row["source"], row["word"], row["reading"])
         if key in valid_by_key:
             joined = "|".join(key)
@@ -82,3 +85,6 @@ def validate_rows(rows, default_level="N4", default_source="n4_pdf"):
         ready=ready,
         skipped=skipped,
     )
+
+
+
