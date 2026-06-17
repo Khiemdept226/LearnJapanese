@@ -278,8 +278,20 @@ kunyomi
 hanviet
 meaning
 examples
+memo
+related_words
 tags
 status
+```
+
+`related_words` uses one entry per line in `word|reading|meaning_vi` format, for example:
+
+```text
+回す|まわす|xoay, vặn, chuyển
+回る|まわる|xoay quanh, đi vòng quanh
+回収|かいしゅう|thu hồi, thu gom
+次回|じかい|lần sau, lần tiếp theo
+遠回り|とおまわり|đi đường vòng, vòng vo
 ```
 
 ### `grammar_n4_core`
