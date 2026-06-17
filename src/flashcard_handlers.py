@@ -124,6 +124,19 @@ def item_extra(item):
     except (TypeError, ValueError):
         return {}
 
+def _format_related_words(value):
+    rows = []
+    for line in str(value or "").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = [part.strip() for part in line.split("|", 2)]
+        if len(parts) == 3 and parts[0] and parts[1] and parts[2]:
+            rows.append(f"{parts[0]}（{parts[1]}）- {parts[2]}")
+        else:
+            rows.append(line)
+    return rows
+
 
 def format_item_front(item):
     return (
@@ -148,6 +161,13 @@ def format_item_answer(item):
             lines.append(f"Kunyomi: {extra['kunyomi']}")
         if extra.get("examples"):
             lines.append(f"Ví dụ: {extra['examples']}")
+        if extra.get("memo"):
+            lines.extend(["", "Cách nhớ:"])
+            lines.extend(str(extra["memo"]).splitlines())
+        related_words = _format_related_words(extra.get("related_words"))
+        if related_words:
+            lines.extend(["", "Từ liên quan:"])
+            lines.extend(f"{index}. {word}" for index, word in enumerate(related_words, start=1))
     elif item_type == "grammar":
         lines.append(f"Nghĩa: {_item_meaning(item)}")
         if extra.get("usage"):

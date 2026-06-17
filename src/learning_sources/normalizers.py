@@ -75,6 +75,8 @@ def normalize_row(row, item_type, level, deck_id, source):
                 "onyomi": _text(row, "onyomi"),
                 "kunyomi": _text(row, "kunyomi"),
                 "examples": _text(row, "examples"),
+                "memo": _text(row, "memo"),
+                "related_words": _text(row, "related_words"),
             }),
         )
     if item_type == "grammar":

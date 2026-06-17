@@ -1,5 +1,6 @@
-item_id	level	deck_id	source_position	kanji	onyomi	kunyomi	hanviet	meaning	examples	tags	status
-N4-KANJI-0001	N4	n4_kanji_core	1	食	ショク	たべる	THUC	Eat; food	食べる = to eat; 食事 = meal	food,verb,lesson-01	ready
-N4-KANJI-0002	N4	n4_kanji_core	2	飲	イン	のむ	AM	Drink	飲む = to drink; 飲み物 = beverage	food,verb,lesson-01	ready
-N4-KANJI-0003	N4	n4_kanji_core	3	駅	エキ		DICH	Station	駅に行きます = go to the station	travel,place,lesson-02	ready
-N4-KANJI-0004	N4	n4_kanji_core	4	新	シン	あたらしい	TAN	New	新しい本 = new book	adjective,common,lesson-02	draft
+item_id	level	deck_id	source_position	kanji	onyomi	kunyomi	hanviet	meaning	examples	memo	related_words	tags	status
+N4-KANJI-0001	N4	n4_kanji_core	1	回	カイ	まわる, まわす	HỒI	xoay, quay, lần	回す; 回る; 回収	Xoay tình hình xung quanh chỉ bằng một lời nói.	回す|まわす|xoay, vặn, chuyển\n回る|まわる|xoay quanh, đi vòng quanh\n回収|かいしゅう|thu hồi, thu gom\n次回|じかい|lần sau, lần tiếp theo\n遠回り|とおまわり|đi đường vòng, vòng vo	kanji,common,lesson-01	ready
+N4-KANJI-0002	N4	n4_kanji_core	2	食	ショク	たべる	THỰC	ăn; đồ ăn	食べる = ăn; 食事 = bữa ăn	Hãy nhớ hình ảnh thức ăn được đặt trên bàn để gọi ra nghĩa ăn uống.	食べる|たべる|ăn\n食事|しょくじ|bữa ăn\n食堂|しょくどう|nhà ăn	food,verb,lesson-01	ready
+N4-KANJI-0003	N4	n4_kanji_core	3	飲	イン	のむ	ẨM	uống	飲む = uống; 飲み物 = đồ uống	Có nước bên cạnh miệng: hành động uống.	飲む|のむ|uống\n飲み物|のみもの|đồ uống\n飲食|いんしょく|ăn uống	food,verb,lesson-01	ready
+N4-KANJI-0004	N4	n4_kanji_core	4	駅	エキ		DỊCH	ga, nhà ga	駅に行きます = đi đến nhà ga	Nhớ như nơi người và tàu dừng lại để đổi hướng di chuyển.	駅|えき|nhà ga\n駅前|えきまえ|trước ga\n東京駅|とうきょうえき|ga Tokyo	travel,place,lesson-02	ready
+N4-KANJI-0005	N4	n4_kanji_core	5	新	シン	あたらしい	TÂN	mới	新しい本 = sách mới	Một thứ được chặt sửa lại thành hình mới.	新しい|あたらしい|mới\n新聞|しんぶん|báo\n新年|しんねん|năm mới	adjective,common,lesson-02	draft

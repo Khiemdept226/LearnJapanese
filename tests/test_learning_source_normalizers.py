@@ -45,6 +45,43 @@ def test_normalize_kanji_row_stores_readings_in_extra_json():
     assert extra["kunyomi"] == "いし"
     assert extra["examples"] == "石, 宝石"
 
+def test_normalize_kanji_row_stores_memo_and_related_words_in_extra_json():
+    item = normalize_row({
+        "item_id": "N4-KANJI-0002",
+        "source_position": "3",
+        "kanji": "回",
+        "onyomi": "カイ",
+        "kunyomi": "まわる, まわす",
+        "hanviet": "Hồi",
+        "meaning": "xoay, quay, lần",
+        "examples": "回す, 回る",
+        "memo": "Xoay tình hình xung quanh chỉ bằng một lời nói.",
+        "related_words": "回す|まわす|xoay, vặn, chuyển\n回る|まわる|xoay quanh, đi vòng quanh",
+        "tags": "kanji",
+        "status": "ready",
+    }, item_type="kanji", level="N4", deck_id="n4_kanji_core", source="sheet")
+
+    extra = json.loads(item["extra_json"])
+    assert extra["memo"] == "Xoay tình hình xung quanh chỉ bằng một lời nói."
+    assert extra["related_words"] == "回す|まわす|xoay, vặn, chuyển\n回る|まわる|xoay quanh, đi vòng quanh"
+
+def test_normalize_kanji_row_omits_empty_memo_and_related_words():
+    item = normalize_row({
+        "item_id": "N4-KANJI-0003",
+        "source_position": "4",
+        "kanji": "石",
+        "onyomi": "セキ",
+        "kunyomi": "いし",
+        "meaning": "stone",
+        "memo": "",
+        "related_words": "",
+        "status": "ready",
+    }, item_type="kanji", level="N4", deck_id="n4_kanji_core", source="sheet")
+
+    extra = json.loads(item["extra_json"])
+    assert "memo" not in extra
+    assert "related_words" not in extra
+
 
 def test_normalize_grammar_row_stores_usage_in_extra_json():
     item = normalize_row({

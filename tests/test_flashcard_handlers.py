@@ -183,6 +183,43 @@ def test_format_item_answer_kanji_reads_extra_json():
     assert "Kunyomi: いし" in text
     assert "Ví dụ: 石, 宝石" in text
 
+def test_format_item_answer_kanji_shows_memo_and_related_words():
+    text = handlers.format_item_answer({
+        "item_type": "kanji",
+        "front": "回",
+        "meaning": "xoay, quay, lần",
+        "hanviet": "Hồi",
+        "extra_json": '{"onyomi":"カイ","kunyomi":"まわる, まわす","examples":"回す, 回る","memo":"Xoay tình hình xung quanh chỉ bằng một lời nói.","related_words":"回す|まわす|xoay, vặn, chuyển\\n回る|まわる|xoay quanh, đi vòng quanh"}',
+    })
+
+    assert "Cách nhớ:" in text
+    assert "Xoay tình hình xung quanh chỉ bằng một lời nói." in text
+    assert "Từ liên quan:" in text
+    assert "1. 回す（まわす）- xoay, vặn, chuyển" in text
+    assert "2. 回る（まわる）- xoay quanh, đi vòng quanh" in text
+
+def test_format_item_answer_kanji_falls_back_for_malformed_related_words():
+    text = handlers.format_item_answer({
+        "item_type": "kanji",
+        "front": "回",
+        "meaning": "xoay, quay, lần",
+        "extra_json": '{"related_words":"回収|かいしゅう|thu hồi, thu gom\\nmalformed related word"}',
+    })
+
+    assert "1. 回収（かいしゅう）- thu hồi, thu gom" in text
+    assert "2. malformed related word" in text
+
+def test_format_item_answer_kanji_omits_empty_memo_and_related_words_sections():
+    text = handlers.format_item_answer({
+        "item_type": "kanji",
+        "front": "石",
+        "meaning": "đá",
+        "extra_json": '{"onyomi":"セキ"}',
+    })
+
+    assert "Cách nhớ:" not in text
+    assert "Từ liên quan:" not in text
+
 
 def test_format_item_answer_grammar_reads_usage():
     text = handlers.format_item_answer({
