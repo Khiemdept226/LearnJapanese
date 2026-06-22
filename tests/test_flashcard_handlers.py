@@ -66,15 +66,16 @@ def test_format_help_lists_flashcard_flow_and_settings_commands():
     text = handlers.format_help()
 
     assert "/flash - học thông minh" in text
-    assert "/flash_new" in text
-    assert "/flash_review" in text
     assert "/flash_stats" in text
     assert "/flash_reset" in text
-    assert "/flash_settings" in text
-    assert "/flash_level N4" in text
-    assert "/flash_type vocab|kanji|grammar|kaiwa" in text
-    assert "/flash_deck n4_vocab_core" in text
-    assert "/flash_tags food,verb" in text
+
+
+def test_format_help_hides_advanced_filter_commands():
+    text = handlers.format_help()
+
+    assert "/flash_type" not in text
+    assert "/flash_deck" not in text
+    assert "/flash_tags" not in text
 
 
 def test_format_help_lists_learning_lane_commands():
@@ -109,6 +110,13 @@ def test_today_cards_keyboard_links_to_card_detail():
 
     assert markup.inline_keyboard[0][0].text == "石"
     assert markup.inline_keyboard[0][0].callback_data == "flash:card:7"
+
+
+def test_stats_keyboard_can_keep_lane_next_callback():
+    markup = handlers.stats_keyboard(next_callback="flash:next_lane:kanji")
+
+    assert markup.inline_keyboard[1][0].text == "Thẻ tiếp theo"
+    assert markup.inline_keyboard[1][0].callback_data == "flash:next_lane:kanji"
 
 
 def test_grade_error_messages():

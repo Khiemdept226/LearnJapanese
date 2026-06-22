@@ -50,10 +50,10 @@ def reset_keyboard():
     ]])
 
 
-def stats_keyboard():
+def stats_keyboard(next_callback="flash:next"):
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("Danh sách hôm nay", callback_data="flash:today:list")],
-        [InlineKeyboardButton("Thẻ tiếp theo", callback_data="flash:next")],
+        [InlineKeyboardButton("Thẻ tiếp theo", callback_data=next_callback)],
     ])
 
 LANE_LABELS = {
@@ -116,23 +116,12 @@ def format_help():
         "Danh sách lệnh\n"
         "/start - bắt đầu bot\n"
         "/today - bài hôm nay\n"
-        "/flash_start - bật flashcard\n"
-        "/flash - học thông minh: ưu tiên thẻ đến hạn, nếu không có thì lấy thẻ mới\n"
-        "/flash_new - chỉ lấy thẻ mới chưa học\n"
-        "/flash_review - chỉ ôn thẻ đã đến hạn\n"
-        "/flash_stats - xem tiến độ\n"
-        "/flash_goal - chọn mục tiêu học\n"
-        "/flash_reset - học lại flashcard từ đầu\n"
-        "/flash_settings - xem bộ lọc hiện tại\n"
-        "/flash_level N4 - chọn level\n"
-        "/flash_type vocab|kanji|grammar|kaiwa - chọn loại thẻ\n"
-        "/flash_deck n4_vocab_core - chọn deck\n"
-        "/flash_tags food,verb - lọc theo tag\n"
         "/neword - học từ mới\n"
         "/vocab - học từ mới\n"
         "/kanji - học kanji\n"
         "/grammar - học ngữ pháp\n"
         "/mix - học xen kẽ từ mới, kanji, ngữ pháp\n"
+        "/flash - học thông minh theo filter hiện tại\n"
         "/stats - thống kê tổng\n"
         "/stats_neword - thống kê từ mới\n"
         "/stats_kanji - thống kê kanji\n"
@@ -140,6 +129,8 @@ def format_help():
         "/goal_neword - chọn goal từ mới\n"
         "/goal_kanji - chọn goal kanji\n"
         "/goal_grammar - chọn goal ngữ pháp\n"
+        "/flash_stats - xem tiến độ filter hiện tại\n"
+        "/flash_reset - học lại flashcard từ đầu\n"
         "/show - hiện đáp án\n"
         "/again /hard /good /easy - chấm thẻ"
     )
@@ -470,7 +461,10 @@ async def _send_lane_stats(update: Update, item_type: str):
         deck_id=settings.get("deck_id"),
         tags=settings.get("tags"),
     )
-    await update.message.reply_text(format_lane_stats(lane, stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
+    await update.message.reply_text(
+        format_lane_stats(lane, stats, today_count=len(today_cards)),
+        reply_markup=stats_keyboard(next_callback=f"flash:next_lane:{lane}"),
+    )
 
 
 async def stats_neword(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -573,10 +567,36 @@ async def easy(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def _edit_stats(query, user_id):
+    session = learning_items.get_current_session(user_id)
+    mode = session.get("current_direction") if session else None
+    next_callback = _next_callback_for_mode(mode)
+    if mode and mode.startswith("lane:"):
+        lane = mode.split(":", 1)[1]
+        settings = learning_items.get_lane_settings(user_id, lane)
+        stats = learning_items.get_lane_stats(user_id, lane)
+        start_at, end_at = _today_bounds_utc()
+        today_cards = learning_items.get_reviewed_items_between(
+            user_id,
+            settings.get("level"),
+            start_at,
+            end_at,
+            limit=30,
+            item_type=lane,
+            deck_id=settings.get("deck_id"),
+            tags=settings.get("tags"),
+        )
+        await query.edit_message_text(
+            format_lane_stats(lane, stats, today_count=len(today_cards)),
+            reply_markup=stats_keyboard(next_callback=next_callback),
+        )
+        return
     settings = learning_items.get_user_settings(user_id)
     stats = learning_items.get_learning_stats(user_id, **_settings_filters(settings))
     today_cards = _today_cards(user_id, settings)
-    await query.edit_message_text(format_stats(stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
+    await query.edit_message_text(
+        format_stats(stats, today_count=len(today_cards)),
+        reply_markup=stats_keyboard(next_callback=next_callback),
+    )
 
 
 async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):

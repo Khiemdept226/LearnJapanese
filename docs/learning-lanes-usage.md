@@ -10,19 +10,28 @@ Bot has one SRS system and three focused lanes:
 
 Each lane has its own stats and goal. Reviews stay in `user_learning_reviews` and are separated by `learning_items.item_type`.
 
-## Workflow
+## Standard Workflow
 
 ```mermaid
 flowchart TD
     A["Choose /neword, /kanji, /grammar, or /mix"] --> B["Bot selects lane"]
-    B --> C["Due review first"]
-    C --> D["New card if no due card"]
+    B --> C["Pick due review first"]
+    C --> D["Pick new card if no due card"]
     D --> E["Show front"]
-    E --> F["Show answer"]
-    F --> G["Grade again/hard/good/easy"]
+    E --> F["Tap Hien dap an"]
+    F --> G["Grade: Quen, Kho, Nho, or De"]
     G --> H["Update SRS review"]
-    H --> I["Stats counted by item_type"]
+    H --> I["Tap The tiep theo"]
+    I --> J["Continue same lane or mix mode"]
 ```
+
+Important behavior:
+
+- Start with `/kanji`: `The tiep theo` continues kanji.
+- Start with `/neword` or `/vocab`: `The tiep theo` continues vocabulary.
+- Start with `/grammar`: `The tiep theo` continues grammar.
+- Start with `/mix`: `The tiep theo` continues mixed study.
+- If you open stats from a lane, the stats screen also keeps the same `The tiep theo` mode.
 
 ## Commands
 
@@ -39,45 +48,68 @@ flowchart TD
 /goal_neword     set vocabulary goal
 /goal_kanji      set kanji goal
 /goal_grammar    set grammar goal
+/help            show common commands
 ```
 
-## Examples
-
-Vocabulary session:
+Advanced commands still exist but are hidden from `/help` to keep normal usage simple:
 
 ```text
-/neword
-Hiện đáp án
-Nhớ
-/stats_neword
+/flash_type vocab|kanji|grammar|kaiwa
+/flash_deck n4_vocab_core
+/flash_tags food,verb
 ```
 
-Kanji session:
+## Kanji Only Session
 
 ```text
 /kanji
-Hiện đáp án
-Khó
+Hien dap an
+Nho
+The tiep theo
+The tiep theo
 /stats_kanji
 ```
 
-Grammar session:
+Use this when you want all next cards to stay in kanji mode.
+
+## Switch From Kanji To Neword
+
+```text
+/kanji
+Hien dap an
+Kho
+The tiep theo
+
+/neword
+Hien dap an
+Nho
+The tiep theo
+/stats_neword
+```
+
+Typing `/neword` changes the active lane to vocabulary. After that, `The tiep theo` continues vocabulary.
+
+## Grammar Only Session
 
 ```text
 /grammar
-Hiện đáp án
-Dễ
+Hien dap an
+De
+The tiep theo
 /stats_grammar
 ```
 
-Mixed session:
+## Mixed Session
 
 ```text
 /mix
-Hiện đáp án
-Nhớ
-Thẻ tiếp theo
+Hien dap an
+Nho
+The tiep theo
+The tiep theo
 ```
+
+Mix mode chooses from vocab, kanji, and grammar. It prioritizes due reviews before new cards.
 
 ## Goal Defaults
 
@@ -88,3 +120,17 @@ grammar:      2 new cards, 20 reviews per day
 ```
 
 Use `/goal_neword`, `/goal_kanji`, or `/goal_grammar` to choose light, steady, or heavy presets for each lane.
+
+## Restart After Code Changes
+
+If command behavior or `/help` still looks old after deployment, restart the bot process:
+
+```powershell
+docker compose restart bot
+```
+
+If it still uses old behavior:
+
+```powershell
+docker compose up -d --force-recreate bot
+```
