@@ -4,3 +4,248 @@ N4-KANJI-0002	N4	n4_kanji_core	2	食	ショク	たべる	THỰC	ăn; đồ ăn	�
 N4-KANJI-0003	N4	n4_kanji_core	3	飲	イン	のむ	ẨM	uống	飲む = uống; 飲み物 = đồ uống	Có nước bên cạnh miệng: hành động uống.	飲む|のむ|uống\n飲み物|のみもの|đồ uống\n飲食|いんしょく|ăn uống	food,verb,lesson-01	ready
 N4-KANJI-0004	N4	n4_kanji_core	4	駅	エキ		DỊCH	ga, nhà ga	駅に行きます = đi đến nhà ga	Nhớ như nơi người và tàu dừng lại để đổi hướng di chuyển.	駅|えき|nhà ga\n駅前|えきまえ|trước ga\n東京駅|とうきょうえき|ga Tokyo	travel,place,lesson-02	ready
 N4-KANJI-0005	N4	n4_kanji_core	5	新	シン	あたらしい	TÂN	mới	新しい本 = sách mới	Một thứ được chặt sửa lại thành hình mới.	新しい|あたらしい|mới\n新聞|しんぶん|báo\n新年|しんねん|năm mới	adjective,common,lesson-02	draft
+N4-KANJI-0006	N4	n4_kanji_core	6	力	リイ, リキ, リョク	ちから	LỰC	sức mạnh		Từ ảnh N4 kanji 15-28: sức mạnh.		kanji,n4,image-15-28	ready
+N4-KANJI-0007	N4	n4_kanji_core	7	動	ドウ	うご.かす, うご.く	ĐỘNG	chuyển động		Từ ảnh N4 kanji 15-28: chuyển động.		kanji,n4,image-15-28	ready
+N4-KANJI-0008	N4	n4_kanji_core	8	働	ドウ	はたら.く	ĐỘNG	làm việc		Từ ảnh N4 kanji 15-28: làm việc.		kanji,n4,image-15-28	ready
+N4-KANJI-0009	N4	n4_kanji_core	9	馬	バ	うま, うま-, ま	MÃ	ngựa		Từ ảnh N4 kanji 15-28: ngựa.		kanji,n4,image-15-28	ready
+N4-KANJI-0010	N4	n4_kanji_core	10	験	ケン, ゲン	あかし, しるし, ため.す, ためし	NGHIỆM	kiểm nghiệm, thi		Từ ảnh N4 kanji 15-28: kiểm nghiệm, thi.		kanji,n4,image-15-28	ready
+N4-KANJI-0011	N4	n4_kanji_core	11	知	チ	し.らせる, し.る	TRI	biết		Từ ảnh N4 kanji 15-28: biết.		kanji,n4,image-15-28	ready
+N4-KANJI-0012	N4	n4_kanji_core	12	短	タン	みじか.い	ĐOẢN	ngắn		Từ ảnh N4 kanji 15-28: ngắn.		kanji,n4,image-15-28	ready
+N4-KANJI-0013	N4	n4_kanji_core	13	医	イ	い.する, い.やす, くすし	Y	y, bác sĩ		Từ ảnh N4 kanji 15-28: y, bác sĩ.		kanji,n4,image-15-28	ready
+N4-KANJI-0014	N4	n4_kanji_core	14	台	タイ, ダイ	うてな, つかさ, われ	ĐÀI	bệ, cái		Từ ảnh N4 kanji 15-28: bệ, cái.		kanji,n4,image-15-28	ready
+N4-KANJI-0015	N4	n4_kanji_core	15	始	シ	-はじ.める, はじ.まる, はじ.める	THỦY	bắt đầu		Từ ảnh N4 kanji 15-28: bắt đầu.		kanji,n4,image-15-28	ready
+N4-KANJI-0016	N4	n4_kanji_core	16	治	ジ, チ	おさ.まる, おさ.める, なお.す, なお.る	TRỊ	trị, chữa		Từ ảnh N4 kanji 15-28: trị, chữa.		kanji,n4,image-15-28	ready
+N4-KANJI-0017	N4	n4_kanji_core	17	天	テン	あま-, あまつ, あめ	THIÊN	trời		Từ ảnh N4 kanji 15-28: trời.		kanji,n4,image-15-28	ready
+N4-KANJI-0018	N4	n4_kanji_core	18	夫	フ, フウ, ブ	おっと, それ	PHU	chồng, người đàn ông		Từ ảnh N4 kanji 15-28: chồng, người đàn ông.		kanji,n4,image-15-28	ready
+N4-KANJI-0019	N4	n4_kanji_core	19	送	ソウ	おく.る	TỐNG	gửi, tiễn		Từ ảnh N4 kanji 15-28: gửi, tiễn.		kanji,n4,image-15-28	ready
+N4-KANJI-0020	N4	n4_kanji_core	20	主	シュ, シュウ, ス	あるじ, おも, ぬし	CHỦ	chủ, chính		Từ ảnh N4 kanji 15-28: chủ, chính.		kanji,n4,image-15-28	ready
+N4-KANJI-0021	N4	n4_kanji_core	21	住	ジュウ, チュウ, ヂュウ	-ず.まい, す.まう, す.む	TRÚ	sống, cư trú		Từ ảnh N4 kanji 15-28: sống, cư trú.		kanji,n4,image-15-28	ready
+N4-KANJI-0022	N4	n4_kanji_core	22	麦	バク	むぎ	MẠCH	lúa mạch		Từ ảnh N4 kanji 15-28: lúa mạch.		kanji,n4,image-15-28	ready
+N4-KANJI-0023	N4	n4_kanji_core	23	止	シ	-さ.し, -さ.す, -と.める, -ど.まり, -ど.め, -や.む, と.まる, と.める, とど.まる, とど.め, とど.める, や.む, や.める, よ.す	CHỈ	dừng		Từ ảnh N4 kanji 15-28: dừng.		kanji,n4,image-15-28	ready
+N4-KANJI-0024	N4	n4_kanji_core	24	歩	フ, ブ, ホ	あゆ.む, ある.く	BỘ	đi bộ		Từ ảnh N4 kanji 15-28: đi bộ.		kanji,n4,image-15-28	ready
+N4-KANJI-0025	N4	n4_kanji_core	25	歴	レキ, レッキ		LỊCH	lịch sử		Từ ảnh N4 kanji 15-28: lịch sử.		kanji,n4,image-15-28	ready
+N4-KANJI-0026	N4	n4_kanji_core	26	門	モン	かど, と	MÔN	cổng		Từ ảnh N4 kanji 15-28: cổng.		kanji,n4,image-15-28	ready
+N4-KANJI-0027	N4	n4_kanji_core	27	閉	ヘイ	し.まる, し.める, た.てる, と.ざす, と.じる	BẾ	đóng		Từ ảnh N4 kanji 15-28: đóng.		kanji,n4,image-15-28	ready
+N4-KANJI-0028	N4	n4_kanji_core	28	間	カン, ケン	あい, あいだ, ま	GIAN	khoảng, giữa		Từ ảnh N4 kanji 15-28: khoảng, giữa.		kanji,n4,image-15-28	ready
+N4-KANJI-0029	N4	n4_kanji_core	29	王	-ノウ, オウ		VƯƠNG	vua		Từ ảnh N4 kanji 15-28: vua.		kanji,n4,image-15-28	ready
+N4-KANJI-0030	N4	n4_kanji_core	30	玉	ギョク	-だま, たま, たま-	NGỌC	ngọc, bóng		Từ ảnh N4 kanji 15-28: ngọc, bóng.		kanji,n4,image-15-28	ready
+N4-KANJI-0031	N4	n4_kanji_core	31	国	コク	くに	QUỐC	nước, quốc gia		Từ ảnh N4 kanji 15-28: nước, quốc gia.		kanji,n4,image-15-28	ready
+N4-KANJI-0032	N4	n4_kanji_core	32	史	シ		SỬ	sử		Từ ảnh N4 kanji 15-28: sử.		kanji,n4,image-15-28	ready
+N4-KANJI-0033	N4	n4_kanji_core	33	使	シ	-つか.い, -づか.い, つか.い, つか.う	SỬ	dùng, sai khiến		Từ ảnh N4 kanji 15-28: dùng, sai khiến.		kanji,n4,image-15-28	ready
+N4-KANJI-0034	N4	n4_kanji_core	34	便	ビン, ベン	たよ.り	TIỆN	tiện lợi, thư		Từ ảnh N4 kanji 15-28: tiện lợi, thư.		kanji,n4,image-15-28	ready
+N4-KANJI-0035	N4	n4_kanji_core	35	公	ク, コウ	おおやけ	CÔNG	công cộng		Từ ảnh N4 kanji 15-28: công cộng.		kanji,n4,image-15-28	ready
+N4-KANJI-0036	N4	n4_kanji_core	36	広	コウ	ひろ.い, ひろ.がる, ひろ.げる, ひろ.まる, ひろ.める	QUẢNG	rộng		Từ ảnh N4 kanji 15-28: rộng.		kanji,n4,image-15-28	ready
+N4-KANJI-0037	N4	n4_kanji_core	37	去	キョ, コ	-さ.る, さ.る	KHỨ	rời đi, quá khứ		Từ ảnh N4 kanji 15-28: rời đi, quá khứ.		kanji,n4,image-15-28	ready
+N4-KANJI-0038	N4	n4_kanji_core	38	所	ショ	-ところ, とこ, ところ, どころ	SỞ	nơi chốn		Từ ảnh N4 kanji 15-28: nơi chốn.		kanji,n4,image-15-28	ready
+N4-KANJI-0039	N4	n4_kanji_core	39	近	キン, コン	ちか.い	CẬN	gần		Từ ảnh N4 kanji 15-28: gần.		kanji,n4,image-15-28	ready
+N4-KANJI-0040	N4	n4_kanji_core	40	質	シチ, シツ, チ	ただ.す, たち, もと, わりふ	CHẤT	chất, chất lượng		Từ ảnh N4 kanji 15-28: chất, chất lượng.		kanji,n4,image-15-28	ready
+N4-KANJI-0041	N4	n4_kanji_core	41	赤	シャク, セキ	あか, あか-, あか.い, あか.らむ, あか.らめる	XÍCH	đỏ		Từ ảnh N4 kanji 15-28: đỏ.		kanji,n4,image-15-28	ready
+N4-KANJI-0042	N4	n4_kanji_core	42	走	ソウ	はし.る	TẨU	chạy		Từ ảnh N4 kanji 15-28: chạy.		kanji,n4,image-15-28	ready
+N4-KANJI-0043	N4	n4_kanji_core	43	場	ジョウ, チョウ	ば	TRƯỜNG	nơi, địa điểm		Từ ảnh N4 kanji 15-28: nơi, địa điểm.		kanji,n4,image-15-28	ready
+N4-KANJI-0044	N4	n4_kanji_core	44	考	コウ	かんが.え, かんが.える	KHẢO	suy nghĩ		Từ ảnh N4 kanji 15-28: suy nghĩ.		kanji,n4,image-15-28	ready
+N4-KANJI-0045	N4	n4_kanji_core	45	教	キョウ	おし.える, おそ.わる	GIÁO	dạy		Từ ảnh N4 kanji 15-28: dạy.		kanji,n4,image-15-28	ready
+N4-KANJI-0046	N4	n4_kanji_core	46	数	サク, シュ, ス, スウ, ソク	かず, かぞ.える, しばしば, せ.める, わずらわ.しい	SỐ	số		Từ ảnh N4 kanji 15-28: số.		kanji,n4,image-15-28	ready
+N4-KANJI-0047	N4	n4_kanji_core	47	有	ウ, ユウ	あ.る	HỮU	có		Từ ảnh N4 kanji 15-28: có.		kanji,n4,image-15-28	ready
+N4-KANJI-0048	N4	n4_kanji_core	48	服	フク		PHỤC	quần áo		Từ ảnh N4 kanji 15-28: quần áo.		kanji,n4,image-15-28	ready
+N4-KANJI-0049	N4	n4_kanji_core	49	湖	コ	みずうみ	HỒ	hồ		Từ ảnh N4 kanji 15-28: hồ.		kanji,n4,image-15-28	ready
+N4-KANJI-0050	N4	n4_kanji_core	50	私	シ	わたくし, わたし	TƯ	tôi, riêng		Từ ảnh N4 kanji 15-28: tôi, riêng.		kanji,n4,image-15-28	ready
+N4-KANJI-0051	N4	n4_kanji_core	51	利	リ	き.く	LỢI	lợi		Từ ảnh N4 kanji 15-28: lợi.		kanji,n4,image-15-28	ready
+N4-KANJI-0052	N4	n4_kanji_core	52	科	カ		KHOA	khoa, môn		Từ ảnh N4 kanji 15-28: khoa, môn.		kanji,n4,image-15-28	ready
+N4-KANJI-0053	N4	n4_kanji_core	53	妹	マイ	いもうと	MUỘI	em gái		Từ ảnh N4 kanji 15-28: em gái.		kanji,n4,image-15-28	ready
+N4-KANJI-0054	N4	n4_kanji_core	54	姉	シ	あね, はは	TỈ	chị gái		Từ ảnh N4 kanji 15-28: chị gái.		kanji,n4,image-15-28	ready
+N4-KANJI-0055	N4	n4_kanji_core	55	妻	サイ	つま	THÊ	vợ		Từ ảnh N4 kanji 15-28: vợ.		kanji,n4,image-15-28	ready
+N4-KANJI-0056	N4	n4_kanji_core	56	楽	ガク, ゴウ, ラク	この.む, たの.しい, たの.しむ	LẠC	vui, dễ chịu		Từ ảnh N4 kanji 15-28: vui, dễ chịu.		kanji,n4,image-15-28	ready
+N4-KANJI-0057	N4	n4_kanji_core	57	薬	ヤク	くすり	DƯỢC	thuốc		Từ ảnh N4 kanji 15-28: thuốc.		kanji,n4,image-15-28	ready
+N4-KANJI-0058	N4	n4_kanji_core	58	集	シュウ	あつ.まる, あつ.める, つど.う	TẬP	tập hợp		Từ ảnh N4 kanji 15-28: tập hợp.		kanji,n4,image-15-28	ready
+N4-KANJI-0059	N4	n4_kanji_core	59	弟	ダイ, テイ, デ	おとうと	ĐỆ	em trai		Từ ảnh N4 kanji 15-28: em trai.		kanji,n4,image-15-28	ready
+N4-KANJI-0060	N4	n4_kanji_core	60	弱	ジャク	よわ.い, よわ.まる, よわ.める, よわ.る	NHƯỢC	yếu		Từ ảnh N4 kanji 15-28: yếu.		kanji,n4,image-15-28	ready
+N4-KANJI-0061	N4	n4_kanji_core	61	村	ソン	むら	THÔN	làng		Từ ảnh N4 kanji 15-28: làng.		kanji,n4,image-15-28	ready
+N4-KANJI-0062	N4	n4_kanji_core	62	府	フ		PHỦ	phủ		Từ ảnh N4 kanji 15-28: phủ.		kanji,n4,image-15-28	ready
+N4-KANJI-0063	N4	n4_kanji_core	63	冬	トウ	ふゆ	ĐÔNG	mùa đông		Từ ảnh N4 kanji 15-28: mùa đông.		kanji,n4,image-15-28	ready
+N4-KANJI-0064	N4	n4_kanji_core	64	終	シュウ	-お.わる, お.える, お.わる, おわ.る, つい, つい.に	CHUNG	kết thúc		Từ ảnh N4 kanji 15-28: kết thúc.		kanji,n4,image-15-28	ready
+N4-KANJI-0065	N4	n4_kanji_core	65	英	エイ	はなぶさ	ANH	Anh, ưu tú		Từ ảnh N4 kanji 15-28: Anh, ưu tú.		kanji,n4,image-15-28	ready
+N4-KANJI-0066	N4	n4_kanji_core	66	世	セ, セイ, ソウ	よ	THẾ	đời, thế giới		Từ ảnh N4 kanji 15-28: đời, thế giới.		kanji,n4,image-15-28	ready
+N4-KANJI-0067	N4	n4_kanji_core	67	地	ジ, チ		ĐỊA	đất, địa điểm		Từ ảnh N4 kanji 15-28: đất, địa điểm.		kanji,n4,image-15-28	ready
+N4-KANJI-0068	N4	n4_kanji_core	68	池	チ	いけ	TRÌ	ao		Từ ảnh N4 kanji 15-28: ao.		kanji,n4,image-15-28	ready
+N4-KANJI-0069	N4	n4_kanji_core	69	漢	カン		HÁN	Hán		Từ ảnh N4 kanji 15-28: Hán.		kanji,n4,image-15-28	ready
+N4-KANJI-0070	N4	n4_kanji_core	70	油	ユ, ユウ	あぶら	DU	dầu		Từ ảnh N4 kanji 15-28: dầu.		kanji,n4,image-15-28	ready
+N4-KANJI-0071	N4	n4_kanji_core	71	都	ツ, ト	みやこ	ĐÔ	đô, thủ đô		Từ ảnh N4 kanji 15-28: đô, thủ đô.		kanji,n4,image-15-28	ready
+N4-KANJI-0072	N4	n4_kanji_core	72	暑	ショ	あつ.い	THỬ	nóng		Từ ảnh N4 kanji 15-28: nóng.		kanji,n4,image-15-28	ready
+N4-KANJI-0073	N4	n4_kanji_core	73	道	トウ, ドウ	いう, みち	ĐẠO	đường		Từ ảnh N4 kanji 15-28: đường.		kanji,n4,image-15-28	ready
+N4-KANJI-0074	N4	n4_kanji_core	74	辺	ヘン	-べ, あた.り, ほと.り	BIÊN	vùng, cạnh		Từ ảnh N4 kanji 15-28: vùng, cạnh.		kanji,n4,image-15-28	ready
+N4-KANJI-0075	N4	n4_kanji_core	75	選	セン	え.る, えら.ぶ, よ.る	TUYỂN	chọn		Từ ảnh N4 kanji 15-28: chọn.		kanji,n4,image-15-28	ready
+N4-KANJI-0076	N4	n4_kanji_core	76	糸	シ	いと	MỊCH	sợi chỉ		Từ ảnh N4 kanji 15-28: sợi chỉ.		kanji,n4,image-15-28	ready
+N4-KANJI-0077	N4	n4_kanji_core	77	緑	リョク, ロク	みどり	LỤC	xanh lá		Từ ảnh N4 kanji 15-28: xanh lá.		kanji,n4,image-15-28	ready
+N4-KANJI-0078	N4	n4_kanji_core	78	経	キョウ, キン, ケイ	た.つ, たていと, のり, はか.る, へ.る	KINH	kinh, trải qua		Từ ảnh N4 kanji 15-28: kinh, trải qua.		kanji,n4,image-15-28	ready
+N4-KANJI-0079	N4	n4_kanji_core	79	園	エン	その	VIÊN	vườn		Từ ảnh N4 kanji 15-28: vườn.		kanji,n4,image-15-28	ready
+N4-KANJI-0080	N4	n4_kanji_core	80	遠	エン, オン	とお.い	VIỄN	xa		Từ ảnh N4 kanji 15-28: xa.		kanji,n4,image-15-28	ready
+N4-KANJI-0081	N4	n4_kanji_core	81	番	バン	つが.い	PHIÊN	lượt, số		Từ ảnh N4 kanji 15-28: lượt, số.		kanji,n4,image-15-28	ready
+N4-KANJI-0082	N4	n4_kanji_core	82	乗	ショウ, ジョウ	-の.り, の.せる, の.る	THỪA	lên xe, cưỡi		Từ ảnh N4 kanji 15-28: lên xe, cưỡi.		kanji,n4,image-15-28	ready
+N4-KANJI-0083	N4	n4_kanji_core	83	品	ヒン, ホン	しな	PHẨM	đồ, phẩm		Từ ảnh N4 kanji 15-28: đồ, phẩm.		kanji,n4,image-15-28	ready
+N4-KANJI-0084	N4	n4_kanji_core	84	号	ゴウ	さけ.ぶ, よびな	HIỆU	số hiệu		Từ ảnh N4 kanji 15-28: số hiệu.		kanji,n4,image-15-28	ready
+N4-KANJI-0085	N4	n4_kanji_core	85	味	ミ	あじ, あじ.わう	VỊ	vị		Từ ảnh N4 kanji 15-28: vị.		kanji,n4,image-15-28	ready
+N4-KANJI-0086	N4	n4_kanji_core	86	紙	シ	かみ	CHỈ	giấy		Từ ảnh N4 kanji 15-28: giấy.		kanji,n4,image-15-28	ready
+N4-KANJI-0087	N4	n4_kanji_core	87	細	サイ	こま.か, こま.かい, ほそ.い, ほそ.る	TẾ	mảnh, chi tiết		Từ ảnh N4 kanji 15-28: mảnh, chi tiết.		kanji,n4,image-15-28	ready
+N4-KANJI-0088	N4	n4_kanji_core	88	線	セン	すじ	TUYẾN	đường nét		Từ ảnh N4 kanji 15-28: đường nét.		kanji,n4,image-15-28	ready
+N4-KANJI-0089	N4	n4_kanji_core	89	鳥	チョウ	とり	ĐIỂU	chim		Từ ảnh N4 kanji 15-28: chim.		kanji,n4,image-15-28	ready
+N4-KANJI-0090	N4	n4_kanji_core	90	鳴	メイ	な.く, な.らす, な.る	MINH	kêu, reo		Từ ảnh N4 kanji 15-28: kêu, reo.		kanji,n4,image-15-28	ready
+N4-KANJI-0091	N4	n4_kanji_core	91	屋	オク	や	ỐC	cửa hàng, nhà		Từ ảnh N4 kanji 15-28: cửa hàng, nhà.		kanji,n4,image-15-28	ready
+N4-KANJI-0092	N4	n4_kanji_core	92	注	チュウ	さ.す, そそ.ぐ, つ.ぐ	CHÚ	rót, chú ý		Từ ảnh N4 kanji 15-28: rót, chú ý.		kanji,n4,image-15-28	ready
+N4-KANJI-0093	N4	n4_kanji_core	93	春	シュン	はる	XUÂN	mùa xuân		Từ ảnh N4 kanji 15-28: mùa xuân.		kanji,n4,image-15-28	ready
+N4-KANJI-0094	N4	n4_kanji_core	94	昼	チュウ	ひる	TRÚ	ban ngày, trưa		Từ ảnh N4 kanji 15-28: ban ngày, trưa.		kanji,n4,image-15-28	ready
+N4-KANJI-0095	N4	n4_kanji_core	95	星	ショウ, セイ	-ぼし, ほし	TINH	sao		Từ ảnh N4 kanji 15-28: sao.		kanji,n4,image-15-28	ready
+N4-KANJI-0096	N4	n4_kanji_core	96	竹	チク	たけ	TRÚC	tre		Từ ảnh N4 kanji 15-28: tre.		kanji,n4,image-15-28	ready
+N4-KANJI-0097	N4	n4_kanji_core	97	答	トウ	こた.え, こた.える	ĐÁP	trả lời		Từ ảnh N4 kanji 15-28: trả lời.		kanji,n4,image-15-28	ready
+N4-KANJI-0098	N4	n4_kanji_core	98	丸	ガン	まる, まる.い, まる.める	HOÀN	tròn		Từ ảnh N4 kanji 15-28: tròn.		kanji,n4,image-15-28	ready
+N4-KANJI-0099	N4	n4_kanji_core	99	究	キュウ, ク	きわ.める	CỨU	nghiên cứu		Từ ảnh N4 kanji 15-28: nghiên cứu.		kanji,n4,image-15-28	ready
+N4-KANJI-0100	N4	n4_kanji_core	100	京	キョウ, キン, ケイ	みやこ	KINH	kinh đô		Từ ảnh N4 kanji 15-28: kinh đô.		kanji,n4,image-15-28	ready
+N4-KANJI-0101	N4	n4_kanji_core	101	市	シ	いち	THỊ	thành phố, chợ		Từ ảnh N4 kanji 15-28: thành phố, chợ.		kanji,n4,image-15-28	ready
+N4-KANJI-0102	N4	n4_kanji_core	102	院	イン		VIỆN	viện		Từ ảnh N4 kanji 15-28: viện.		kanji,n4,image-15-28	ready
+N4-KANJI-0103	N4	n4_kanji_core	103	降	コウ, ゴ	お.りる, お.ろす, くだ.す, くだ.る, ふ.り, ふ.る	GIÁNG	rơi, xuống		Từ ảnh N4 kanji 15-28: rơi, xuống.		kanji,n4,image-15-28	ready
+N4-KANJI-0104	N4	n4_kanji_core	104	部	ブ	-べ	BỘ	bộ phận		Từ ảnh N4 kanji 15-28: bộ phận.		kanji,n4,image-15-28	ready
+N4-KANJI-0105	N4	n4_kanji_core	105	持	ジ	-も.ち, も.つ, も.てる	TRÌ	cầm, có		Từ ảnh N4 kanji 15-28: cầm, có.		kanji,n4,image-15-28	ready
+N4-KANJI-0106	N4	n4_kanji_core	106	待	タイ	-ま.ち, ま.つ	ĐÃI	đợi		Từ ảnh N4 kanji 15-28: đợi.		kanji,n4,image-15-28	ready
+N4-KANJI-0107	N4	n4_kanji_core	107	区	オウ, ク, コウ		KHU	khu		Từ ảnh N4 kanji 15-28: khu.		kanji,n4,image-15-28	ready
+N4-KANJI-0108	N4	n4_kanji_core	108	図	ズ, ト	え, はか.る	ĐỒ	sơ đồ, ý đồ		Từ ảnh N4 kanji 15-28: sơ đồ, ý đồ.		kanji,n4,image-15-28	ready
+N4-KANJI-0109	N4	n4_kanji_core	109	晩	バン		VÃN	buổi tối		Từ ảnh N4 kanji 15-28: buổi tối.		kanji,n4,image-15-28	ready
+N4-KANJI-0110	N4	n4_kanji_core	110	勉	ベン	つと.める	MIỄN	cố gắng học		Từ ảnh N4 kanji 15-28: cố gắng học.		kanji,n4,image-15-28	ready
+N4-KANJI-0111	N4	n4_kanji_core	111	県	ケン	か.ける	HUYỆN	tỉnh		Từ ảnh N4 kanji 15-28: tỉnh.		kanji,n4,image-15-28	ready
+N4-KANJI-0112	N4	n4_kanji_core	112	真	シン	ま, ま-, まこと	CHÂN	thật		Từ ảnh N4 kanji 15-28: thật.		kanji,n4,image-15-28	ready
+N4-KANJI-0113	N4	n4_kanji_core	113	黄	オウ, コウ	き, こ-	HOÀNG	vàng		Từ ảnh N4 kanji 15-28: vàng.		kanji,n4,image-15-28	ready
+N4-KANJI-0114	N4	n4_kanji_core	114	映	エイ	-ば.え, うつ.す, うつ.る, は.える	ÁNH	chiếu, phản chiếu		Từ ảnh N4 kanji 15-28: chiếu, phản chiếu.		kanji,n4,image-15-28	ready
+N4-KANJI-0115	N4	n4_kanji_core	115	央	オウ		ƯƠNG	trung tâm		Từ ảnh N4 kanji 15-28: trung tâm.		kanji,n4,image-15-28	ready
+N4-KANJI-0116	N4	n4_kanji_core	116	当	トウ	あ.たり, あ.たる, あ.て, あ.てる, まさ.に, まさ.にべし	ĐƯƠNG	đúng, trúng		Từ ảnh N4 kanji 15-28: đúng, trúng.		kanji,n4,image-15-28	ready
+N4-KANJI-0117	N4	n4_kanji_core	117	急	キュウ	いそ.ぎ, いそ.ぐ, せ.く	CẤP	gấp		Từ ảnh N4 kanji 15-28: gấp.		kanji,n4,image-15-28	ready
+N4-KANJI-0118	N4	n4_kanji_core	118	試	シ	こころ.みる, ため.す	THÍ	thử, thi		Từ ảnh N4 kanji 15-28: thử, thi.		kanji,n4,image-15-28	ready
+N4-KANJI-0119	N4	n4_kanji_core	119	計	ケイ	はか.らう, はか.る	KẾ	kế, đo		Từ ảnh N4 kanji 15-28: kế, đo.		kanji,n4,image-15-28	ready
+N4-KANJI-0120	N4	n4_kanji_core	120	記	キ	しる.す	KÍ	ghi chép		Từ ảnh N4 kanji 15-28: ghi chép.		kanji,n4,image-15-28	ready
+N4-KANJI-0121	N4	n4_kanji_core	121	説	セツ, ゼイ	と.く	THUYẾT	giải thích		Từ ảnh N4 kanji 15-28: giải thích.		kanji,n4,image-15-28	ready
+N4-KANJI-0122	N4	n4_kanji_core	122	課	カ		KHÓA	bài, khoa		Từ ảnh N4 kanji 15-28: bài, khoa.		kanji,n4,image-15-28	ready
+N4-KANJI-0123	N4	n4_kanji_core	123	羽	ウ	は, はね, わ	VŨ	lông, cánh		Từ ảnh N4 kanji 15-28: lông, cánh.		kanji,n4,image-15-28	ready
+N4-KANJI-0124	N4	n4_kanji_core	124	習	シュウ, ジュ	なら.い, なら.う	TẬP	học, luyện		Từ ảnh N4 kanji 15-28: học, luyện.		kanji,n4,image-15-28	ready
+N4-KANJI-0125	N4	n4_kanji_core	125	切	サイ, セツ	-き.り, -き.る, -き.れ, -き.れる, -ぎ.り, -ぎ.れ, き.り, き.る, き.れ, き.れる	THIẾT	cắt		Từ ảnh N4 kanji 15-28: cắt.		kanji,n4,image-15-28	ready
+N4-KANJI-0126	N4	n4_kanji_core	126	心	シン	-ごころ, こころ	TÂM	tim, tâm		Từ ảnh N4 kanji 15-28: tim, tâm.		kanji,n4,image-15-28	ready
+N4-KANJI-0127	N4	n4_kanji_core	127	思	シ	おぼ.す, おも.う, おもえら.く	TƯ	nghĩ		Từ ảnh N4 kanji 15-28: nghĩ.		kanji,n4,image-15-28	ready
+N4-KANJI-0128	N4	n4_kanji_core	128	指	シ	-さ.し, さ.す, ゆび	CHỈ	ngón tay, chỉ		Từ ảnh N4 kanji 15-28: ngón tay, chỉ.		kanji,n4,image-15-28	ready
+N4-KANJI-0129	N4	n4_kanji_core	129	捨	シャ	す.てる	XẢ	vứt bỏ		Từ ảnh N4 kanji 15-28: vứt bỏ.		kanji,n4,image-15-28	ready
+N4-KANJI-0130	N4	n4_kanji_core	130	拾	シュウ, ジュウ	ひろ.う	THẬP	nhặt		Từ ảnh N4 kanji 15-28: nhặt.		kanji,n4,image-15-28	ready
+N4-KANJI-0131	N4	n4_kanji_core	131	配	ハイ	くば.る	PHỐI	phân phối		Từ ảnh N4 kanji 15-28: phân phối.		kanji,n4,image-15-28	ready
+N4-KANJI-0132	N4	n4_kanji_core	132	起	キ	お.きる, お.こす, お.こる, おこ.す, た.つ	KHỞI	thức dậy, xảy ra		Từ ảnh N4 kanji 15-28: thức dậy, xảy ra.		kanji,n4,image-15-28	ready
+N4-KANJI-0133	N4	n4_kanji_core	133	代	タイ, ダイ	-が.わり, -がわ.り, か.える, か.わり, か.わる, かわ.り, かわ.る, しろ, よ	ĐẠI	thay, đời		Từ ảnh N4 kanji 15-28: thay, đời.		kanji,n4,image-15-28	ready
+N4-KANJI-0134	N4	n4_kanji_core	134	貸	タイ	か.し-, か.す, かし-	THẢI	cho mượn		Từ ảnh N4 kanji 15-28: cho mượn.		kanji,n4,image-15-28	ready
+N4-KANJI-0135	N4	n4_kanji_core	135	最	サイ, シュ	つま, もっと.も	TỐI	nhất		Từ ảnh N4 kanji 15-28: nhất.		kanji,n4,image-15-28	ready
+N4-KANJI-0136	N4	n4_kanji_core	136	恥	チ	は.じらう, は.じる, は.ずかしい, はじ	SỈ	xấu hổ		Từ ảnh N4 kanji 15-28: xấu hổ.		kanji,n4,image-15-28	ready
+N4-KANJI-0137	N4	n4_kanji_core	137	押	オウ	お.さえる, お.し-, お.す, お.っ-, おさ.える	ÁP	đẩy, ấn		Từ ảnh N4 kanji 15-28: đẩy, ấn.		kanji,n4,image-15-28	ready
+N4-KANJI-0138	N4	n4_kanji_core	138	探	タン	さが.す, さぐ.る	THÁM	tìm kiếm		Từ ảnh N4 kanji 15-28: tìm kiếm.		kanji,n4,image-15-28	ready
+N4-KANJI-0139	N4	n4_kanji_core	139	折	シャク, セツ	-お.り, お.り, お.る, お.れる, おり	CHIẾT	gấp, bẻ		Từ ảnh N4 kanji 15-28: gấp, bẻ.		kanji,n4,image-15-28	ready
+N4-KANJI-0140	N4	n4_kanji_core	140	社	シャ	やしろ	XÃ	công ty, đền		Từ ảnh N4 kanji 15-28: công ty, đền.		kanji,n4,image-15-28	ready
+N4-KANJI-0141	N4	n4_kanji_core	141	祝	シュウ, シュク	いわ.う	CHÚC	chúc mừng		Từ ảnh N4 kanji 15-28: chúc mừng.		kanji,n4,image-15-28	ready
+N4-KANJI-0142	N4	n4_kanji_core	142	落	ラク	お.ち, お.ちる, お.とす	LẠC	rơi		Từ ảnh N4 kanji 15-28: rơi.		kanji,n4,image-15-28	ready
+N4-KANJI-0143	N4	n4_kanji_core	143	苦	ク	-ぐる.しい, くる.しい, くる.しむ, くる.しめる, にが.い, にが.る	KHỔ	đắng, khổ		Từ ảnh N4 kanji 15-28: đắng, khổ.		kanji,n4,image-15-28	ready
+N4-KANJI-0144	N4	n4_kanji_core	144	顔	ガン	かお	NHAN	mặt		Từ ảnh N4 kanji 15-28: mặt.		kanji,n4,image-15-28	ready
+N4-KANJI-0145	N4	n4_kanji_core	145	題	ダイ		ĐỀ	đề tài		Từ ảnh N4 kanji 15-28: đề tài.		kanji,n4,image-15-28	ready
+N4-KANJI-0146	N4	n4_kanji_core	146	工	ク, グ, コウ		CÔNG	công, kỹ thuật		Từ ảnh N4 kanji 15-28: công, kỹ thuật.		kanji,n4,image-15-28	ready
+N4-KANJI-0147	N4	n4_kanji_core	147	空	クウ	あ.き, あ.く, あ.ける, から, す.かす, す.く, そら, むな.しい	KHÔNG	trời, rỗng		Từ ảnh N4 kanji 15-28: trời, rỗng.		kanji,n4,image-15-28	ready
+N4-KANJI-0148	N4	n4_kanji_core	148	色	シキ, ショク	いろ	SẮC	màu		Từ ảnh N4 kanji 15-28: màu.		kanji,n4,image-15-28	ready
+N4-KANJI-0149	N4	n4_kanji_core	149	声	ショウ, セイ	こえ, こわ-	THANH	giọng, tiếng		Từ ảnh N4 kanji 15-28: giọng, tiếng.		kanji,n4,image-15-28	ready
+N4-KANJI-0150	N4	n4_kanji_core	150	正	ショウ, セイ	ただ.しい, ただ.す, まさ, まさ.に	CHÍNH	đúng		Từ ảnh N4 kanji 15-28: đúng.		kanji,n4,image-15-28	ready
+N4-KANJI-0151	N4	n4_kanji_core	151	政	ショウ, セイ	まつりごと, まん	CHÍNH	chính trị		Từ ảnh N4 kanji 15-28: chính trị.		kanji,n4,image-15-28	ready
+N4-KANJI-0152	N4	n4_kanji_core	152	里	リ	さと	LÝ	làng, dặm		Từ ảnh N4 kanji 15-28: làng, dặm.		kanji,n4,image-15-28	ready
+N4-KANJI-0153	N4	n4_kanji_core	153	理	リ	ことわり	LÝ	lý, lẽ		Từ ảnh N4 kanji 15-28: lý, lẽ.		kanji,n4,image-15-28	ready
+N4-KANJI-0154	N4	n4_kanji_core	154	黒	コク	くろ, くろ.い, くろ.ずむ	HẮC	đen		Từ ảnh N4 kanji 15-28: đen.		kanji,n4,image-15-28	ready
+N4-KANJI-0155	N4	n4_kanji_core	155	野	ショ, ヤ	の, の-	DÃ	đồng, hoang		Từ ảnh N4 kanji 15-28: đồng, hoang.		kanji,n4,image-15-28	ready
+N4-KANJI-0156	N4	n4_kanji_core	156	洋	ヨウ		DƯƠNG	Tây, đại dương		Từ ảnh N4 kanji 15-28: Tây, đại dương.		kanji,n4,image-15-28	ready
+N4-KANJI-0157	N4	n4_kanji_core	157	様	ショウ, ヨウ	さま, さん	DẠNG	dáng, ngài		Từ ảnh N4 kanji 15-28: dáng, ngài.		kanji,n4,image-15-28	ready
+N4-KANJI-0158	N4	n4_kanji_core	158	料	リョウ		LIỆU	phí, nguyên liệu		Từ ảnh N4 kanji 15-28: phí, nguyên liệu.		kanji,n4,image-15-28	ready
+N4-KANJI-0159	N4	n4_kanji_core	159	奥	オウ	おく, おく.まる, くま	ÁO	bên trong		Từ ảnh N4 kanji 15-28: bên trong.		kanji,n4,image-15-28	ready
+N4-KANJI-0160	N4	n4_kanji_core	160	形	ギョウ, ケイ	-がた, かた, かたち, なり	HÌNH	hình dạng		Từ ảnh N4 kanji 15-28: hình dạng.		kanji,n4,image-15-28	ready
+N4-KANJI-0161	N4	n4_kanji_core	161	髪	ハツ	かみ	PHÁT	tóc		Từ ảnh N4 kanji 15-28: tóc.		kanji,n4,image-15-28	ready
+N4-KANJI-0162	N4	n4_kanji_core	162	青	ショウ, セイ	あお, あお-, あお.い	THANH	xanh, xanh lam		Từ ảnh N4 kanji 15-28: xanh, xanh lam.		kanji,n4,image-15-28	ready
+N4-KANJI-0163	N4	n4_kanji_core	163	晴	セイ	-ば.れ, は.らす, は.れ, は.れ-, は.れる	TÌNH	trời quang		Từ ảnh N4 kanji 15-28: trời quang.		kanji,n4,image-15-28	ready
+N4-KANJI-0164	N4	n4_kanji_core	164	静	ジョウ, セイ	しず-, しず.か, しず.まる, しず.める	TĨNH	yên tĩnh		Từ ảnh N4 kanji 15-28: yên tĩnh.		kanji,n4,image-15-28	ready
+N4-KANJI-0165	N4	n4_kanji_core	165	連	レン	-づ.れ, つ.れる, つら.なる, つら.ねる	LIÊN	dẫn theo, liên kết		Từ ảnh N4 kanji 15-28: dẫn theo, liên kết.		kanji,n4,image-15-28	ready
+N4-KANJI-0166	N4	n4_kanji_core	166	運	ウン	はこ.ぶ	VẬN	vận chuyển, vận may		Từ ảnh N4 kanji 15-28: vận chuyển, vận may.		kanji,n4,image-15-28	ready
+N4-KANJI-0167	N4	n4_kanji_core	167	文	ブン, モン	あや, ふみ	VĂN	văn, câu		Từ ảnh N4 kanji 15-28: văn, câu.		kanji,n4,image-15-28	ready
+N4-KANJI-0168	N4	n4_kanji_core	168	済	サイ, セイ	-す.ます, -ず.み, -ずみ, す.ます, す.まない, す.む, すく.う, な.す, わた.る, わたし	TẾ	xong, cứu giúp		Từ ảnh N4 kanji 15-28: xong, cứu giúp.		kanji,n4,image-15-28	ready
+N4-KANJI-0169	N4	n4_kanji_core	169	皿	ベイ	さら	MÃNH	đĩa		Từ ảnh N4 kanji 15-28: đĩa.		kanji,n4,image-15-28	ready
+N4-KANJI-0170	N4	n4_kanji_core	170	血	ケツ	ち	HUYẾT	máu		Từ ảnh N4 kanji 15-28: máu.		kanji,n4,image-15-28	ready
+N4-KANJI-0171	N4	n4_kanji_core	171	作	サ, サク	-づく.り, つく.り, つく.る	TÁC	làm, tạo		Từ ảnh N4 kanji 15-28: làm, tạo.		kanji,n4,image-15-28	ready
+N4-KANJI-0172	N4	n4_kanji_core	172	低	テイ	ひく.い, ひく.まる, ひく.める	ĐÊ	thấp		Từ ảnh N4 kanji 15-28: thấp.		kanji,n4,image-15-28	ready
+N4-KANJI-0173	N4	n4_kanji_core	173	夜	ヤ	よ, よる	DẠ	đêm		Từ ảnh N4 kanji 15-28: đêm.		kanji,n4,image-15-28	ready
+N4-KANJI-0174	N4	n4_kanji_core	174	宿	シュク	やど, やど.す, やど.る	TÚC	trọ		Từ ảnh N4 kanji 15-28: trọ.		kanji,n4,image-15-28	ready
+N4-KANJI-0175	N4	n4_kanji_core	175	夏	カ, ガ, ゲ	なつ	HẠ	mùa hè		Từ ảnh N4 kanji 15-28: mùa hè.		kanji,n4,image-15-28	ready
+N4-KANJI-0176	N4	n4_kanji_core	176	客	カク, キャク		KHÁCH	khách		Từ ảnh N4 kanji 15-28: khách.		kanji,n4,image-15-28	ready
+N4-KANJI-0177	N4	n4_kanji_core	177	点	テン	さ.す, た.てる, つ.く, つ.ける, とぼ.す, とも.す, ぼち	ĐIỂM	điểm		Từ ảnh N4 kanji 15-28: điểm.		kanji,n4,image-15-28	ready
+N4-KANJI-0178	N4	n4_kanji_core	178	店	テン	たな, みせ	ĐIẾM	cửa hàng		Từ ảnh N4 kanji 15-28: cửa hàng.		kanji,n4,image-15-28	ready
+N4-KANJI-0179	N4	n4_kanji_core	179	者	シャ	もの	GIẢ	người		Từ ảnh N4 kanji 15-28: người.		kanji,n4,image-15-28	ready
+N4-KANJI-0180	N4	n4_kanji_core	180	研	ケン	と.ぐ	NGHIÊN	mài, nghiên cứu		Từ ảnh N4 kanji 15-28: mài, nghiên cứu.		kanji,n4,image-15-28	ready
+N4-KANJI-0181	N4	n4_kanji_core	181	家	カ, ケ	いえ, うち, や	GIA	nhà		Từ ảnh N4 kanji 15-28: nhà.		kanji,n4,image-15-28	ready
+N4-KANJI-0182	N4	n4_kanji_core	182	室	シツ	むろ	THẤT	phòng		Từ ảnh N4 kanji 15-28: phòng.		kanji,n4,image-15-28	ready
+N4-KANJI-0183	N4	n4_kanji_core	183	宅	タク		TRẠCH	nhà		Từ ảnh N4 kanji 15-28: nhà.		kanji,n4,image-15-28	ready
+N4-KANJI-0184	N4	n4_kanji_core	184	写	シャ, ジャ	うつ-, うつ.し, うつ.す, うつ.る	TẢ	chụp, sao chép		Từ ảnh N4 kanji 15-28: chụp, sao chép.		kanji,n4,image-15-28	ready
+N4-KANJI-0185	N4	n4_kanji_core	185	汚	オ	きたな.い, けが.す, けが.らわしい, けが.れる, よご.す, よご.れる	Ô	bẩn		Từ ảnh N4 kanji 15-28: bẩn.		kanji,n4,image-15-28	ready
+N4-KANJI-0186	N4	n4_kanji_core	186	活	カツ	い.かす, い.きる, い.ける	HOẠT	sống, hoạt động		Từ ảnh N4 kanji 15-28: sống, hoạt động.		kanji,n4,image-15-28	ready
+N4-KANJI-0187	N4	n4_kanji_core	187	法	ハッ, フラン, ホウ, ホッ	のり	PHÁP	pháp, luật		Từ ảnh N4 kanji 15-28: pháp, luật.		kanji,n4,image-15-28	ready
+N4-KANJI-0188	N4	n4_kanji_core	188	虫	キ, チュウ	むし	TRÙNG	sâu, côn trùng		Từ ảnh N4 kanji 15-28: sâu, côn trùng.		kanji,n4,image-15-28	ready
+N4-KANJI-0189	N4	n4_kanji_core	189	強	キョウ, ゴウ	こわ.い, し.いる, つよ.い, つよ.まる, つよ.める	CƯỜNG	mạnh		Từ ảnh N4 kanji 15-28: mạnh.		kanji,n4,image-15-28	ready
+N4-KANJI-0190	N4	n4_kanji_core	190	風	フ, フウ	かざ-, かぜ	PHONG	gió, phong cách		Từ ảnh N4 kanji 15-28: gió, phong cách.		kanji,n4,image-15-28	ready
+N4-KANJI-0191	N4	n4_kanji_core	191	事	ジ, ズ	こと, つか.う, つか.える	SỰ	việc		Từ ảnh N4 kanji 15-28: việc.		kanji,n4,image-15-28	ready
+N4-KANJI-0192	N4	n4_kanji_core	192	才	サイ		TÀI	tài năng, tuổi		Từ ảnh N4 kanji 15-28: tài năng, tuổi.		kanji,n4,image-15-28	ready
+N4-KANJI-0193	N4	n4_kanji_core	193	技	ギ	わざ	KĨ	kỹ năng		Từ ảnh N4 kanji 15-28: kỹ năng.		kanji,n4,image-15-28	ready
+N4-KANJI-0194	N4	n4_kanji_core	194	枝	シ	えだ	CHI	cành		Từ ảnh N4 kanji 15-28: cành.		kanji,n4,image-15-28	ready
+N4-KANJI-0195	N4	n4_kanji_core	195	港	コウ	みなと	CẢNG	cảng		Từ ảnh N4 kanji 15-28: cảng.		kanji,n4,image-15-28	ready
+N4-KANJI-0196	N4	n4_kanji_core	196	決	ケツ	-ぎ.め, き.まる, き.める, さ.く	QUYẾT	quyết định		Từ ảnh N4 kanji 15-28: quyết định.		kanji,n4,image-15-28	ready
+N4-KANJI-0197	N4	n4_kanji_core	197	滑	カツ, コツ	すべ.る, なめ.らか	HOẠT	trượt		Từ ảnh N4 kanji 15-28: trượt.		kanji,n4,image-15-28	ready
+N4-KANJI-0198	N4	n4_kanji_core	198	伝	テン, デン	-づた.い, つた.う, つた.える, つた.わる, つだ.う, つて	TRUYỀN	truyền đạt		Từ ảnh N4 kanji 15-28: truyền đạt.		kanji,n4,image-15-28	ready
+N4-KANJI-0199	N4	n4_kanji_core	199	孫	ソン	まご	TÔN	cháu		Từ ảnh N4 kanji 15-28: cháu.		kanji,n4,image-15-28	ready
+N4-KANJI-0200	N4	n4_kanji_core	200	借	シャク	か.りる	TÁ	mượn		Từ ảnh N4 kanji 15-28: mượn.		kanji,n4,image-15-28	ready
+N4-KANJI-0201	N4	n4_kanji_core	201	行	アン, ギョウ, コウ	-い.き, -いき, -ゆ.き, -ゆき, い.く, おこ.なう, おこな.う, ゆ.く	HÀNH	đi		Từ ảnh N4 kanji 15-28: đi.		kanji,n4,image-15-28	ready
+N4-KANJI-0202	N4	n4_kanji_core	202	術	ジュツ	すべ	THUẬT	thuật, kỹ thuật		Từ ảnh N4 kanji 15-28: thuật, kỹ thuật.		kanji,n4,image-15-28	ready
+N4-KANJI-0203	N4	n4_kanji_core	203	白	ハク, ビャク	しら-, しろ, しろ.い	BẠCH	trắng		Từ ảnh N4 kanji 15-28: trắng.		kanji,n4,image-15-28	ready
+N4-KANJI-0204	N4	n4_kanji_core	204	原	ゲン	はら	NGUYÊN	nguyên, cánh đồng		Từ ảnh N4 kanji 15-28: nguyên, cánh đồng.		kanji,n4,image-15-28	ready
+N4-KANJI-0205	N4	n4_kanji_core	205	悲	ヒ	かな.しい, かな.しむ	BI	buồn		Từ ảnh N4 kanji 15-28: buồn.		kanji,n4,image-15-28	ready
+N4-KANJI-0206	N4	n4_kanji_core	206	忘	ボウ	わす.れる	VONG	quên		Từ ảnh N4 kanji 15-28: quên.		kanji,n4,image-15-28	ready
+N4-KANJI-0207	N4	n4_kanji_core	207	意	イ		Ý	ý		Từ ảnh N4 kanji 15-28: ý.		kanji,n4,image-15-28	ready
+N4-KANJI-0208	N4	n4_kanji_core	208	辛	シン	-づら.い, かのと, から.い, つら.い	TÂN	cay, vất vả		Từ ảnh N4 kanji 15-28: cay, vất vả.		kanji,n4,image-15-28	ready
+N4-KANJI-0209	N4	n4_kanji_core	209	幸	コウ	さいわ.い, さち, しあわ.せ	HẠNH	hạnh phúc		Từ ảnh N4 kanji 15-28: hạnh phúc.		kanji,n4,image-15-28	ready
+N4-KANJI-0210	N4	n4_kanji_core	210	報	ホウ	むく.いる	BÁO	báo, tin		Từ ảnh N4 kanji 15-28: báo, tin.		kanji,n4,image-15-28	ready
+N4-KANJI-0211	N4	n4_kanji_core	211	反	タン, ハン, ホ, ホン	-かえ.る, かえ.す, かえ.る, そ.らす, そ.る	PHẢN	phản đối, ngược		Từ ảnh N4 kanji 15-28: phản đối, ngược.		kanji,n4,image-15-28	ready
+N4-KANJI-0212	N4	n4_kanji_core	212	坂	ハン	さか	PHẢN	dốc		Từ ảnh N4 kanji 15-28: dốc.		kanji,n4,image-15-28	ready
+N4-KANJI-0213	N4	n4_kanji_core	213	以	イ	もっ.て	DĨ	lấy làm, từ		Từ ảnh N4 kanji 15-28: lấy làm, từ.		kanji,n4,image-15-28	ready
+N4-KANJI-0214	N4	n4_kanji_core	214	似	ジ	に.る, ひ.る	TỰ	giống		Từ ảnh N4 kanji 15-28: giống.		kanji,n4,image-15-28	ready
+N4-KANJI-0215	N4	n4_kanji_core	215	割	カツ	さ.く, わ.り, わ.る, わ.れる, わり	CÁT	chia, vỡ		Từ ảnh N4 kanji 15-28: chia, vỡ.		kanji,n4,image-15-28	ready
+N4-KANJI-0216	N4	n4_kanji_core	216	則	ソク	すなわち, のっと.る, のり	TẮC	quy tắc		Từ ảnh N4 kanji 15-28: quy tắc.		kanji,n4,image-15-28	ready
+N4-KANJI-0217	N4	n4_kanji_core	217	別	ベツ	わ.ける, わか.れる	BIỆT	riêng, khác		Từ ảnh N4 kanji 15-28: riêng, khác.		kanji,n4,image-15-28	ready
+N4-KANJI-0218	N4	n4_kanji_core	218	規	キ		QUY	quy định		Từ ảnh N4 kanji 15-28: quy định.		kanji,n4,image-15-28	ready
+N4-KANJI-0219	N4	n4_kanji_core	219	失	シツ	う.せる, うしな.う	THẤT	mất, thất bại		Từ ảnh N4 kanji 15-28: mất, thất bại.		kanji,n4,image-15-28	ready
+N4-KANJI-0220	N4	n4_kanji_core	220	難	ナン	-がた.い, -にく.い, かた.い, むずか.しい, むつか.しい, むづか.しい	NAN	khó		Từ ảnh N4 kanji 15-28: khó.		kanji,n4,image-15-28	ready
+N4-KANJI-0221	N4	n4_kanji_core	221	席	セキ	むしろ	TỊCH	chỗ ngồi		Từ ảnh N4 kanji 15-28: chỗ ngồi.		kanji,n4,image-15-28	ready
+N4-KANJI-0222	N4	n4_kanji_core	222	布	フ, ホ	きれ, し.く, ぬの	BỐ	vải		Từ ảnh N4 kanji 15-28: vải.		kanji,n4,image-15-28	ready
+N4-KANJI-0223	N4	n4_kanji_core	223	届	カイ	-とど.け, とど.く, とど.ける	GIỚI	đến nơi, giao		Từ ảnh N4 kanji 15-28: đến nơi, giao.		kanji,n4,image-15-28	ready
+N4-KANJI-0224	N4	n4_kanji_core	224	戻	レイ	もど.す, もど.る	LỆ	trở lại		Từ ảnh N4 kanji 15-28: trở lại.		kanji,n4,image-15-28	ready
+N4-KANJI-0225	N4	n4_kanji_core	225	負	フ	お.う, ま.かす, ま.ける	PHỤ	thua, mang		Từ ảnh N4 kanji 15-28: thua, mang.		kanji,n4,image-15-28	ready
+N4-KANJI-0226	N4	n4_kanji_core	226	植	ショク	う.える, う.わる	THỰC	trồng		Từ ảnh N4 kanji 15-28: trồng.		kanji,n4,image-15-28	ready
+N4-KANJI-0227	N4	n4_kanji_core	227	着	ジャク, チャク	き.せる, き.る, つ.く, つ.ける	TRỨ	mặc, đến		Từ ảnh N4 kanji 15-28: mặc, đến.		kanji,n4,image-15-28	ready
+N4-KANJI-0228	N4	n4_kanji_core	228	必	ヒツ	かなら.ず	TẤT	chắc chắn, cần		Từ ảnh N4 kanji 15-28: chắc chắn, cần.		kanji,n4,image-15-28	ready
+N4-KANJI-0229	N4	n4_kanji_core	229	引	イン	ひ.く, ひ.ける	DẪN	kéo		Từ ảnh N4 kanji 15-28: kéo.		kanji,n4,image-15-28	ready
+N4-KANJI-0230	N4	n4_kanji_core	230	発	ハツ, ホツ	あば.く, おこ.る, た.つ, つか.わす, はな.つ	PHÁT	phát, khởi hành		Từ ảnh N4 kanji 15-28: phát, khởi hành.		kanji,n4,image-15-28	ready
+N4-KANJI-0231	N4	n4_kanji_core	231	業	ギョウ, ゴウ	わざ	NGHIỆP	nghiệp, công việc		Từ ảnh N4 kanji 15-28: nghiệp, công việc.		kanji,n4,image-15-28	ready
+N4-KANJI-0232	N4	n4_kanji_core	232	束	ソク	たば, たば.ねる, つか, つか.ねる	THÚC	bó, ràng buộc		Từ ảnh N4 kanji 15-28: bó, ràng buộc.		kanji,n4,image-15-28	ready
+N4-KANJI-0233	N4	n4_kanji_core	233	化	カ, ケ	け.する, ば.かす, ば.ける, ふ.ける	HÓA	hóa, biến đổi		Từ ảnh N4 kanji 15-28: hóa, biến đổi.		kanji,n4,image-15-28	ready
+N4-KANJI-0234	N4	n4_kanji_core	234	比	ヒ	くら.べる	TỈ	so sánh		Từ ảnh N4 kanji 15-28: so sánh.		kanji,n4,image-15-28	ready
+N4-KANJI-0235	N4	n4_kanji_core	235	忙	ボウ, モウ	いそが.しい, うれえるさま, おそ.れる, せわ.しい	MANG	bận		Từ ảnh N4 kanji 15-28: bận.		kanji,n4,image-15-28	ready
+N4-KANJI-0236	N4	n4_kanji_core	236	怖	フ, ホ	お.じる, おそ.れる, こわ.い, こわ.がる	BỐ	đáng sợ		Từ ảnh N4 kanji 15-28: đáng sợ.		kanji,n4,image-15-28	ready
+N4-KANJI-0237	N4	n4_kanji_core	237	飾	ショク	かざ.り, かざ.る	SỨC	trang trí		Từ ảnh N4 kanji 15-28: trang trí.		kanji,n4,image-15-28	ready
+N4-KANJI-0238	N4	n4_kanji_core	238	両	リョウ	てる, ふたつ	LƯỠNG	cả hai		Từ ảnh N4 kanji 15-28: cả hai.		kanji,n4,image-15-28	ready
+N4-KANJI-0239	N4	n4_kanji_core	239	船	セン	ふな-, ふね	THUYỀN	thuyền		Từ ảnh N4 kanji 15-28: thuyền.		kanji,n4,image-15-28	ready
+N4-KANJI-0240	N4	n4_kanji_core	240	変	ヘン	か.える, か.わり, か.わる	BIẾN	thay đổi, lạ		Từ ảnh N4 kanji 15-28: thay đổi, lạ.		kanji,n4,image-15-28	ready
+N4-KANJI-0241	N4	n4_kanji_core	241	建	ケン, コン	-だ.て, た.つ, た.て, た.てる	KIẾN	xây		Từ ảnh N4 kanji 15-28: xây.		kanji,n4,image-15-28	ready
+N4-KANJI-0242	N4	n4_kanji_core	242	筆	ヒツ	ふで	BÚT	bút lông		Từ ảnh N4 kanji 15-28: bút lông.		kanji,n4,image-15-28	ready
+N4-KANJI-0243	N4	n4_kanji_core	243	北	ホク	きた	BẮC	bắc		Từ ảnh N4 kanji 15-28: bắc.		kanji,n4,image-15-28	ready
+N4-KANJI-0244	N4	n4_kanji_core	244	背	ハイ	せ, せい, そむ.く, そむ.ける	BỐI	lưng, chiều cao		Từ ảnh N4 kanji 15-28: lưng, chiều cao.		kanji,n4,image-15-28	ready
+N4-KANJI-0245	N4	n4_kanji_core	245	通	ツ, ツウ	-とお.り, -どお.し, -どお.り, かよ.う, とお.し, とお.す, とお.り, とお.る	THÔNG	thông qua, đi lại		Từ ảnh N4 kanji 15-28: thông qua, đi lại.		kanji,n4,image-15-28	ready
+N4-KANJI-0246	N4	n4_kanji_core	246	踊	ヨウ	おど.る	DŨNG	nhảy múa		Từ ảnh N4 kanji 15-28: nhảy múa.		kanji,n4,image-15-28	ready
+N4-KANJI-0247	N4	n4_kanji_core	247	困	コン	こま.る	KHỐN	khốn, gặp khó		Từ ảnh N4 kanji 15-28: khốn, gặp khó.		kanji,n4,image-15-28	ready
+N4-KANJI-0248	N4	n4_kanji_core	248	固	コ	かた.い, かた.まり, かた.まる, かた.める	CỐ	cứng, cố định		Từ ảnh N4 kanji 15-28: cứng, cố định.		kanji,n4,image-15-28	ready
+N4-KANJI-0249	N4	n4_kanji_core	249	袋	タイ, ダイ	ふくろ	ĐẠI	túi		Từ ảnh N4 kanji 15-28: túi.		kanji,n4,image-15-28	ready
+N4-KANJI-0250	N4	n4_kanji_core	250	表	ヒョウ	-おもて, あら.わす, あらわ.す, あらわ.れる, おもて	BIỂU	bảng, bề mặt		Từ ảnh N4 kanji 15-28: bảng, bề mặt.		kanji,n4,image-15-28	ready
