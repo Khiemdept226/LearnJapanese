@@ -49,6 +49,41 @@ def test_set_lane_goal_preserves_other_lane(tmp_path, monkeypatch):
     assert grammar["daily_review_limit"] == 20
 
 
+def test_set_lane_filter_stores_deck_and_tags(tmp_path, monkeypatch):
+    db_path = tmp_path / "learning.sqlite3"
+    monkeypatch.setattr(learning_items, "DATABASE_PATH", str(db_path))
+
+    settings = learning_items.set_lane_filter(123, "neword", deck_id="n4_vocab_core", tags="food, verb,food")
+
+    assert settings["item_type"] == "vocab"
+    assert settings["deck_id"] == "n4_vocab_core"
+    assert settings["tags"] == "food,verb"
+
+
+def test_set_lane_filter_preserves_other_lane_goal(tmp_path, monkeypatch):
+    db_path = tmp_path / "learning.sqlite3"
+    monkeypatch.setattr(learning_items, "DATABASE_PATH", str(db_path))
+    learning_items.set_lane_goal(123, "kanji", daily_new_limit=5, daily_review_limit=50)
+
+    settings = learning_items.set_lane_filter(123, "kanji", deck_id="n4_kanji_core", tags="jlpt")
+
+    assert settings["daily_new_limit"] == 5
+    assert settings["daily_review_limit"] == 50
+    assert settings["deck_id"] == "n4_kanji_core"
+    assert settings["tags"] == "jlpt"
+
+
+def test_set_lane_filter_can_clear_deck_and_tags(tmp_path, monkeypatch):
+    db_path = tmp_path / "learning.sqlite3"
+    monkeypatch.setattr(learning_items, "DATABASE_PATH", str(db_path))
+    learning_items.set_lane_filter(123, "grammar", deck_id="n4_grammar_core", tags="n4")
+
+    settings = learning_items.set_lane_filter(123, "grammar", deck_id=None, tags=None)
+
+    assert settings["deck_id"] is None
+    assert settings["tags"] is None
+
+
 def test_get_lane_stats_filters_by_item_type(tmp_path, monkeypatch):
     db_path = tmp_path / "learning.sqlite3"
     monkeypatch.setattr(learning_items, "DATABASE_PATH", str(db_path))

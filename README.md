@@ -97,6 +97,9 @@ Typed learning lane commands:
 /goal_neword     chon goal tu moi
 /goal_kanji      chon goal kanji
 /goal_grammar    chon goal ngu phap
+/lane_settings   xem filter tung lane
+/lane_deck       chon deck cho lane
+/lane_tags       chon tags cho lane
 ```
 
 See `docs/learning-lanes-usage.md` for workflow and examples.

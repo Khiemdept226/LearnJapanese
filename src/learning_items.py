@@ -724,6 +724,20 @@ def set_lane_goal(telegram_user_id, item_type, *, daily_new_limit, daily_review_
     return get_lane_settings(telegram_user_id, lane)
 
 
+def set_lane_filter(telegram_user_id, item_type, *, deck_id=None, tags=None, level=None):
+    settings = get_lane_settings(telegram_user_id, item_type)
+    return set_lane_goal(
+        telegram_user_id,
+        settings["item_type"],
+        daily_new_limit=settings["daily_new_limit"],
+        daily_review_limit=settings["daily_review_limit"],
+        again_delay_minutes=settings["again_delay_minutes"],
+        level=level or settings.get("level") or "N4",
+        deck_id=deck_id,
+        tags=tags,
+    )
+
+
 def _lane_filters(settings):
     return {
         "level": settings.get("level"),

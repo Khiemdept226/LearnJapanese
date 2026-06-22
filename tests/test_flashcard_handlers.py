@@ -66,15 +66,16 @@ def test_format_help_lists_flashcard_flow_and_settings_commands():
     text = handlers.format_help()
 
     assert "/flash - học thông minh" in text
-    assert "/flash_new" in text
-    assert "/flash_review" in text
     assert "/flash_stats" in text
     assert "/flash_reset" in text
-    assert "/flash_settings" in text
-    assert "/flash_level N4" in text
-    assert "/flash_type vocab|kanji|grammar|kaiwa" in text
-    assert "/flash_deck n4_vocab_core" in text
-    assert "/flash_tags food,verb" in text
+
+
+def test_format_help_hides_advanced_filter_commands():
+    text = handlers.format_help()
+
+    assert "/flash_type" not in text
+    assert "/flash_deck" not in text
+    assert "/flash_tags" not in text
 
 
 def test_format_help_lists_learning_lane_commands():
@@ -87,6 +88,9 @@ def test_format_help_lists_learning_lane_commands():
     assert "/stats_neword" in text
     assert "/stats_kanji" in text
     assert "/stats_grammar" in text
+    assert "/lane_settings" in text
+    assert "/lane_deck" in text
+    assert "/lane_tags" in text
 
 
 def test_format_next_review_uses_flashcard_timezone(monkeypatch):
@@ -109,6 +113,13 @@ def test_today_cards_keyboard_links_to_card_detail():
 
     assert markup.inline_keyboard[0][0].text == "石"
     assert markup.inline_keyboard[0][0].callback_data == "flash:card:7"
+
+
+def test_stats_keyboard_can_keep_lane_next_callback():
+    markup = handlers.stats_keyboard(next_callback="flash:next_lane:kanji")
+
+    assert markup.inline_keyboard[1][0].text == "Thẻ tiếp theo"
+    assert markup.inline_keyboard[1][0].callback_data == "flash:next_lane:kanji"
 
 
 def test_grade_error_messages():
@@ -181,6 +192,27 @@ def test_format_settings_lists_learning_filters():
     assert "Type: vocab" in text
     assert "Deck: n4_vocab_core" in text
     assert "Tags: food,verb" in text
+
+
+def test_format_lane_settings_lists_each_lane_filter():
+    text = handlers.format_lane_settings([
+        {"item_type": "vocab", "level": "N4", "deck_id": "n4_vocab_core", "tags": "food,verb", "daily_new_limit": 10, "daily_review_limit": 50},
+        {"item_type": "kanji", "level": "N4", "deck_id": "n4_kanji_core", "tags": None, "daily_new_limit": 3, "daily_review_limit": 30},
+        {"item_type": "grammar", "level": "N4", "deck_id": None, "tags": "n4", "daily_new_limit": 2, "daily_review_limit": 20},
+    ])
+
+    assert "Lane settings" in text
+    assert "Từ mới" in text
+    assert "Deck: n4_vocab_core" in text
+    assert "Tags: food,verb" in text
+    assert "Kanji" in text
+    assert "Deck: all" in text or "Tags: all" in text
+    assert "Ngữ pháp" in text
+
+
+def test_lane_setting_usage_messages():
+    assert handlers.LANE_DECK_USAGE == "Usage: /lane_deck neword|kanji|grammar <deck|all>"
+    assert handlers.LANE_TAGS_USAGE == "Usage: /lane_tags neword|kanji|grammar <tags|all>"
 
 
 def test_format_card_front_accepts_legacy_card_shape():
