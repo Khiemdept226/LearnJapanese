@@ -8,6 +8,12 @@ def test_init_learning_db_creates_core_tables(tmp_path, monkeypatch):
     tables = learning_items.list_tables()
     assert {"decks", "learning_items", "user_learning_reviews", "user_learning_sessions", "user_learning_settings"}.issubset(tables)
 
+def test_init_learning_db_creates_lane_settings_table(tmp_path, monkeypatch):
+    db_path = tmp_path / "learning.sqlite3"
+    monkeypatch.setattr(learning_items, "DATABASE_PATH", str(db_path))
+    learning_items.init_learning_db()
+    assert "user_learning_lane_settings" in learning_items.list_tables()
+
 
 def test_upsert_learning_item_uses_deck_item_identity(tmp_path, monkeypatch):
     db_path = tmp_path / "learning.sqlite3"
