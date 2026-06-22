@@ -48,6 +48,9 @@ Important behavior:
 /goal_neword     set vocabulary goal
 /goal_kanji      set kanji goal
 /goal_grammar    set grammar goal
+/lane_settings   show deck/tag filters for each lane
+/lane_deck       set lane deck filter
+/lane_tags       set lane tag filter
 /help            show common commands
 ```
 
@@ -58,6 +61,41 @@ Advanced commands still exist but are hidden from `/help` to keep normal usage s
 /flash_deck n4_vocab_core
 /flash_tags food,verb
 ```
+
+## Lane Deck And Tag Filters
+
+Use these commands when you want one lane to study only one deck or tag group:
+
+```text
+/lane_settings
+/lane_deck <neword|kanji|grammar> <deck|all>
+/lane_tags <neword|kanji|grammar> <tags|all>
+```
+
+Kanji deck/tag example:
+
+```text
+/lane_deck kanji n4_kanji_core
+/lane_tags kanji jlpt,weak
+/kanji
+```
+
+Neword deck/tag example:
+
+```text
+/lane_deck neword n4_vocab_core
+/lane_tags neword food,verb
+/neword
+```
+
+Clear filters:
+
+```text
+/lane_deck kanji all
+/lane_tags kanji all
+```
+
+`/mix` uses each lane's own deck/tag settings.
 
 ## Kanji Only Session
 

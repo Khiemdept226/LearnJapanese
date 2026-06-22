@@ -67,6 +67,9 @@ LANE_GOAL_PRESETS = {
     "kanji": {"light": (1, 15), "steady": (3, 30), "heavy": (5, 50)},
     "grammar": {"light": (1, 10), "steady": (2, 20), "heavy": (4, 40)},
 }
+LANE_DECK_USAGE = "Usage: /lane_deck neword|kanji|grammar <deck|all>"
+LANE_TAGS_USAGE = "Usage: /lane_tags neword|kanji|grammar <tags|all>"
+LANE_SETTINGS_LANES = ("vocab", "kanji", "grammar")
 
 def lane_goal_keyboard(item_type):
     lane = learning_items.normalize_lane(item_type)
@@ -129,6 +132,9 @@ def format_help():
         "/goal_neword - chọn goal từ mới\n"
         "/goal_kanji - chọn goal kanji\n"
         "/goal_grammar - chọn goal ngữ pháp\n"
+        "/lane_settings - xem filter từng lane\n"
+        "/lane_deck <lane> <deck|all> - chọn deck cho lane\n"
+        "/lane_tags <lane> <tags|all> - chọn tags cho lane\n"
         "/flash_stats - xem tiến độ filter hiện tại\n"
         "/flash_reset - học lại flashcard từ đầu\n"
         "/show - hiện đáp án\n"
@@ -302,6 +308,22 @@ def format_settings(settings):
         f"Tags: {settings.get('tags') or 'all'}\n"
         f"Preset: {settings.get('preset')}"
     )
+
+
+def format_lane_settings(settings_rows):
+    lines = ["Lane settings"]
+    for settings in settings_rows:
+        lane = learning_items.normalize_lane(settings.get("item_type"))
+        lines.extend([
+            "",
+            LANE_LABELS[lane],
+            f"Level: {settings.get('level') or 'N4'}",
+            f"Deck: {settings.get('deck_id') or 'all'}",
+            f"Tags: {settings.get('tags') or 'all'}",
+            f"New/day: {settings.get('daily_new_limit')}",
+            f"Review/day: {settings.get('daily_review_limit')}",
+        ])
+    return "\n".join(lines)
 
 
 def grade_error_message(code):
@@ -489,6 +511,42 @@ async def goal_kanji(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def goal_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Chọn goal ngữ pháp:", reply_markup=lane_goal_keyboard("grammar"))
+
+
+async def lane_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    rows = [learning_items.get_lane_settings(update.effective_user.id, lane) for lane in LANE_SETTINGS_LANES]
+    await update.message.reply_text(format_lane_settings(rows))
+
+
+def _parse_lane_arg(args, usage):
+    if not args:
+        return None, usage
+    try:
+        return learning_items.normalize_lane(args[0]), None
+    except ValueError:
+        return None, usage
+
+
+async def lane_deck(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    lane, error = _parse_lane_arg(context.args, LANE_DECK_USAGE)
+    if error or len(context.args) < 2:
+        await update.message.reply_text(LANE_DECK_USAGE)
+        return
+    deck_id = " ".join(context.args[1:]).strip()
+    deck_id = None if deck_id.lower() == "all" else deck_id
+    settings = learning_items.set_lane_filter(update.effective_user.id, lane, deck_id=deck_id, tags=learning_items.get_lane_settings(update.effective_user.id, lane).get("tags"))
+    await update.message.reply_text(format_lane_settings([settings]))
+
+
+async def lane_tags(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    lane, error = _parse_lane_arg(context.args, LANE_TAGS_USAGE)
+    if error or len(context.args) < 2:
+        await update.message.reply_text(LANE_TAGS_USAGE)
+        return
+    tags = " ".join(context.args[1:]).strip()
+    tags = None if tags.lower() == "all" else tags
+    settings = learning_items.set_lane_filter(update.effective_user.id, lane, deck_id=learning_items.get_lane_settings(update.effective_user.id, lane).get("deck_id"), tags=tags)
+    await update.message.reply_text(format_lane_settings([settings]))
 
 
 async def flash_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):

@@ -88,6 +88,9 @@ def test_format_help_lists_learning_lane_commands():
     assert "/stats_neword" in text
     assert "/stats_kanji" in text
     assert "/stats_grammar" in text
+    assert "/lane_settings" in text
+    assert "/lane_deck" in text
+    assert "/lane_tags" in text
 
 
 def test_format_next_review_uses_flashcard_timezone(monkeypatch):
@@ -189,6 +192,27 @@ def test_format_settings_lists_learning_filters():
     assert "Type: vocab" in text
     assert "Deck: n4_vocab_core" in text
     assert "Tags: food,verb" in text
+
+
+def test_format_lane_settings_lists_each_lane_filter():
+    text = handlers.format_lane_settings([
+        {"item_type": "vocab", "level": "N4", "deck_id": "n4_vocab_core", "tags": "food,verb", "daily_new_limit": 10, "daily_review_limit": 50},
+        {"item_type": "kanji", "level": "N4", "deck_id": "n4_kanji_core", "tags": None, "daily_new_limit": 3, "daily_review_limit": 30},
+        {"item_type": "grammar", "level": "N4", "deck_id": None, "tags": "n4", "daily_new_limit": 2, "daily_review_limit": 20},
+    ])
+
+    assert "Lane settings" in text
+    assert "Từ mới" in text
+    assert "Deck: n4_vocab_core" in text
+    assert "Tags: food,verb" in text
+    assert "Kanji" in text
+    assert "Deck: all" in text or "Tags: all" in text
+    assert "Ngữ pháp" in text
+
+
+def test_lane_setting_usage_messages():
+    assert handlers.LANE_DECK_USAGE == "Usage: /lane_deck neword|kanji|grammar <deck|all>"
+    assert handlers.LANE_TAGS_USAGE == "Usage: /lane_tags neword|kanji|grammar <tags|all>"
 
 
 def test_format_card_front_accepts_legacy_card_shape():
