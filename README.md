@@ -40,7 +40,7 @@ src/
   flashcard_sources/        # sheet/pdf adapters + validation
 
 tools/
-  import_flashcards.py      # unified Sheet/PDF flashcard import CLI
+  import_flashcards.py      # import learning deck sheets, legacy Sheet/PDF fallback
   import_n4_pdf.py          # legacy PDF importer/parser
 
 tests/                      # pytest tests, run in Docker or Python env
@@ -105,7 +105,9 @@ See `docs/learning-lanes-usage.md` for workflow and examples.
 
 Daily lessons doc tu Google Sheet dau tien (`sheet1`) trong spreadsheet `GOOGLE_SHEET_ID`. Schema goc nam trong `docs/mvp-telegram-google-sheet.md`.
 
-Flashcards mac dinh import tu worksheet `flashcards`. Header can co:
+Learning items mac dinh import tu `deck_catalog` va cac worksheet deck active (`vocab_n4_core`, `kanji_n4_core`, `grammar_n4_core`, `kaiwa_n4_daily`). Xem phan "Learning items deck model" ben duoi de biet schema tung worksheet.
+
+Worksheet legacy `flashcards` chi dung cho fallback hoac migrate du lieu cu. Header legacy can co:
 
 ```text
 card_id
@@ -122,7 +124,7 @@ tags
 status
 ```
 
-Chi row `status=ready` duoc import. PDF N4 van giu lam fallback qua `tools/import_flashcards.py --source pdf`.
+Chi row `status=ready` duoc import. PDF N4 van giu lam fallback legacy qua `tools/import_flashcards.py --model legacy --source pdf`.
 
 ## Runtime va config
 
@@ -178,23 +180,25 @@ Run tests trong Docker:
 docker compose run --rm bot pytest -q
 ```
 
-Import flashcards tu Sheet dry-run:
+Import learning decks tu Google Sheet dry-run:
 
 ```powershell
-docker compose run --rm bot python tools/import_flashcards.py --source sheet --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --model learning --all-decks --dry-run
 ```
 
-Import that tu Sheet:
+Import learning decks that:
 
 ```powershell
-docker compose run --rm bot python tools/import_flashcards.py --source sheet
+docker compose run --rm bot python tools/import_flashcards.py --model learning --all-decks
 ```
 
-PDF fallback:
+Legacy Sheet/PDF fallback:
 
 ```powershell
-docker compose run --rm bot python tools/import_flashcards.py --source pdf --dry-run
-docker compose run --rm bot python tools/import_flashcards.py --source pdf
+docker compose run --rm bot python tools/import_flashcards.py --model legacy --source sheet --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --model legacy --source sheet
+docker compose run --rm bot python tools/import_flashcards.py --model legacy --source pdf --dry-run
+docker compose run --rm bot python tools/import_flashcards.py --model legacy --source pdf
 ```
 
 ## Tai lieu nen doc
