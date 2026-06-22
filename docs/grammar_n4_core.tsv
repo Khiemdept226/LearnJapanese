@@ -1,5 +1,9 @@
 item_id	level	deck_id	source_position	pattern	meaning	usage	example_jp	example_vi	tags	status
-N4-GRAMMAR-0001	N4	n4_grammar_core	1	〜ている	Doing; currently in a state	Use after te-form to describe an ongoing action or resulting state.	今、日本語を勉強しています。	I am studying Japanese now.	te-form,progressive,lesson-01	ready
-N4-GRAMMAR-0002	N4	n4_grammar_core	2	〜てもいい	May; allowed to	Use after te-form to ask or give permission.	ここで写真を撮ってもいいですか。	May I take photos here?	te-form,permission,lesson-01	ready
-N4-GRAMMAR-0003	N4	n4_grammar_core	3	〜なければならない	Must; have to	Use negative conditional form plus narimasen/naranai for obligation.	明日までに宿題をしなければなりません。	I must do homework by tomorrow.	obligation,formal,lesson-02	ready
-N4-GRAMMAR-0004	N4	n4_grammar_core	4	〜そうだ	Looks like; seems	Use stem/adjective form to describe appearance or hearsay depending pattern.	このケーキはおいしそうです。	This cake looks delicious.	appearance,adjective,lesson-02	draft
+N4-GRAMMAR-0001	N4	n4_grammar_core	1	V1-ます + ながら、V2	vừa V1 vừa V2	diễn tả 2 hành động diễn ra đồng thời, hành động ở vế sau là hành động chính	コーヒーを飲みながら、本を読みます。	Tôi vừa uống cà phê vừa đọc sách.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0002	N4	n4_grammar_core	2	V-ます + やすい	dễ V, dễ dàng làm V		この携帯は使いやすいです。	Chiếc di động này dễ sử dụng.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0003	N4	n4_grammar_core	3	V-ます + にくい	khó V, khó khăn làm V		先生の説明はわかりにくかったです。	Phần giải thích của giáo viên khó hiểu.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0004	N4	n4_grammar_core	4	V-ます + すぎる	quá ~	Ngoài ra có thể kết hợp với: Aい + すぎる / Aな + すぎる	飲み会で食べすぎました。 | このシャツは大きすぎます。 | ここは危険すぎます。	Tôi đã ăn quá nhiều ở buổi tiệc nhậu. | Cái áo này quá to. | Nơi này quá nguy hiểm.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0005	N4	n4_grammar_core	5	V-ます + そうだ	① coi bộ, sắp sửa ~; ② có vẻ ~ (phán đoán)	Ngoài ra có thể kết hợp với: Aい + そうだ / Aな + そうだ	今にも雨が降りそうです。 | この車は高そうですね。 | この先生の授業は楽しそうです。	Trời sắp sửa mưa đến nơi. | Trông chiếc ô tô này có vẻ đắt nhỉ. | Tiết học của giáo viên này có vẻ thú vị.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0006	N4	n4_grammar_core	6	V-ます + 始める	bắt đầu V		空が明るくなり始めました。	Trời đã bắt đầu sáng.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0007	N4	n4_grammar_core	7	V-ます + 続ける	tiếp tục, liên tục V		弟はまだ食べ続けています。	Em trai tôi vẫn tiếp tục ăn.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
+N4-GRAMMAR-0008	N4	n4_grammar_core	8	V-ます + 終わる	V xong, V hết		この本はもう読み終わりました。	Cuốn sách này tôi đã đọc xong rồi.	page-47,masu-form,ngữ-pháp-kết-hợp-cùng-động-từ-thể-masu	ready
