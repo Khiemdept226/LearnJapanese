@@ -82,6 +82,25 @@ Flashcard commands:
 
 Flashcard co inline buttons cho show answer, grade, next, stats, goal preset, reset confirm.
 
+Typed learning lane commands:
+
+```text
+/neword          hoc tu moi
+/vocab           alias cua /neword
+/kanji           hoc kanji
+/grammar         hoc ngu phap
+/mix             hoc xen ke tu moi, kanji, ngu phap
+/stats           thong ke tong
+/stats_neword    thong ke tu moi
+/stats_kanji     thong ke kanji
+/stats_grammar   thong ke ngu phap
+/goal_neword     chon goal tu moi
+/goal_kanji      chon goal kanji
+/goal_grammar    chon goal ngu phap
+```
+
+See `docs/learning-lanes-usage.md` for workflow and examples.
+
 ## Du lieu
 
 Daily lessons doc tu Google Sheet dau tien (`sheet1`) trong spreadsheet `GOOGLE_SHEET_ID`. Schema goc nam trong `docs/mvp-telegram-google-sheet.md`.

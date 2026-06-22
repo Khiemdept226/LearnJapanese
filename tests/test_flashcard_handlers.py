@@ -47,6 +47,21 @@ def test_format_stats_message_includes_today_count():
     assert "Đã chấm: 5" in text
 
 
+def test_format_lane_stats_includes_lane_name():
+    text = handlers.format_lane_stats("kanji", {
+        "total": 12,
+        "new": 3,
+        "due": 2,
+        "learning": 1,
+        "review": 6,
+        "lapses": 0,
+    }, today_count=4)
+
+    assert "Kanji" in text
+    assert "Tổng thẻ: 12" in text
+    assert "Đã chấm: 4" in text
+
+
 def test_format_help_lists_flashcard_flow_and_settings_commands():
     text = handlers.format_help()
 
@@ -60,6 +75,18 @@ def test_format_help_lists_flashcard_flow_and_settings_commands():
     assert "/flash_type vocab|kanji|grammar|kaiwa" in text
     assert "/flash_deck n4_vocab_core" in text
     assert "/flash_tags food,verb" in text
+
+
+def test_format_help_lists_learning_lane_commands():
+    text = handlers.format_help()
+
+    assert "/neword" in text
+    assert "/kanji" in text
+    assert "/grammar" in text
+    assert "/mix" in text
+    assert "/stats_neword" in text
+    assert "/stats_kanji" in text
+    assert "/stats_grammar" in text
 
 
 def test_format_next_review_uses_flashcard_timezone(monkeypatch):
@@ -113,6 +140,15 @@ def test_goal_keyboard_includes_jlpt_sprint():
     buttons = [button for row in markup.inline_keyboard for button in row]
 
     assert any(button.text == "Nước rút JLPT" and button.callback_data == "flash:goal:jlpt_sprint" for button in buttons)
+
+
+def test_lane_goal_keyboard_has_neword_callbacks():
+    markup = handlers.lane_goal_keyboard("vocab")
+    buttons = [button for row in markup.inline_keyboard for button in row]
+
+    assert ("Nhẹ", "flash:lane_goal:vocab:light") in [(button.text, button.callback_data) for button in buttons]
+    assert ("Đều", "flash:lane_goal:vocab:steady") in [(button.text, button.callback_data) for button in buttons]
+    assert ("Nặng", "flash:lane_goal:vocab:heavy") in [(button.text, button.callback_data) for button in buttons]
 
 
 def test_reset_keyboard_requires_confirmation():

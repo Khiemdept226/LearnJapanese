@@ -100,9 +100,25 @@ def init_learning_db():
             updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
         )
     """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS user_learning_lane_settings (
+            telegram_user_id INTEGER NOT NULL,
+            item_type TEXT NOT NULL,
+            level TEXT NOT NULL DEFAULT 'N4',
+            deck_id TEXT,
+            tags TEXT,
+            daily_new_limit INTEGER NOT NULL,
+            daily_review_limit INTEGER NOT NULL,
+            again_delay_minutes INTEGER NOT NULL,
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (telegram_user_id, item_type)
+        )
+    """)
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_learning_items_level_type_deck ON learning_items(level, item_type, deck_id)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_learning_items_status ON learning_items(status)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_user_learning_reviews_due ON user_learning_reviews(telegram_user_id, state, due_at)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_user_learning_lane_settings_user ON user_learning_lane_settings(telegram_user_id, item_type)")
     conn.commit()
     conn.close()
 
@@ -359,6 +375,20 @@ GOAL_PRESETS = {
     "heavy": {"preset": "heavy", "daily_new_limit": 10, "daily_review_limit": 40, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": None, "exam_date": None},
     "jlpt_sprint": {"preset": "jlpt_sprint", "daily_new_limit": 15, "daily_review_limit": 60, "again_delay_minutes": 10, "stop_new_cards_before_exam_days": 7, "exam_date": "2026-07-05"},
 }
+LANE_DEFAULTS = {
+    "vocab": {"daily_new_limit": 10, "daily_review_limit": 50, "again_delay_minutes": 10},
+    "kanji": {"daily_new_limit": 3, "daily_review_limit": 30, "again_delay_minutes": 10},
+    "grammar": {"daily_new_limit": 2, "daily_review_limit": 20, "again_delay_minutes": 10},
+}
+LANE_ALIASES = {"neword": "vocab", "vocab": "vocab", "kanji": "kanji", "grammar": "grammar"}
+MIX_LANES = ("vocab", "kanji", "grammar")
+
+
+def normalize_lane(item_type):
+    lane = LANE_ALIASES.get(str(item_type or "").strip().lower())
+    if not lane:
+        raise ValueError(f"Invalid learning lane: {item_type}")
+    return lane
 
 
 def utc_now():
@@ -640,6 +670,112 @@ def set_user_learning_filter(telegram_user_id, *, level=None, item_type=None, de
     return _save_settings(telegram_user_id, settings)
 
 
+def get_lane_settings(telegram_user_id, item_type):
+    init_learning_db()
+    lane = normalize_lane(item_type)
+    defaults = {
+        "telegram_user_id": telegram_user_id,
+        "item_type": lane,
+        "level": "N4",
+        "deck_id": None,
+        "tags": None,
+        **LANE_DEFAULTS[lane],
+    }
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT * FROM user_learning_lane_settings
+        WHERE telegram_user_id = ? AND item_type = ?
+    """, (telegram_user_id, lane))
+    row = cursor.fetchone()
+    conn.close()
+    if not row:
+        return defaults
+    settings = dict(defaults)
+    settings.update(dict(row))
+    return settings
+
+
+def set_lane_goal(telegram_user_id, item_type, *, daily_new_limit, daily_review_limit, again_delay_minutes=10, level="N4", deck_id=None, tags=None):
+    init_learning_db()
+    lane = normalize_lane(item_type)
+    now = utc_now().isoformat()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO user_learning_lane_settings (
+            telegram_user_id, item_type, level, deck_id, tags, daily_new_limit,
+            daily_review_limit, again_delay_minutes, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(telegram_user_id, item_type) DO UPDATE SET
+            level = excluded.level,
+            deck_id = excluded.deck_id,
+            tags = excluded.tags,
+            daily_new_limit = excluded.daily_new_limit,
+            daily_review_limit = excluded.daily_review_limit,
+            again_delay_minutes = excluded.again_delay_minutes,
+            updated_at = excluded.updated_at
+    """, (
+        telegram_user_id, lane, level, deck_id, normalize_tags(tags), daily_new_limit,
+        daily_review_limit, again_delay_minutes, now, now,
+    ))
+    conn.commit()
+    conn.close()
+    return get_lane_settings(telegram_user_id, lane)
+
+
+def _lane_filters(settings):
+    return {
+        "level": settings.get("level"),
+        "item_type": settings.get("item_type"),
+        "deck_id": settings.get("deck_id"),
+        "tags": settings.get("tags"),
+    }
+
+
+def get_lane_stats(telegram_user_id, item_type, now=None):
+    settings = get_lane_settings(telegram_user_id, item_type)
+    return get_learning_stats(telegram_user_id, now=now, **_lane_filters(settings))
+
+
+def pick_next_lane_item(telegram_user_id, item_type, now=None):
+    settings = get_lane_settings(telegram_user_id, item_type)
+    return pick_next_item(telegram_user_id, now=now, **_lane_filters(settings))
+
+
+def pick_due_lane_item(telegram_user_id, item_type, now=None):
+    settings = get_lane_settings(telegram_user_id, item_type)
+    return pick_due_item(telegram_user_id, now=now, **_lane_filters(settings))
+
+
+def pick_new_lane_item(telegram_user_id, item_type):
+    settings = get_lane_settings(telegram_user_id, item_type)
+    return pick_new_item(telegram_user_id, **_lane_filters(settings))
+
+
+def pick_mix_item(telegram_user_id, now=None, lanes=MIX_LANES):
+    now = now or utc_now()
+    lane_stats = []
+    for lane in lanes:
+        settings = get_lane_settings(telegram_user_id, lane)
+        stats = get_learning_stats(telegram_user_id, now=now, **_lane_filters(settings))
+        lane_stats.append((lane, settings, stats))
+
+    for lane, settings, stats in sorted(lane_stats, key=lambda row: (-row[2]["due"], row[0])):
+        if stats["due"] > 0 and settings["daily_review_limit"] > 0:
+            item = pick_due_item(telegram_user_id, now=now, **_lane_filters(settings))
+            if item:
+                return item
+
+    for lane, settings, stats in sorted(lane_stats, key=lambda row: (-row[1]["daily_new_limit"], row[0])):
+        if stats["new"] > 0 and settings["daily_new_limit"] > 0:
+            item = pick_new_item(telegram_user_id, **_lane_filters(settings))
+            if item:
+                return item
+
+    return None
+
+
 def reset_user_learning_progress(telegram_user_id):
     init_learning_db()
     conn = get_connection()
@@ -664,7 +800,7 @@ def should_allow_new_cards(settings, today=None):
     return (exam_date - today).days > int(settings["stop_new_cards_before_exam_days"])
 
 
-def set_current_session(telegram_user_id, learning_item_id, answer_shown=False, now=None):
+def set_current_session(telegram_user_id, learning_item_id, answer_shown=False, now=None, current_direction="front_to_back"):
     init_learning_db()
     now = now or utc_now()
     shown_at = now.isoformat()
@@ -674,14 +810,14 @@ def set_current_session(telegram_user_id, learning_item_id, answer_shown=False, 
     cursor.execute("""
         INSERT INTO user_learning_sessions (
             telegram_user_id, current_learning_item_id, current_direction, shown_at, answer_shown_at, updated_at
-        ) VALUES (?, ?, 'front_to_back', ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?)
         ON CONFLICT(telegram_user_id) DO UPDATE SET
             current_learning_item_id = excluded.current_learning_item_id,
             current_direction = excluded.current_direction,
             shown_at = excluded.shown_at,
             answer_shown_at = excluded.answer_shown_at,
             updated_at = excluded.updated_at
-    """, (telegram_user_id, learning_item_id, shown_at, answer_shown_at, shown_at))
+    """, (telegram_user_id, learning_item_id, current_direction, shown_at, answer_shown_at, shown_at))
     conn.commit()
     conn.close()
 

@@ -16,9 +16,9 @@ def front_keyboard():
     ])
 
 
-def continue_keyboard():
+def continue_keyboard(next_callback="flash:next"):
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("Thẻ tiếp theo", callback_data="flash:next")],
+        [InlineKeyboardButton("Thẻ tiếp theo", callback_data=next_callback)],
         [InlineKeyboardButton("Thống kê", callback_data="flash:stats")],
     ])
 
@@ -55,6 +55,26 @@ def stats_keyboard():
         [InlineKeyboardButton("Danh sách hôm nay", callback_data="flash:today:list")],
         [InlineKeyboardButton("Thẻ tiếp theo", callback_data="flash:next")],
     ])
+
+LANE_LABELS = {
+    "vocab": "Từ mới",
+    "kanji": "Kanji",
+    "grammar": "Ngữ pháp",
+}
+
+LANE_GOAL_PRESETS = {
+    "vocab": {"light": (5, 25), "steady": (10, 50), "heavy": (15, 80)},
+    "kanji": {"light": (1, 15), "steady": (3, 30), "heavy": (5, 50)},
+    "grammar": {"light": (1, 10), "steady": (2, 20), "heavy": (4, 40)},
+}
+
+def lane_goal_keyboard(item_type):
+    lane = learning_items.normalize_lane(item_type)
+    return InlineKeyboardMarkup([[
+        InlineKeyboardButton("Nhẹ", callback_data=f"flash:lane_goal:{lane}:light"),
+        InlineKeyboardButton("Đều", callback_data=f"flash:lane_goal:{lane}:steady"),
+        InlineKeyboardButton("Nặng", callback_data=f"flash:lane_goal:{lane}:heavy"),
+    ]])
 
 
 def _item_front(item):
@@ -108,6 +128,18 @@ def format_help():
         "/flash_type vocab|kanji|grammar|kaiwa - chọn loại thẻ\n"
         "/flash_deck n4_vocab_core - chọn deck\n"
         "/flash_tags food,verb - lọc theo tag\n"
+        "/neword - học từ mới\n"
+        "/vocab - học từ mới\n"
+        "/kanji - học kanji\n"
+        "/grammar - học ngữ pháp\n"
+        "/mix - học xen kẽ từ mới, kanji, ngữ pháp\n"
+        "/stats - thống kê tổng\n"
+        "/stats_neword - thống kê từ mới\n"
+        "/stats_kanji - thống kê kanji\n"
+        "/stats_grammar - thống kê ngữ pháp\n"
+        "/goal_neword - chọn goal từ mới\n"
+        "/goal_kanji - chọn goal kanji\n"
+        "/goal_grammar - chọn goal ngữ pháp\n"
         "/show - hiện đáp án\n"
         "/again /hard /good /easy - chấm thẻ"
     )
@@ -232,6 +264,21 @@ def format_stats(stats, today_count=None):
         lines.extend(["", "Hôm nay", f"Đã chấm: {today_count}"])
     return "\n".join(lines)
 
+def format_lane_stats(item_type, stats, today_count=None):
+    lane = learning_items.normalize_lane(item_type)
+    return format_stats(stats, today_count=today_count).replace(
+        "Tiến độ flashcard",
+        f"Tiến độ {LANE_LABELS[lane]}",
+        1,
+    )
+
+def _next_callback_for_mode(mode):
+    if mode == "mix":
+        return "flash:mix_next"
+    if mode and mode.startswith("lane:"):
+        return f"flash:next_lane:{mode.split(':', 1)[1]}"
+    return "flash:next"
+
 
 def format_today_card_list(cards):
     if not cards:
@@ -327,19 +374,19 @@ async def flash_goal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Chọn mục tiêu học mỗi ngày:", reply_markup=goal_keyboard())
 
 
-async def _send_card_to_message(message, telegram_user_id, card):
+async def _send_card_to_message(message, telegram_user_id, card, current_direction="front_to_back"):
     if not card:
         await message.reply_text("Chưa có thẻ flashcard phù hợp. Hãy import dữ liệu Sheet trước.")
         return
-    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False)
+    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False, current_direction=current_direction)
     await message.reply_text(format_card_front(card), reply_markup=front_keyboard())
 
 
-async def _edit_card_for_query(query, telegram_user_id, card):
+async def _edit_card_for_query(query, telegram_user_id, card, current_direction="front_to_back"):
     if not card:
         await query.edit_message_text("Chưa có thẻ phù hợp lúc này.")
         return
-    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False)
+    learning_items.set_current_session(telegram_user_id, card["id"], answer_shown=False, current_direction=current_direction)
     await query.edit_message_text(format_card_front(card), reply_markup=front_keyboard())
 
 
@@ -373,6 +420,81 @@ async def flash_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     stats = learning_items.get_learning_stats(user_id, **_settings_filters(settings))
     today_cards = _today_cards(user_id, settings)
     await update.message.reply_text(format_stats(stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
+
+
+async def _send_lane_card(update: Update, item_type: str):
+    user_id = update.effective_user.id
+    lane = learning_items.normalize_lane(item_type)
+    card = learning_items.pick_next_lane_item(user_id, lane)
+    if not card:
+        await update.message.reply_text(f"Chưa có thẻ {LANE_LABELS[lane].lower()} phù hợp.")
+        return
+    await _send_card_to_message(update.message, user_id, card, current_direction=f"lane:{lane}")
+
+
+async def neword(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_card(update, "vocab")
+
+
+async def vocab(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_card(update, "vocab")
+
+
+async def kanji(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_card(update, "kanji")
+
+
+async def grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_card(update, "grammar")
+
+
+async def mix(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    card = learning_items.pick_mix_item(user_id)
+    await _send_card_to_message(update.message, user_id, card, current_direction="mix")
+
+
+async def _send_lane_stats(update: Update, item_type: str):
+    user_id = update.effective_user.id
+    lane = learning_items.normalize_lane(item_type)
+    settings = learning_items.get_lane_settings(user_id, lane)
+    stats = learning_items.get_lane_stats(user_id, lane)
+    start_at, end_at = _today_bounds_utc()
+    today_cards = learning_items.get_reviewed_items_between(
+        user_id,
+        settings.get("level"),
+        start_at,
+        end_at,
+        limit=30,
+        item_type=lane,
+        deck_id=settings.get("deck_id"),
+        tags=settings.get("tags"),
+    )
+    await update.message.reply_text(format_lane_stats(lane, stats, today_count=len(today_cards)), reply_markup=stats_keyboard())
+
+
+async def stats_neword(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_stats(update, "vocab")
+
+
+async def stats_kanji(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_stats(update, "kanji")
+
+
+async def stats_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _send_lane_stats(update, "grammar")
+
+
+async def goal_neword(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Chọn goal từ mới:", reply_markup=lane_goal_keyboard("vocab"))
+
+
+async def goal_kanji(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Chọn goal kanji:", reply_markup=lane_goal_keyboard("kanji"))
+
+
+async def goal_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Chọn goal ngữ pháp:", reply_markup=lane_goal_keyboard("grammar"))
 
 
 async def flash_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -425,11 +547,13 @@ async def show(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def _grade_message(update, grade):
+    session = learning_items.get_current_session(update.effective_user.id)
+    next_callback = _next_callback_for_mode(session.get("current_direction") if session else None)
     updated, error = learning_items.grade_current_item(update.effective_user.id, grade)
     if error:
         await update.message.reply_text(grade_error_message(error))
         return
-    await update.message.reply_text(format_next_review(updated), reply_markup=continue_keyboard())
+    await update.message.reply_text(format_next_review(updated), reply_markup=continue_keyboard(next_callback))
 
 
 async def again(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -476,11 +600,13 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
 
     if data.startswith("flash:grade:"):
         grade = data.split(":")[-1]
+        session = learning_items.get_current_session(user_id)
+        next_callback = _next_callback_for_mode(session.get("current_direction") if session else None)
         updated, error = learning_items.grade_current_item(user_id, grade)
         if error:
             await query.edit_message_text(grade_error_message(error))
             return
-        await query.edit_message_text(format_next_review(updated), reply_markup=continue_keyboard())
+        await query.edit_message_text(format_next_review(updated), reply_markup=continue_keyboard(next_callback))
         return
 
     if data == "flash:reset:cancel":
@@ -496,6 +622,20 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
         preset = data.split(":")[-1]
         settings = learning_items.set_user_goal_preset(user_id, preset)
         await query.edit_message_text(format_goal(settings))
+        return
+
+    if data.startswith("flash:lane_goal:"):
+        _, _, lane, preset = data.split(":")
+        daily_new, daily_review = LANE_GOAL_PRESETS[lane][preset]
+        settings = learning_items.set_lane_goal(
+            user_id,
+            lane,
+            daily_new_limit=daily_new,
+            daily_review_limit=daily_review,
+        )
+        await query.edit_message_text(
+            f"Đã cập nhật goal {LANE_LABELS[lane]}: {settings['daily_new_limit']} thẻ mới/ngày, {settings['daily_review_limit']} ôn/ngày."
+        )
         return
 
     if data == "flash:today:list":
@@ -517,6 +657,15 @@ async def handle_flashcard_callback(update: Update, context: ContextTypes.DEFAUL
     if data == "flash:next":
         card = learning_items.pick_next_item(user_id, **_settings_filters(settings))
         await _edit_card_for_query(query, user_id, card)
+        return
+    if data.startswith("flash:next_lane:"):
+        lane = data.split(":")[-1]
+        card = learning_items.pick_next_lane_item(user_id, lane)
+        await _edit_card_for_query(query, user_id, card, current_direction=f"lane:{lane}")
+        return
+    if data == "flash:mix_next":
+        card = learning_items.pick_mix_item(user_id)
+        await _edit_card_for_query(query, user_id, card, current_direction="mix")
         return
     if data == "flash:stats":
         await _edit_stats(query, user_id)
