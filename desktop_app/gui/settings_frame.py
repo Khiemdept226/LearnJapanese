@@ -13,6 +13,8 @@ except ImportError as e:
     traceback.print_exc()
     import_flashcards = None
 
+from desktop_app import settings_store
+
 LOCAL_USER_ID = 1
 
 class SettingsFrame(ctk.CTkFrame):
@@ -61,9 +63,34 @@ class SettingsFrame(ctk.CTkFrame):
         )
         self.reset_btn.pack(pady=(20, 10))
         
+        # --- Reminders ---
+        self.reminder_frame = ctk.CTkFrame(self)
+        self.reminder_frame.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        
+        ctk.CTkLabel(self.reminder_frame, text="Nhắc nhở học (Reminders)", font=("Arial", 16, "bold")).pack(pady=10)
+        
+        self.reminder_enabled_var = ctk.BooleanVar(value=True)
+        self.reminder_enabled_cb = ctk.CTkCheckBox(self.reminder_frame, text="Bật nhắc nhở ôn tập", variable=self.reminder_enabled_var)
+        self.reminder_enabled_cb.pack(pady=5, anchor="w", padx=20)
+        
+        self.daily_reminder_enabled_var = ctk.BooleanVar(value=True)
+        self.daily_reminder_cb = ctk.CTkCheckBox(self.reminder_frame, text="Bật nhắc bài học hằng ngày", variable=self.daily_reminder_enabled_var)
+        self.daily_reminder_cb.pack(pady=5, anchor="w", padx=20)
+        
+        # Interval Row
+        interval_row = ctk.CTkFrame(self.reminder_frame, fg_color="transparent")
+        interval_row.pack(fill="x", padx=20, pady=5)
+        ctk.CTkLabel(interval_row, text="Tần suất nhắc (giờ):", anchor="w").pack(side="left")
+        
+        self.reminder_interval_var = ctk.StringVar(value="2")
+        self.reminder_interval_dropdown = ctk.CTkComboBox(interval_row, values=["1", "2", "3", "4", "6", "12", "24"], variable=self.reminder_interval_var, width=80)
+        self.reminder_interval_dropdown.pack(side="right")
+        
+        ctk.CTkButton(self.reminder_frame, text="Lưu cài đặt nhắc nhở", command=self.save_reminders).pack(pady=15)
+        
         # --- Sync Data ---
         self.sync_frame = ctk.CTkFrame(self)
-        self.sync_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+        self.sync_frame.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
         
         ctk.CTkLabel(self.sync_frame, text="Đồng bộ dữ liệu từ Google Sheets", font=("Arial", 16, "bold")).pack(pady=10)
         
@@ -89,6 +116,32 @@ class SettingsFrame(ctk.CTkFrame):
             self.deck_var.set(settings.get("deck_id") or "")
             self.tags_var.set(settings.get("tags") or "")
             self.preset_var.set(settings.get("preset") or "steady")
+            
+        # Load desktop reminder settings
+        rem_settings = settings_store.load_settings()
+        self.reminder_enabled_var.set(rem_settings.get("reminder_enabled", True))
+        self.daily_reminder_enabled_var.set(rem_settings.get("daily_reminder_enabled", True))
+        self.reminder_interval_var.set(str(rem_settings.get("reminder_interval_hours", 2)))
+
+    def save_reminders(self):
+        try:
+            try:
+                hours = int(self.reminder_interval_var.get())
+            except ValueError:
+                hours = 2
+            
+            rem_settings = {
+                "reminder_enabled": self.reminder_enabled_var.get(),
+                "daily_reminder_enabled": self.daily_reminder_enabled_var.get(),
+                "reminder_interval_hours": hours
+            }
+            settings_store.save_settings(rem_settings)
+            
+            from tkinter import messagebox
+            messagebox.showinfo("Thành công", "Đã lưu cài đặt nhắc nhở thành công!")
+        except Exception as e:
+            from tkinter import messagebox
+            messagebox.showerror("Lỗi", f"Không thể lưu cài đặt nhắc nhở: {e}")
 
     def save_filters(self):
         learning_items.set_user_learning_filter(

@@ -12,8 +12,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from db import init_db
-from learning_items import init_learning_db
+from learning_items import init_learning_db, get_learning_stats, get_user_settings
 from config import validate_config, FLASHCARD_DAILY_TIME, DAILY_SEND_TIME, FLASHCARD_ENABLED
+import sheets
+import settings_store
 
 # Import the GUI app
 from gui.main_window import AppWindow
@@ -52,25 +54,84 @@ class DesktopApp:
         if self.app_window:
             self.app_window.quit()
 
+    def show_notification(self, title, message):
+        if self.icon:
+            try:
+                # pystray's notify takes (message, title)
+                self.icon.notify(message, title)
+            except Exception as e:
+                print(f"Failed to send notification: {e}")
+
     def scheduler_loop(self):
-        last_notified_date = None
+        last_daily_lesson_date = None
+        last_daily_flashcard_date = None
+        last_review_notification_time = 0
+        
         while self.running:
+            # Load desktop settings
+            config = settings_store.load_settings()
+            
             now = datetime.datetime.now()
             current_time = now.strftime("%H:%M")
             current_date = now.date()
             
-            # Check if it's time for daily lesson or flashcards
-            time_to_notify = False
-            if current_time == DAILY_SEND_TIME or (FLASHCARD_ENABLED and current_time == FLASHCARD_DAILY_TIME):
-                time_to_notify = True
-                
-            if time_to_notify and last_notified_date != current_date:
-                # Open window to remind user
-                if self.app_window:
-                    self.app_window.after(0, self.app_window.deiconify)
-                    self.app_window.after(100, self.app_window.focus_force)
-                last_notified_date = current_date
-                
+            # 1. Daily Lesson Notification
+            if config.get("daily_reminder_enabled", True) and current_time == DAILY_SEND_TIME:
+                if last_daily_lesson_date != current_date:
+                    import db
+                    user = db.get_user(1)
+                    if user:
+                        lesson = sheets.get_lesson_by_order(user['current_lesson_order'])
+                        if lesson:
+                            self.show_notification(
+                                "Bài học mới hôm nay", 
+                                f"Bài {lesson['lesson_id']}: {lesson['title']}. Hãy mở app để học nhé!"
+                            )
+                    last_daily_lesson_date = current_date
+            
+            # 2. Daily Flashcards Notification (configured daily time)
+            if config.get("daily_reminder_enabled", True) and FLASHCARD_ENABLED and current_time == FLASHCARD_DAILY_TIME:
+                if last_daily_flashcard_date != current_date:
+                    settings = get_user_settings(1)
+                    # Helper dictionary mock for _settings_filters
+                    filters = {
+                        "level": settings.get("level"),
+                        "item_type": settings.get("item_type"),
+                        "deck_id": settings.get("deck_id"),
+                        "tags": settings.get("tags")
+                    }
+                    stats = get_learning_stats(1, **filters)
+                    if stats.get("due", 0) > 0:
+                        self.show_notification(
+                            "Đến giờ ôn tập rồi!",
+                            f"Bạn đang có {stats['due']} thẻ đến hạn cần ôn tập hôm nay."
+                        )
+                    last_daily_flashcard_date = current_date
+
+            # 3. Periodic Review Notifications (based on interval)
+            if config.get("reminder_enabled", True):
+                interval_seconds = config.get("reminder_interval_hours", 2) * 3600
+                if time.time() - last_review_notification_time >= interval_seconds:
+                    settings = get_user_settings(1)
+                    filters = {
+                        "level": settings.get("level"),
+                        "item_type": settings.get("item_type"),
+                        "deck_id": settings.get("deck_id"),
+                        "tags": settings.get("tags")
+                    }
+                    stats = get_learning_stats(1, **filters)
+                    due_count = stats.get("due", 0)
+                    if due_count > 0:
+                        self.show_notification(
+                            "Nhắc nhở ôn tập",
+                            f"Bạn có {due_count} từ cần ôn tập. Hãy dành chút thời gian học nhé!"
+                        )
+                        # Set to now so we don't notify again until interval passes
+                        last_review_notification_time = time.time()
+                    else:
+                        # If no cards are due, we check again in 10 minutes rather than waiting the whole interval
+                        last_review_notification_time = time.time() - interval_seconds + 600
+
             time.sleep(30)
 
     def run(self):
