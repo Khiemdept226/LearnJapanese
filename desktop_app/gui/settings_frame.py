@@ -101,7 +101,7 @@ class SettingsFrame(ctk.CTkFrame):
         def sync_task():
             try:
                 # Call learning import
-                stats, _ = import_flashcards.run_learning_import(all_decks=True)
+                stats = import_flashcards.run_learning_import(all_decks=True)
                 imported = stats.get('imported', 0)
                 msg = f"Đồng bộ thành công! {imported} thẻ đã được tải về."
             except Exception as e:
