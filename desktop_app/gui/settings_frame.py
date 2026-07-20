@@ -5,9 +5,9 @@ import customtkinter as ctk
 
 import learning_items
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'tools')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 try:
-    import import_flashcards
+    from tools import import_flashcards
 except ImportError as e:
     import traceback
     traceback.print_exc()
@@ -50,6 +50,16 @@ class SettingsFrame(ctk.CTkFrame):
         self.preset_dropdown = ctk.CTkComboBox(self.goal_frame, values=presets, variable=self.preset_var)
         self.preset_dropdown.pack(pady=10)
         ctk.CTkButton(self.goal_frame, text="Lưu mục tiêu chung", command=self.save_goal).pack(pady=10)
+        
+        from tkinter import messagebox
+        self.reset_btn = ctk.CTkButton(
+            self.goal_frame,
+            text="Reset tiến độ học",
+            fg_color="#E74C3C",
+            hover_color="#C0392B",
+            command=self.confirm_reset
+        )
+        self.reset_btn.pack(pady=(20, 10))
         
         # --- Sync Data ---
         self.sync_frame = ctk.CTkFrame(self)
@@ -115,3 +125,17 @@ class SettingsFrame(ctk.CTkFrame):
     def sync_complete(self, msg):
         self.sync_status.configure(text=msg)
         self.sync_btn.configure(state="normal")
+
+    def confirm_reset(self):
+        from tkinter import messagebox
+        confirm = messagebox.askyesno(
+            "Xác nhận reset",
+            "Bạn có chắc chắn muốn reset toàn bộ tiến độ học (flashcards) không?\nHành động này không thể hoàn tác."
+        )
+        if confirm:
+            try:
+                learning_items.reset_user_learning_progress(LOCAL_USER_ID)
+                messagebox.showinfo("Thành công", "Đã reset toàn bộ tiến độ học của bạn!")
+            except Exception as e:
+                messagebox.showerror("Lỗi", f"Không thể reset tiến độ: {e}")
+

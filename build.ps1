@@ -11,14 +11,18 @@ Write-Host "Installing PyInstaller..."
 
 Write-Host "Building EXE with PyInstaller..."
 # We use --paths to help PyInstaller find our modules
-# We use --hidden-import because import_flashcards is imported dynamically
 & ".\.portable_python\Scripts\pyinstaller.exe" `
     --onefile `
     --noconsole `
+    --clean `
     --name "LearnJapanese" `
     --paths "src" `
-    --paths "tools" `
-    --hidden-import "import_flashcards" `
+    --paths "." `
+    --exclude-module "PIL._avif" `
+    --exclude-module "PIL._webp" `
+    --exclude-module "PIL._imagingcms" `
+    --hidden-import "tools.import_flashcards" `
+    --hidden-import "tools.import_n4_pdf" `
     --hidden-import "flashcards" `
     --hidden-import "learning_items" `
     --hidden-import "db" `
