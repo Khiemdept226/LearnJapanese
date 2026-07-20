@@ -8,8 +8,10 @@ import learning_items
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'tools')))
 try:
     import import_flashcards
-except ImportError:
-    pass
+except ImportError as e:
+    import traceback
+    traceback.print_exc()
+    import_flashcards = None
 
 LOCAL_USER_ID = 1
 

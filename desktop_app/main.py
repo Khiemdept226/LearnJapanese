@@ -7,8 +7,9 @@ import pystray
 from PIL import Image, ImageDraw
 import customtkinter as ctk
 
-# Add src to path to reuse existing logic
+# Add src and root to path to reuse existing logic
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from db import init_db
 from learning_items import init_learning_db
