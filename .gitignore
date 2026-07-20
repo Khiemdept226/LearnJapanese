@@ -31,3 +31,8 @@ data/*.db
 # Desktop App specific
 .portable_python/
 desktop_app/__pycache__/
+
+# PyInstaller build artifacts
+build/
+dist/
+*.spec
