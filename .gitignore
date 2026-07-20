@@ -27,3 +27,7 @@ data/*.db
 
 # Local git worktrees
 .worktrees/
+
+# Desktop App specific
+.portable_python/
+desktop_app/__pycache__/
