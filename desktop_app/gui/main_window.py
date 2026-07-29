@@ -1,7 +1,5 @@
 import customtkinter as ctk
 
-# We'll import these frames once they are created
-# For now, we will create placeholders
 try:
     from .daily_lesson_frame import DailyLessonFrame
 except ImportError:
@@ -39,30 +37,30 @@ class AppWindow(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        # Window Configuration
         self.title("Learn Japanese - JLPT")
         self.geometry("800x600")
         self.minsize(600, 500)
 
-        # TabView
         self.tabview = ctk.CTkTabview(self)
         self.tabview.pack(fill="both", expand=True, padx=10, pady=10)
 
-        # Add tabs
-        self.tabview.add("Bài học mỗi ngày")
+        self.tabview.add("Daily Lesson")
         self.tabview.add("Flashcards")
-        self.tabview.add("Thống kê")
-        self.tabview.add("Cài đặt")
+        self.tabview.add("Stats")
+        self.tabview.add("Settings")
 
-        # Initialize frames
-        self.daily_lesson_frame = DailyLessonFrame(self.tabview.tab("Bài học mỗi ngày"))
+        self.daily_lesson_frame = DailyLessonFrame(self.tabview.tab("Daily Lesson"))
         self.daily_lesson_frame.pack(fill="both", expand=True)
 
         self.flashcard_frame = FlashcardFrame(self.tabview.tab("Flashcards"))
         self.flashcard_frame.pack(fill="both", expand=True)
 
-        self.stats_frame = StatsFrame(self.tabview.tab("Thống kê"))
+        self.stats_frame = StatsFrame(self.tabview.tab("Stats"))
         self.stats_frame.pack(fill="both", expand=True)
 
-        self.settings_frame = SettingsFrame(self.tabview.tab("Cài đặt"))
+        self.settings_frame = SettingsFrame(self.tabview.tab("Settings"))
         self.settings_frame.pack(fill="both", expand=True)
+
+    def show_flashcards(self):
+        self.tabview.set("Flashcards")
+        self.flashcard_frame.load_next_card()
